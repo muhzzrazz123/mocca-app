@@ -8,6 +8,7 @@ import { GlobalSearchModal } from '../common/GlobalSearchModal';
 import { DashboardView } from '../dashboard/DashboardView';
 import { StaffManagementView } from '../staff/StaffManagementView';
 import { ProfitTableView } from '../finance/ProfitTableView';
+import { DailyEntryModal } from '../daily/DailyEntryModal';
 import { PhaseModulePlaceholder } from '../common/PhaseModulePlaceholder';
 import {
   ReceiptText,
@@ -29,6 +30,7 @@ export const MainLayout: React.FC = () => {
   const [activeTab, setActiveTab] = useState<NavItemKey>('dashboard');
   const [isOpenMobileMore, setIsOpenMobileMore] = useState(false);
   const [isOpenSearch, setIsOpenSearch] = useState(false);
+  const [isDailyEntryOpen, setIsDailyEntryOpen] = useState(false);
 
   // Live queries for header and sidebar badges
   const pendingRequestsCount = useLiveQuery(
@@ -286,6 +288,7 @@ export const MainLayout: React.FC = () => {
           onSelectTab={(tab) => setActiveTab(tab)}
           onOpenMobileMenu={() => setIsOpenMobileMore(true)}
           onOpenSearch={() => setIsOpenSearch(true)}
+          onOpenDailyEntry={() => setIsDailyEntryOpen(true)}
           alertsCount={overdueCount}
         />
 
@@ -305,6 +308,16 @@ export const MainLayout: React.FC = () => {
           isOpen={isOpenSearch}
           onClose={() => setIsOpenSearch(false)}
           onNavigate={(tab) => setActiveTab(tab)}
+        />
+
+        {/* Fast Daily Store Operations Modal */}
+        <DailyEntryModal
+          isOpen={isDailyEntryOpen}
+          onClose={() => setIsDailyEntryOpen(false)}
+          onNavigateToPos={() => {
+            setIsDailyEntryOpen(false);
+            setActiveTab('pos');
+          }}
         />
       </div>
     </div>

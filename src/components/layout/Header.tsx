@@ -17,6 +17,7 @@ interface HeaderProps {
   onSelectTab: (tab: NavItemKey) => void;
   onOpenMobileMenu?: () => void;
   onOpenSearch?: () => void;
+  onOpenDailyEntry?: () => void;
   alertsCount?: number;
 }
 
@@ -25,6 +26,7 @@ export const Header: React.FC<HeaderProps> = ({
   onSelectTab,
   onOpenMobileMenu,
   onOpenSearch,
+  onOpenDailyEntry,
   alertsCount = 0,
 }) => {
   const { period, setPeriod } = usePeriod();
@@ -159,6 +161,17 @@ export const Header: React.FC<HeaderProps> = ({
               {alertsCount}
             </span>
           )}
+        </button>
+
+        {/* Quick Daily Entry Action Button */}
+        <button
+          onClick={onOpenDailyEntry}
+          className="flex items-center gap-1.5 bg-mocca-800 hover:bg-mocca-750 text-gold font-bold px-3 py-2 rounded-xl text-xs border border-gold/40 hover:border-gold shadow-sm transition-all active:scale-95"
+          title="Add Daily Expense, Received Stock, Attendance, or Request"
+        >
+          <PlusCircle size={15} />
+          <span className="hidden md:inline">+ Daily Entry</span>
+          <span className="md:hidden">Daily</span>
         </button>
 
         {/* Primary Action Button: New Bill / POS */}
