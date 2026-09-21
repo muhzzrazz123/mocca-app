@@ -29,8 +29,10 @@ import {
   FileText,
   DollarSign,
   Briefcase,
+  Trash2,
   X,
 } from 'lucide-react';
+import { DeleteConfirmationModal } from '../common/DeleteConfirmationModal';
 
 export const StaffManagementView: React.FC = () => {
   const { canViewFinancials, role, currentUser } = useAuth();
@@ -77,6 +79,15 @@ export const StaffManagementView: React.FC = () => {
   } | null>(null);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('Bank Transfer');
   const [paymentNotes, setPaymentNotes] = useState('');
+
+  // Delete Staff State
+  const [deletingStaff, setDeletingStaff] = useState<Staff | null>(null);
+
+  const handleConfirmDeleteStaff = async () => {
+    if (!deletingStaff?.id) return;
+    await db.deleteStaffTransaction(deletingStaff.id, currentUser?.name || 'Store Owner');
+    setDeletingStaff(null);
+  };
 
   // ----------------------------------------------------
   // ATTENDANCE HELPERS
@@ -822,7 +833,16 @@ export const StaffManagementView: React.FC = () => {
                       {staff.position}
                     </span>
                   </div>
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" title="Active" />
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" title="Active" />
+                    <button
+                      onClick={() => setDeletingStaff(staff)}
+                      className="p-1.5 rounded-lg text-mocca-400 hover:text-rose-400 hover:bg-mocca-800 transition-colors"
+                      title="Delete Staff"
+                    >
+                      <Trash2 size={15} />
+                    </button>
+                  </div>
                 </div>
 
                 <div className="space-y-1 text-xs text-mocca-400 border-t border-mocca-800/80 pt-2">
@@ -1186,6 +1206,16 @@ export const StaffManagementView: React.FC = () => {
           </form>
         </div>
       )}
+
+      {/* Delete Staff Confirmation Modal */}
+      <DeleteConfirmationModal
+        isOpen={!!deletingStaff}
+        title={`Delete Staff Member: ${deletingStaff?.name}`}
+        message={`Are you sure you want to remove ${deletingStaff?.name} (${deletingStaff?.position}) from the system? All associated attendance records and historical salary slips for this employee will also be removed.`}
+        confirmText="Yes, Delete Staff"
+        onConfirm={handleConfirmDeleteStaff}
+        onCancel={() => setDeletingStaff(null)}
+      />
     </div>
   );
 };

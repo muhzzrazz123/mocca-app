@@ -237,6 +237,127 @@ export class MoccaDatabase extends Dexie {
       }
     );
   }
+
+  // Cascading Transaction: Void / Delete Sale with automatic inventory restock
+  async voidSaleTransaction(saleId: number, reason: string, user: string): Promise<void> {
+    await this.transaction(
+      'rw',
+      [
+        this.sales,
+        this.saleItems,
+        this.productVariants,
+        this.inventoryMovements,
+        this.customers,
+        this.auditLogs,
+      ],
+      async () => {
+        const sale = await this.sales.get(saleId);
+        if (!sale) return;
+
+        const items = await this.saleItems.where('saleId').equals(saleId).toArray();
+
+        // 1. Restock variant quantities
+        for (const item of items) {
+          const variant = await this.productVariants.get(item.variantId);
+          if (variant) {
+            await this.productVariants.update(item.variantId, {
+              currentStock: variant.currentStock + item.quantity,
+            });
+
+            // Log inventory movement
+            await this.inventoryMovements.add({
+              date: new Date().toISOString().split('T')[0],
+              productId: item.productId,
+              productName: item.productName,
+              variantId: item.variantId,
+              variantInfo: `${item.size} / ${item.color}`,
+              quantity: item.quantity,
+              action: 'ADJUSTMENT',
+              reason: `Sale Voided/Deleted #${sale.invoiceNo}: ${reason}`,
+              user,
+              createdAt: new Date().toISOString(),
+            });
+          }
+        }
+
+        // 2. Adjust Customer metrics if attached
+        if (sale.customerId) {
+          const customer = await this.customers.get(sale.customerId);
+          if (customer) {
+            await this.customers.update(sale.customerId, {
+              totalPurchases: Math.max(0, customer.totalPurchases - 1),
+              totalSpent: Math.max(0, customer.totalSpent - sale.grandTotal),
+              creditBalance: Math.max(0, customer.creditBalance - (sale.balanceDue || 0)),
+            });
+          }
+        }
+
+        // 3. Delete sale and sale items
+        await this.saleItems.where('saleId').equals(saleId).delete();
+        await this.sales.delete(saleId);
+
+        // 4. Audit Log
+        await this.auditLogs.add({
+          action: 'SALE_DELETED',
+          category: 'SALE',
+          details: `Bill #${sale.invoiceNo} (₹${sale.grandTotal}) deleted/voided. Stock restored. Reason: ${reason}`,
+          user,
+          timestamp: new Date().toISOString(),
+        });
+      }
+    );
+  }
+
+  // Delete Expense with Audit Log
+  async deleteExpenseTransaction(expenseId: number, user: string): Promise<void> {
+    const expense = await this.expenses.get(expenseId);
+    if (!expense) return;
+
+    await this.expenses.delete(expenseId);
+
+    await this.auditLogs.add({
+      action: 'EXPENSE_DELETED',
+      category: 'FINANCE',
+      details: `Expense "${expense.title}" of ₹${expense.amount} (${expense.category}) deleted.`,
+      user,
+      timestamp: new Date().toISOString(),
+    });
+  }
+
+  // Delete Bill with Audit Log
+  async deleteBillTransaction(billId: number, user: string): Promise<void> {
+    const bill = await this.bills.get(billId);
+    if (!bill) return;
+
+    await this.bills.delete(billId);
+
+    await this.auditLogs.add({
+      action: 'BILL_DELETED',
+      category: 'FINANCE',
+      details: `Bill "${bill.title}" of ₹${bill.amount} (${bill.category}) deleted.`,
+      user,
+      timestamp: new Date().toISOString(),
+    });
+  }
+
+  // Delete Staff with Audit Log
+  async deleteStaffTransaction(staffId: number, user: string): Promise<void> {
+    const staff = await this.staff.get(staffId);
+    if (!staff) return;
+
+    await this.staff.delete(staffId);
+    // Also delete attendance and salary records
+    await this.attendance.where('staffId').equals(staffId).delete();
+    await this.salaryRecords.where('staffId').equals(staffId).delete();
+
+    await this.auditLogs.add({
+      action: 'STAFF_DELETED',
+      category: 'STAFF',
+      details: `Staff member "${staff.name}" (${staff.position}) deleted from system.`,
+      user,
+      timestamp: new Date().toISOString(),
+    });
+  }
 }
 
 export const db = new MoccaDatabase();

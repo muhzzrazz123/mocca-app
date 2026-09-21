@@ -433,8 +433,16 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 text-xs">
-          <span className="text-mocca-400">Total Catalog Stock:</span>
+        <div className="flex items-center gap-2.5 text-xs">
+          {canViewFinancials && (
+            <button
+              onClick={() => onNavigate('finance')}
+              className="px-3.5 py-1.5 rounded-xl bg-gold/15 hover:bg-gold/25 text-gold border border-gold/40 text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm"
+            >
+              <TrendingUp size={14} /> View Profit Table
+            </button>
+          )}
+          <span className="text-mocca-400 hidden sm:inline">Total Catalog Stock:</span>
           <span className="font-bold text-cream bg-mocca-850 px-2.5 py-1 rounded-lg border border-mocca-700">
             {variants?.reduce((acc, v) => acc + (v.currentStock || 0), 0) || 0} Pieces
           </span>

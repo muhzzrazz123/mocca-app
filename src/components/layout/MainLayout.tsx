@@ -7,6 +7,7 @@ import { MobileNav } from './MobileNav';
 import { GlobalSearchModal } from '../common/GlobalSearchModal';
 import { DashboardView } from '../dashboard/DashboardView';
 import { StaffManagementView } from '../staff/StaffManagementView';
+import { ProfitTableView } from '../finance/ProfitTableView';
 import { PhaseModulePlaceholder } from '../common/PhaseModulePlaceholder';
 import {
   ReceiptText,
@@ -185,23 +186,7 @@ export const MainLayout: React.FC = () => {
         return <StaffManagementView />;
 
       case 'finance':
-        return (
-          <PhaseModulePlaceholder
-            tabKey="finance"
-            title="Financial Status & P&L Intelligence"
-            description="Comprehensive financial module: Total Revenue, Cost of Goods Sold (COGS), Gross Profit, Operating Expenses, and Net Profit based on actual purchase costs."
-            icon={Landmark}
-            phaseNumber={7}
-            features={[
-              'Gross Profit = Sales - Actual COGS',
-              'Net Profit = Gross Profit - Operating Expenses',
-              'Expense logging with categorization',
-              'Cash flow & payment method audit',
-            ]}
-            dbEntities={['expenses', 'sales', 'bills']}
-            onBackToDashboard={() => setActiveTab('dashboard')}
-          />
-        );
+        return <ProfitTableView />;
 
       case 'bills':
         return (
