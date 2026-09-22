@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSecurity } from '../../context/SecurityContext';
-import { Lock, ShieldCheck, Delete, KeyRound, AlertCircle } from 'lucide-react';
+import { Lock, ShieldCheck, Delete, AlertCircle } from 'lucide-react';
 
 export const LockScreen: React.FC = () => {
   const { unlock } = useSecurity();
@@ -170,12 +170,6 @@ export const LockScreen: React.FC = () => {
           >
             <Delete size={20} />
           </button>
-        </div>
-
-        {/* Default PIN Hint */}
-        <div className="pt-2 text-center text-xs text-gray-700 dark:text-mocca-500 font-medium flex items-center justify-center gap-1.5">
-          <KeyRound size={13} className="text-gold" />
-          <span>Default Store Owner PIN: <strong className="text-black dark:text-cream font-bold">1234</strong></span>
         </div>
       </div>
     </div>

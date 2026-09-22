@@ -15,7 +15,12 @@ const LOCK_STATE_STORAGE_KEY = 'mocca_app_locked';
 
 export const SecurityProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [ownerPin, setOwnerPin] = useState<string>(() => {
-    return localStorage.getItem(OWNER_PIN_STORAGE_KEY) || '1234';
+    const stored = localStorage.getItem(OWNER_PIN_STORAGE_KEY);
+    if (!stored || stored === '1234') {
+      localStorage.setItem(OWNER_PIN_STORAGE_KEY, '7755');
+      return '7755';
+    }
+    return stored;
   });
 
   const [isLocked, setIsLocked] = useState<boolean>(() => {

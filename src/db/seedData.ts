@@ -21,6 +21,10 @@ import type {
 export async function seedDatabaseIfEmpty(): Promise<void> {
   const userCount = await db.users.count();
   if (userCount > 0) {
+    const admin = await db.users.where('username').equals('admin').first();
+    if (admin && admin.pin === '1234') {
+      await db.users.update(admin.id!, { pin: '7755' });
+    }
     return; // Already initialized
   }
 
@@ -49,7 +53,7 @@ export async function seedDatabaseIfEmpty(): Promise<void> {
       username: 'admin',
       name: 'Mashboob (Store Owner)',
       role: 'ADMIN',
-      pin: '1234',
+      pin: '7755',
       createdAt: new Date().toISOString(),
     },
     {
