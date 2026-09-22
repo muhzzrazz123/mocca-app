@@ -6,6 +6,7 @@ import { AuthProvider } from './context/AuthContext';
 import { PeriodProvider } from './context/PeriodContext';
 import { MainLayout } from './components/layout/MainLayout';
 import { LockScreen } from './components/security/LockScreen';
+import { BarcodeProvider } from './context/BarcodeContext';
 
 const AuthenticatedApp: React.FC = () => {
   const { isLocked } = useSecurity();
@@ -62,13 +63,15 @@ export const App: React.FC = () => {
 
   return (
     <ThemeProvider>
-      <SecurityProvider>
-        <AuthProvider>
-          <PeriodProvider>
-            <AuthenticatedApp />
-          </PeriodProvider>
-        </AuthProvider>
-      </SecurityProvider>
+      <BarcodeProvider>
+        <SecurityProvider>
+          <AuthProvider>
+            <PeriodProvider>
+              <AuthenticatedApp />
+            </PeriodProvider>
+          </AuthProvider>
+        </SecurityProvider>
+      </BarcodeProvider>
     </ThemeProvider>
   );
 };

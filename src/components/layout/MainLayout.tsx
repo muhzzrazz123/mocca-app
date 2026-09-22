@@ -13,6 +13,8 @@ import { StaffManagementView } from '../staff/StaffManagementView';
 import { DailyEntryModal } from '../daily/DailyEntryModal';
 import { useSecurity } from '../../context/SecurityContext';
 
+import { BARCODE_SCAN_EVENT } from '../../context/BarcodeContext';
+
 export const MainLayout: React.FC = () => {
   const { userMode } = useSecurity();
 
@@ -23,6 +25,15 @@ export const MainLayout: React.FC = () => {
   const [isOpenMobileMore, setIsOpenMobileMore] = useState(false);
   const [isOpenSearch, setIsOpenSearch] = useState(false);
   const [isDailyEntryOpen, setIsDailyEntryOpen] = useState(false);
+
+  // Auto-route to billing when a barcode is scanned anywhere in the app!
+  useEffect(() => {
+    const handleBarcodeEvent = () => {
+      setActiveTab('billing');
+    };
+    window.addEventListener(BARCODE_SCAN_EVENT, handleBarcodeEvent);
+    return () => window.removeEventListener(BARCODE_SCAN_EVENT, handleBarcodeEvent);
+  }, []);
 
   // Guard: if userMode is staff, ensure tab stays locked to billing!
   useEffect(() => {

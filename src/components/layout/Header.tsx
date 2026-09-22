@@ -8,6 +8,7 @@ import {
   Sun,
   Moon,
   ReceiptText,
+  ScanLine,
 } from 'lucide-react';
 import { usePeriod, type PeriodFilter } from '../../context/PeriodContext';
 import { useTheme } from '../../context/ThemeContext';
@@ -169,6 +170,22 @@ export const Header: React.FC<HeaderProps> = ({
             <span className="md:hidden">Daily</span>
           </button>
         )}
+
+        {/* Direct to Billing Barcode Scan Shortcut */}
+        <button
+          onClick={() => {
+            onSelectTab('billing');
+            setTimeout(() => {
+              const input = document.querySelector('input[placeholder*="barcode"]') as HTMLInputElement;
+              input?.focus();
+            }, 100);
+          }}
+          className="flex items-center gap-1.5 bg-gray-100 hover:bg-emerald-50 hover:border-emerald-500 dark:bg-[#182B3A] dark:hover:bg-[#253745] text-[#06141B] dark:text-[#CCD0CF] px-3 py-2 rounded-xl border border-gray-300 dark:border-[#253745] text-xs font-bold transition-all group"
+          title="Direct to POS Billing & Focus Barcode Scanner"
+        >
+          <ScanLine size={15} className="text-emerald-600 dark:text-emerald-400 group-hover:text-emerald-500 stroke-[2.5]" />
+          <span className="hidden sm:inline">Scan Barcode</span>
+        </button>
 
         {/* Primary Action Button: New Bill / POS - Owner Only (Staff is already on billing) */}
         {userMode !== 'staff' && activeTab !== 'billing' && (
