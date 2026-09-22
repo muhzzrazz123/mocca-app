@@ -8,6 +8,20 @@ export default {
   theme: {
     extend: {
       colors: {
+        appGrey: {
+          bg: '#E5E7EB',      // Main Slate-Grey Canvas Background
+          card: '#FFFFFF',    // Crisp White Card Surface
+          subtle: '#F3F4F6',  // Soft Grey Sections & Inputs
+          border: '#D1D5DB',  // Medium Grey Border Dividers
+          darkBg: '#0A0B0E',  // Dark Canvas
+          darkCard: '#12141A',// Dark Card
+        },
+        appBlack: {
+          DEFAULT: '#000000', // Pure 100% Black Letters
+          primary: '#111827', // Deep Charcoal Black
+          secondary: '#374151', // Dark Graphite for Subtitles/Labels
+          muted: '#4B5563',    // Muted Dark Slate
+        },
         mocca: {
           950: '#07080A',
           900: '#0D0E12',
