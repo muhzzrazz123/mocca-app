@@ -395,8 +395,8 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
 
   if (!metrics) {
     return (
-      <div className="p-8 text-center text-mocca-400">
-        <div className="w-8 h-8 border-2 border-gold border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+      <div className="p-8 text-center text-gray-500 dark:text-[#9BA8AB]">
+        <div className="w-8 h-8 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
         <p>Loading real-time retail telemetry...</p>
       </div>
     );
@@ -404,7 +404,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
 
   // Payment method chart data
   const paymentChartData = [
-    { name: 'UPI', value: metrics.upiTotal, color: '#D4AF37' },
+    { name: 'UPI', value: metrics.upiTotal, color: '#10B981' },
     { name: 'Cash', value: metrics.cashTotal, color: '#34D399' },
     { name: 'Card', value: metrics.cardTotal, color: '#60A5FA' },
     { name: 'Credit', value: metrics.creditTotal, color: '#F87171' },
@@ -412,22 +412,22 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
 
   // Fallback if no payments yet
   if (paymentChartData.length === 0) {
-    paymentChartData.push({ name: 'UPI', value: 1, color: '#D4AF37' });
+    paymentChartData.push({ name: 'UPI', value: 1, color: '#10B981' });
   }
 
   return (
     <div className="p-4 lg:p-8 space-y-6 max-w-[1600px] mx-auto pb-24 lg:pb-12">
       {/* Period Header Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white dark:bg-[#0E1015] p-4 lg:p-5 rounded-2xl border border-gray-300 dark:border-[#1E222D] shadow-sm">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white dark:bg-[#11212D] p-4 lg:p-5 rounded-2xl border border-gray-300 dark:border-[#253745] shadow-sm">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gold/20 border border-gold/40 flex items-center justify-center text-black">
+          <div className="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/40 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
             <ShoppingBag size={20} className="stroke-[2.5]" />
           </div>
           <div>
-            <h2 className="text-lg font-black text-black dark:text-cream font-serif">
+            <h2 className="text-lg font-black text-[#06141B] dark:text-[#CCD0CF] font-serif">
               Performance Snapshot: {periodLabel}
             </h2>
-            <p className="text-xs text-gray-700 dark:text-mocca-400 font-medium">
+            <p className="text-xs text-[#4A5C6A] dark:text-[#9BA8AB] font-medium">
               Showing consolidated live store transactions from {startDate} to {endDate}
             </p>
           </div>
@@ -437,13 +437,13 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
           {canViewFinancials && (
             <button
               onClick={() => onNavigate('daily-profit')}
-              className="px-3.5 py-1.5 rounded-xl bg-gold/20 hover:bg-gold/30 text-black dark:text-gold border border-gold/50 text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm"
+              className="px-3.5 py-1.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-[#06141B] dark:text-emerald-300 border border-emerald-500/40 hover:border-emerald-500 text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm"
             >
-              <TrendingUp size={14} /> View Profit & Sales
+              <TrendingUp size={14} className="text-emerald-600 dark:text-emerald-400" /> View Profit & Sales
             </button>
           )}
-          <span className="text-gray-700 dark:text-mocca-400 hidden sm:inline font-medium">Total Catalog Stock:</span>
-          <span className="font-black text-black dark:text-cream bg-gray-100 dark:bg-mocca-850 px-2.5 py-1 rounded-lg border border-gray-300 dark:border-mocca-700">
+          <span className="text-[#4A5C6A] dark:text-[#9BA8AB] hidden sm:inline font-medium">Total Catalog Stock:</span>
+          <span className="font-black text-[#06141B] dark:text-[#CCD0CF] bg-gray-100 dark:bg-[#182B3A] px-2.5 py-1 rounded-lg border border-gray-300 dark:border-[#253745]">
             {variants?.reduce((acc, v) => acc + (v.currentStock || 0), 0) || 0} Pieces
           </span>
         </div>
@@ -459,7 +459,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
           icon={IndianRupee}
           highlight={true}
           badgeText="Active"
-          badgeType="gold"
+          badgeType="emerald"
         />
 
         {/* Items Sold */}
@@ -516,7 +516,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
             subtitle="Per customer transaction"
             icon={IndianRupee}
             badgeText="Avg"
-            badgeType="gold"
+            badgeType="emerald"
           />
         )}
       </div>
@@ -571,7 +571,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
           }
           icon={Wallet}
           badgeText="Leading"
-          badgeType="gold"
+          badgeType="emerald"
         />
       </div>
 

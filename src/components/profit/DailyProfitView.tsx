@@ -216,21 +216,21 @@ export const DailyProfitView: React.FC = () => {
   return (
     <div className="p-4 lg:p-8 space-y-6 max-w-[1600px] mx-auto pb-24">
       {/* Top Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white dark:bg-[#12141A] p-5 rounded-2xl border border-gray-200 dark:border-[#222630] shadow-sm transition-colors">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white dark:bg-[#11212D] p-5 rounded-2xl border border-gray-300 dark:border-[#253745] shadow-sm transition-colors">
         <div className="flex items-center gap-3.5">
-          <div className="w-12 h-12 rounded-2xl bg-gold/15 border border-gold/40 flex items-center justify-center text-gold shadow-gold-glow">
+          <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shadow-sm">
             <TrendingUp size={24} />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-xl font-bold text-gray-900 dark:text-cream font-serif">
+              <h2 className="text-xl font-bold text-[#06141B] dark:text-[#CCD0CF] font-serif">
                 Daily Profit, Sales & Products
               </h2>
-              <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-gold/20 text-gold border border-gold/40">
+              <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30">
                 Formula: Profit = Sales − Wholesale Cost
               </span>
             </div>
-            <p className="text-xs text-gray-500 dark:text-cream-muted">
+            <p className="text-xs text-[#4A5C6A] dark:text-[#9BA8AB]">
               Live consolidated profit margins, bill history, and clothing item performance ({periodLabel})
             </p>
           </div>
@@ -238,41 +238,41 @@ export const DailyProfitView: React.FC = () => {
 
         <button
           onClick={handleExportCSV}
-          className="px-3.5 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-[#1A1D26] dark:hover:bg-[#252A36] text-gray-800 dark:text-cream text-xs font-semibold border border-gray-200 dark:border-[#2C3240] flex items-center gap-2 transition-colors self-start md:self-auto"
+          className="px-3.5 py-2 rounded-xl bg-gray-100 hover:bg-emerald-50 hover:border-emerald-500 dark:bg-[#182B3A] dark:hover:bg-[#253745] dark:hover:border-emerald-500 text-[#06141B] dark:text-[#CCD0CF] text-xs font-semibold border border-gray-300 dark:border-[#253745] flex items-center gap-2 transition-all self-start md:self-auto group"
         >
-          <Download size={14} className="text-gold" /> Export CSV
+          <Download size={14} className="text-emerald-600 dark:text-emerald-400 group-hover:text-emerald-500" /> Export CSV
         </button>
       </div>
 
       {/* KPI Financial Overview Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
-        <div className="bg-white dark:bg-[#14161D] p-4 rounded-2xl border border-gray-200 dark:border-[#222630] shadow-sm space-y-1">
-          <span className="text-[11px] font-semibold text-gray-500 dark:text-mocca-400 uppercase tracking-wider">
+        <div className="bg-white dark:bg-[#11212D] p-4 rounded-2xl border border-gray-300 dark:border-[#253745] shadow-sm space-y-1">
+          <span className="text-[11px] font-semibold text-[#4A5C6A] dark:text-[#9BA8AB] uppercase tracking-wider">
             Total Sales Revenue
           </span>
-          <p className="text-2xl font-bold text-gray-900 dark:text-cream">{formatCurrency(totals.totalRevenue)}</p>
-          <span className="text-[10px] text-gray-500 dark:text-cream-muted">{filteredSales.length} Invoices generated</span>
+          <p className="text-2xl font-bold text-[#06141B] dark:text-[#CCD0CF]">{formatCurrency(totals.totalRevenue)}</p>
+          <span className="text-[10px] text-[#4A5C6A] dark:text-[#9BA8AB]">{filteredSales.length} Invoices generated</span>
         </div>
 
-        <div className="bg-white dark:bg-[#14161D] p-4 rounded-2xl border border-gray-200 dark:border-[#222630] shadow-sm space-y-1">
+        <div className="bg-white dark:bg-[#11212D] p-4 rounded-2xl border border-gray-300 dark:border-[#253745] shadow-sm space-y-1">
           <span className="text-[11px] font-semibold text-rose-500 dark:text-rose-400 uppercase tracking-wider">
             Wholesale Cost (COGS)
           </span>
           <p className="text-2xl font-bold text-rose-600 dark:text-rose-300">{formatCurrency(totals.totalCogs)}</p>
-          <span className="text-[10px] text-gray-500 dark:text-mocca-400">Actual cost of sold apparel</span>
+          <span className="text-[10px] text-[#4A5C6A] dark:text-[#9BA8AB]">Actual cost of sold apparel</span>
         </div>
 
-        <div className="bg-gradient-to-br from-gold/10 via-white dark:via-[#14161D] to-gold/5 dark:to-[#1A1D26] p-4 rounded-2xl border border-gold/40 shadow-gold-glow space-y-1">
-          <span className="text-[11px] font-bold text-gold uppercase tracking-wider">
+        <div className="bg-gradient-to-br from-emerald-500/10 via-white dark:via-[#11212D] to-emerald-500/5 dark:to-[#182B3A] p-4 rounded-2xl border border-emerald-500/30 shadow-emerald-500/10 shadow-sm space-y-1">
+          <span className="text-[11px] font-bold text-emerald-800 dark:text-emerald-300 uppercase tracking-wider">
             Gross Margin Profit
           </span>
-          <p className="text-2xl font-bold text-gold">{formatCurrency(totals.totalGrossProfit)}</p>
-          <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">
+          <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">{formatCurrency(totals.totalGrossProfit)}</p>
+          <span className="text-[10px] text-emerald-700 dark:text-emerald-400 font-semibold">
             {totals.overallMargin.toFixed(1)}% Gross Margin
           </span>
         </div>
 
-        <div className="bg-white dark:bg-[#14161D] p-4 rounded-2xl border border-gray-200 dark:border-[#222630] shadow-sm space-y-1">
+        <div className="bg-white dark:bg-[#11212D] p-4 rounded-2xl border border-gray-300 dark:border-[#253745] shadow-sm space-y-1">
           <span className="text-[11px] font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider">
             Operating Expenses
           </span>
@@ -298,14 +298,14 @@ export const DailyProfitView: React.FC = () => {
       </div>
 
       {/* Sub-tabs Selector Bar */}
-      <div className="bg-white dark:bg-[#14161D] p-3 rounded-2xl border border-gray-200 dark:border-[#222630] flex flex-col md:flex-row md:items-center justify-between gap-3 shadow-sm">
-        <div className="flex items-center gap-1.5 bg-gray-100 dark:bg-[#0E1015] p-1 rounded-xl border border-gray-200 dark:border-[#222630] text-xs">
+      <div className="bg-white dark:bg-[#11212D] p-3 rounded-2xl border border-gray-300 dark:border-[#253745] flex flex-col md:flex-row md:items-center justify-between gap-3 shadow-sm">
+        <div className="flex items-center gap-1.5 bg-gray-100 dark:bg-[#182B3A] p-1 rounded-xl border border-gray-200 dark:border-[#253745] text-xs">
           <button
             onClick={() => setActiveSubTab('profit')}
             className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg font-bold transition-all ${
               activeSubTab === 'profit'
-                ? 'bg-gold text-mocca-950 shadow-gold-glow'
-                : 'text-gray-600 dark:text-cream-muted hover:text-gray-900 dark:hover:text-cream hover:bg-gray-200 dark:hover:bg-[#1A1D26]'
+                ? 'bg-emerald-600 text-white shadow-emerald-500/20 shadow-sm'
+                : 'text-[#4A5C6A] dark:text-[#CCD0CF] hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-gray-200 dark:hover:bg-[#253745]'
             }`}
           >
             <TrendingUp size={14} />
@@ -316,8 +316,8 @@ export const DailyProfitView: React.FC = () => {
             onClick={() => setActiveSubTab('sales')}
             className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg font-bold transition-all ${
               activeSubTab === 'sales'
-                ? 'bg-gold text-mocca-950 shadow-gold-glow'
-                : 'text-gray-600 dark:text-cream-muted hover:text-gray-900 dark:hover:text-cream hover:bg-gray-200 dark:hover:bg-[#1A1D26]'
+                ? 'bg-emerald-600 text-white shadow-emerald-500/20 shadow-sm'
+                : 'text-[#4A5C6A] dark:text-[#CCD0CF] hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-gray-200 dark:hover:bg-[#253745]'
             }`}
           >
             <Receipt size={14} />
@@ -328,8 +328,8 @@ export const DailyProfitView: React.FC = () => {
             onClick={() => setActiveSubTab('products')}
             className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg font-bold transition-all ${
               activeSubTab === 'products'
-                ? 'bg-gold text-mocca-950 shadow-gold-glow'
-                : 'text-gray-600 dark:text-cream-muted hover:text-gray-900 dark:hover:text-cream hover:bg-gray-200 dark:hover:bg-[#1A1D26]'
+                ? 'bg-emerald-600 text-white shadow-emerald-500/20 shadow-sm'
+                : 'text-[#4A5C6A] dark:text-[#CCD0CF] hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-gray-200 dark:hover:bg-[#253745]'
             }`}
           >
             <Shirt size={14} />
@@ -338,14 +338,14 @@ export const DailyProfitView: React.FC = () => {
         </div>
 
         {/* Search Bar */}
-        <div className="flex items-center gap-2 bg-gray-50 dark:bg-[#1A1D26] px-3.5 py-2 rounded-xl border border-gray-200 dark:border-[#2C3240] text-xs">
-          <Search size={14} className="text-gold" />
+        <div className="flex items-center gap-2 bg-gray-50 dark:bg-[#182B3A] px-3.5 py-2 rounded-xl border border-gray-300 dark:border-[#253745] text-xs">
+          <Search size={14} className="text-emerald-600 dark:text-emerald-400" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search invoice #, product, or customer..."
-            className="bg-transparent text-gray-900 dark:text-cream placeholder:text-gray-400 dark:placeholder:text-mocca-400 outline-none text-xs w-56"
+            className="bg-transparent text-[#06141B] dark:text-[#CCD0CF] placeholder:text-gray-400 dark:placeholder:text-[#9BA8AB] outline-none text-xs w-56"
           />
         </div>
       </div>
@@ -355,17 +355,17 @@ export const DailyProfitView: React.FC = () => {
       {/* ========================================================================= */}
       {activeSubTab === 'profit' && (
         <div className="space-y-4">
-          <div className="bg-white dark:bg-[#14161D] rounded-2xl border border-gray-200 dark:border-[#222630] p-5 shadow-sm space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-[#1E222D]">
+          <div className="bg-white dark:bg-[#11212D] rounded-2xl border border-gray-300 dark:border-[#253745] p-5 shadow-sm space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-gray-200 dark:border-[#253745]">
               <div>
-                <h3 className="text-sm font-bold text-gray-900 dark:text-cream uppercase tracking-wider">
+                <h3 className="text-sm font-bold text-[#06141B] dark:text-[#CCD0CF] uppercase tracking-wider">
                   Daily Gross Profit Analysis by Transaction
                 </h3>
-                <p className="text-xs text-gray-500 dark:text-cream-muted">
+                <p className="text-xs text-[#4A5C6A] dark:text-[#9BA8AB]">
                   Every bill automatically calculates profit using its real wholesale purchase cost
                 </p>
               </div>
-              <span className="text-xs font-bold text-gold bg-gold/10 px-2.5 py-1 rounded-full border border-gold/30">
+              <span className="text-xs font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-500/15 px-2.5 py-1 rounded-full border border-emerald-500/30">
                 Avg. Margin: {totals.overallMargin.toFixed(1)}%
               </span>
             </div>
@@ -373,13 +373,13 @@ export const DailyProfitView: React.FC = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-xs text-left border-collapse">
                 <thead>
-                  <tr className="bg-gray-50 dark:bg-[#0E1015]/80 border-b border-gray-200 dark:border-[#1E222D] text-gray-500 dark:text-mocca-400">
+                  <tr className="bg-gray-50 dark:bg-[#182B3A]/80 border-b border-gray-200 dark:border-[#253745] text-[#4A5C6A] dark:text-[#9BA8AB]">
                     <th className="py-3 px-4 font-bold">Date & Time</th>
                     <th className="py-3 px-4 font-bold">Bill #</th>
                     <th className="py-3 px-4 font-bold">Customer</th>
                     <th className="py-3 px-4 font-bold text-right">Revenue (₹)</th>
                     <th className="py-3 px-4 font-bold text-right text-rose-500">Wholesale Cost (₹)</th>
-                    <th className="py-3 px-4 font-bold text-right text-gold">Gross Profit (₹)</th>
+                    <th className="py-3 px-4 font-bold text-right text-emerald-600 dark:text-emerald-400">Gross Profit (₹)</th>
                     <th className="py-3 px-4 font-bold text-right text-emerald-500">Margin %</th>
                   </tr>
                 </thead>
@@ -387,19 +387,19 @@ export const DailyProfitView: React.FC = () => {
                   {filteredSales.map((s) => {
                     const margin = s.grandTotal > 0 ? ((s.grossProfit / s.grandTotal) * 100).toFixed(1) : '0';
                     return (
-                      <tr key={s.id} className="hover:bg-gray-50/80 dark:hover:bg-[#1A1D26]/50 transition-colors">
-                        <td className="py-3 px-4 text-gray-600 dark:text-cream-muted whitespace-nowrap">
+                      <tr key={s.id} className="hover:bg-emerald-50/40 dark:hover:bg-[#182B3A]/60 transition-colors">
+                        <td className="py-3 px-4 text-[#4A5C6A] dark:text-[#9BA8AB] whitespace-nowrap">
                           {formatDateTime(s.createdAt || s.date)}
                         </td>
-                        <td className="py-3 px-4 font-mono font-bold text-gold">#{s.invoiceNo}</td>
-                        <td className="py-3 px-4 font-medium text-gray-900 dark:text-cream">{s.customerName}</td>
-                        <td className="py-3 px-4 text-right font-bold text-gray-900 dark:text-cream">
+                        <td className="py-3 px-4 font-mono font-bold text-emerald-700 dark:text-emerald-400">#{s.invoiceNo}</td>
+                        <td className="py-3 px-4 font-medium text-[#06141B] dark:text-[#CCD0CF]">{s.customerName}</td>
+                        <td className="py-3 px-4 text-right font-bold text-[#06141B] dark:text-[#CCD0CF]">
                           {formatCurrency(s.grandTotal)}
                         </td>
                         <td className="py-3 px-4 text-right font-bold text-rose-500">
                           {formatCurrency(s.totalCostOfGoods)}
                         </td>
-                        <td className="py-3 px-4 text-right font-bold text-gold">
+                        <td className="py-3 px-4 text-right font-bold text-emerald-600 dark:text-emerald-400">
                           +{formatCurrency(s.grossProfit)}
                         </td>
                         <td className="py-3 px-4 text-right font-bold text-emerald-500">{margin}%</td>
@@ -417,13 +417,13 @@ export const DailyProfitView: React.FC = () => {
       {/* VIEW 2: SALES RECORDS WITH CASCADING DELETE / VOID BILL                   */}
       {/* ========================================================================= */}
       {activeSubTab === 'sales' && (
-        <div className="bg-white dark:bg-[#14161D] rounded-2xl border border-gray-200 dark:border-[#222630] overflow-hidden shadow-sm">
-          <div className="p-4 border-b border-gray-100 dark:border-[#1E222D] flex items-center justify-between">
+        <div className="bg-white dark:bg-[#11212D] rounded-2xl border border-gray-300 dark:border-[#253745] overflow-hidden shadow-sm">
+          <div className="p-4 border-b border-gray-200 dark:border-[#253745] flex items-center justify-between">
             <div>
-              <h3 className="text-sm font-bold text-gray-900 dark:text-cream uppercase tracking-wider">
+              <h3 className="text-sm font-bold text-[#06141B] dark:text-[#CCD0CF] uppercase tracking-wider">
                 Sales Invoices & Transactions ({filteredSales.length})
               </h3>
-              <p className="text-xs text-gray-500 dark:text-cream-muted">
+              <p className="text-xs text-[#4A5C6A] dark:text-[#9BA8AB]">
                 Need to delete or void a bill? The delete option restores the sold clothing pieces back to inventory.
               </p>
             </div>
@@ -432,36 +432,36 @@ export const DailyProfitView: React.FC = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-xs text-left border-collapse">
               <thead>
-                <tr className="bg-gray-50 dark:bg-[#0E1015]/80 border-b border-gray-200 dark:border-[#1E222D] text-gray-500 dark:text-mocca-400">
+                <tr className="bg-gray-50 dark:bg-[#182B3A]/80 border-b border-gray-200 dark:border-[#253745] text-[#4A5C6A] dark:text-[#9BA8AB]">
                   <th className="py-3 px-4 font-bold">Date & Time</th>
                   <th className="py-3 px-4 font-bold">Bill #</th>
                   <th className="py-3 px-4 font-bold">Customer</th>
                   <th className="py-3 px-4 font-bold">Payment Method</th>
                   <th className="py-3 px-4 font-bold text-right">Amount (₹)</th>
-                  <th className="py-3 px-4 font-bold text-right text-gold">Profit (₹)</th>
+                  <th className="py-3 px-4 font-bold text-right text-emerald-600 dark:text-emerald-400">Profit (₹)</th>
                   <th className="py-3 px-4 font-bold text-center">Action (Delete)</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100 dark:divide-[#1E222D]">
+              <tbody className="divide-y divide-gray-100 dark:divide-[#253745]">
                 {filteredSales.map((sale) => (
-                  <tr key={sale.id} className="hover:bg-gray-50 dark:hover:bg-[#1A1D26]/50 transition-colors">
-                    <td className="py-3 px-4 text-gray-600 dark:text-cream-muted whitespace-nowrap">
+                  <tr key={sale.id} className="hover:bg-emerald-50/40 dark:hover:bg-[#182B3A]/60 transition-colors">
+                    <td className="py-3 px-4 text-[#4A5C6A] dark:text-[#9BA8AB] whitespace-nowrap">
                       {formatDateTime(sale.createdAt || sale.date)}
                     </td>
-                    <td className="py-3 px-4 font-mono font-bold text-gold">#{sale.invoiceNo}</td>
+                    <td className="py-3 px-4 font-mono font-bold text-emerald-700 dark:text-emerald-400">#{sale.invoiceNo}</td>
                     <td className="py-3 px-4">
-                      <p className="font-semibold text-gray-900 dark:text-cream">{sale.customerName}</p>
-                      {sale.customerPhone && <p className="text-[10px] text-gray-400">{sale.customerPhone}</p>}
+                      <p className="font-semibold text-[#06141B] dark:text-[#CCD0CF]">{sale.customerName}</p>
+                      {sale.customerPhone && <p className="text-[10px] text-[#4A5C6A] dark:text-[#9BA8AB]">{sale.customerPhone}</p>}
                     </td>
                     <td className="py-3 px-4">
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gray-100 dark:bg-[#1A1D26] text-gray-800 dark:text-cream border border-gray-200 dark:border-[#2C3240]">
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gray-100 dark:bg-[#182B3A] text-gray-800 dark:text-cream border border-gray-200 dark:border-[#253745]">
                         {sale.paymentMethod}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-right font-bold text-gray-900 dark:text-cream">
+                    <td className="py-3 px-4 text-right font-bold text-[#06141B] dark:text-[#CCD0CF]">
                       {formatCurrency(sale.grandTotal)}
                     </td>
-                    <td className="py-3 px-4 text-right font-bold text-gold">
+                    <td className="py-3 px-4 text-right font-bold text-emerald-600 dark:text-emerald-400">
                       +{formatCurrency(sale.grossProfit)}
                     </td>
                     <td className="py-3 px-4 text-center">
@@ -495,43 +495,43 @@ export const DailyProfitView: React.FC = () => {
       {activeSubTab === 'products' && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-bold text-gray-900 dark:text-cream uppercase tracking-wider">
+            <h3 className="text-sm font-bold text-[#06141B] dark:text-[#CCD0CF] uppercase tracking-wider">
               Store Apparel Catalog & Stock Levels ({productCatalogData.length})
             </h3>
             <button
               onClick={() => setIsAddProductOpen(true)}
-              className="px-3.5 py-2 rounded-xl bg-gold hover:bg-gold-light text-mocca-950 text-xs font-bold shadow-gold-glow flex items-center gap-1.5 transition-all"
+              className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-emerald-500/20 shadow-md flex items-center gap-1.5 transition-all active:scale-95"
             >
               <Plus size={15} /> + Add New Product
             </button>
           </div>
 
-          <div className="bg-white dark:bg-[#14161D] rounded-2xl border border-gray-200 dark:border-[#222630] overflow-hidden shadow-sm">
+          <div className="bg-white dark:bg-[#11212D] rounded-2xl border border-gray-300 dark:border-[#253745] overflow-hidden shadow-sm">
             <div className="overflow-x-auto">
               <table className="w-full text-xs text-left border-collapse">
                 <thead>
-                  <tr className="bg-gray-50 dark:bg-[#0E1015]/80 border-b border-gray-200 dark:border-[#1E222D] text-gray-500 dark:text-mocca-400">
+                  <tr className="bg-gray-50 dark:bg-[#182B3A]/80 border-b border-gray-200 dark:border-[#253745] text-[#4A5C6A] dark:text-[#9BA8AB]">
                     <th className="py-3.5 px-4 font-bold">Product Name</th>
                     <th className="py-3.5 px-4 font-bold">Category</th>
                     <th className="py-3.5 px-4 font-bold">Sizes & Colors</th>
                     <th className="py-3.5 px-4 font-bold text-right">Wholesale Cost (₹)</th>
                     <th className="py-3.5 px-4 font-bold text-right">Selling Price (₹)</th>
                     <th className="py-3.5 px-4 font-bold text-center">In Stock</th>
-                    <th className="py-3.5 px-4 font-bold text-right text-gold">Profit Generated</th>
+                    <th className="py-3.5 px-4 font-bold text-right text-emerald-600 dark:text-emerald-400">Profit Generated</th>
                     <th className="py-3.5 px-4 font-bold text-center">Action (Delete)</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100 dark:divide-[#1E222D]">
+                <tbody className="divide-y divide-gray-100 dark:divide-[#253745]">
                   {productCatalogData.map(({ product, variants: prodVariants, totalStock, minCost, maxSell, grossProfit }) => (
-                    <tr key={product.id} className="hover:bg-gray-50 dark:hover:bg-[#1A1D26]/50 transition-colors">
+                    <tr key={product.id} className="hover:bg-emerald-50/40 dark:hover:bg-[#182B3A]/60 transition-colors">
                       <td className="py-3.5 px-4">
-                        <p className="font-bold text-gray-900 dark:text-cream">{product.name}</p>
-                        <p className="text-[10px] text-gray-400 dark:text-mocca-400 font-mono">
+                        <p className="font-bold text-[#06141B] dark:text-[#CCD0CF]">{product.name}</p>
+                        <p className="text-[10px] text-[#4A5C6A] dark:text-[#9BA8AB] font-mono">
                           {product.brand} • SKU: {product.sku}
                         </p>
                       </td>
                       <td className="py-3.5 px-4">
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gray-100 dark:bg-[#1A1D26] text-gold border border-gray-200 dark:border-[#2C3240]">
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30">
                           {product.categoryName}
                         </span>
                       </td>
@@ -543,7 +543,7 @@ export const DailyProfitView: React.FC = () => {
                               className={`text-[9px] px-1.5 py-0.5 rounded border font-semibold ${
                                 v.currentStock <= 0
                                   ? 'bg-rose-50 text-rose-600 border-rose-200 dark:bg-rose-500/10 dark:text-rose-400 dark:border-rose-500/30'
-                                  : 'bg-gray-100 dark:bg-[#1A1D26] text-gray-700 dark:text-cream-muted border-gray-200 dark:border-[#2C3240]'
+                                  : 'bg-gray-100 dark:bg-[#182B3A] text-gray-700 dark:text-[#CCD0CF] border-gray-200 dark:border-[#253745]'
                               }`}
                             >
                               {v.size}/{v.color} ({v.currentStock})
@@ -554,7 +554,7 @@ export const DailyProfitView: React.FC = () => {
                       <td className="py-3.5 px-4 text-right font-bold text-rose-500">
                         {formatCurrency(minCost)}
                       </td>
-                      <td className="py-3.5 px-4 text-right font-bold text-gray-900 dark:text-cream">
+                      <td className="py-3.5 px-4 text-right font-bold text-[#06141B] dark:text-[#CCD0CF]">
                         {formatCurrency(maxSell)}
                       </td>
                       <td className="py-3.5 px-4 text-center">
@@ -570,7 +570,7 @@ export const DailyProfitView: React.FC = () => {
                           {totalStock} Pcs
                         </span>
                       </td>
-                      <td className="py-3.5 px-4 text-right font-bold text-gold">
+                      <td className="py-3.5 px-4 text-right font-bold text-emerald-600 dark:text-emerald-400">
                         +{formatCurrency(grossProfit)}
                       </td>
                       <td className="py-3.5 px-4 text-center">
@@ -621,14 +621,14 @@ export const DailyProfitView: React.FC = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
           <form
             onSubmit={handleCreateProduct}
-            className="w-full max-w-md bg-white dark:bg-[#14161D] border border-gray-200 dark:border-gold/40 rounded-2xl p-6 shadow-luxury space-y-4"
+            className="w-full max-w-md bg-white dark:bg-[#11212D] border border-gray-300 dark:border-[#253745] rounded-2xl p-6 shadow-2xl space-y-4"
           >
-            <div className="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-[#222630]">
-              <h3 className="text-base font-bold text-gray-900 dark:text-cream font-serif">Add New Clothing Product</h3>
+            <div className="flex items-center justify-between pb-3 border-b border-gray-200 dark:border-[#253745]">
+              <h3 className="text-base font-bold text-[#06141B] dark:text-[#CCD0CF] font-serif">Add New Clothing Product</h3>
               <button
                 type="button"
                 onClick={() => setIsAddProductOpen(false)}
-                className="text-gray-400 hover:text-gray-900 dark:hover:text-cream"
+                className="text-gray-400 hover:text-gray-900 dark:hover:text-[#CCD0CF]"
               >
                 <X size={18} />
               </button>
@@ -636,24 +636,24 @@ export const DailyProfitView: React.FC = () => {
 
             <div className="space-y-3 text-xs">
               <div>
-                <label className="font-semibold text-gray-700 dark:text-cream-muted block mb-1">Product Title:</label>
+                <label className="font-semibold text-gray-700 dark:text-[#9BA8AB] block mb-1">Product Title:</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g. Linen Mandarin Shirt"
                   value={newProdName}
                   onChange={(e) => setNewProdName(e.target.value)}
-                  className="w-full bg-gray-50 dark:bg-[#0E1015] border border-gray-200 dark:border-[#2C3240] rounded-xl px-3 py-2 text-gray-900 dark:text-cream outline-none focus:border-gold"
+                  className="w-full bg-gray-50 dark:bg-[#182B3A] border border-gray-300 dark:border-[#253745] rounded-xl px-3 py-2 text-[#06141B] dark:text-[#CCD0CF] outline-none focus:border-emerald-500"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="font-semibold text-gray-700 dark:text-cream-muted block mb-1">Category:</label>
+                  <label className="font-semibold text-gray-700 dark:text-[#9BA8AB] block mb-1">Category:</label>
                   <select
                     value={newProdCategory}
                     onChange={(e) => setNewProdCategory(e.target.value)}
-                    className="w-full bg-gray-50 dark:bg-[#0E1015] border border-gray-200 dark:border-[#2C3240] rounded-xl px-2 py-2 text-gray-900 dark:text-cream outline-none focus:border-gold"
+                    className="w-full bg-gray-50 dark:bg-[#182B3A] border border-gray-300 dark:border-[#253745] rounded-xl px-2 py-2 text-[#06141B] dark:text-[#CCD0CF] outline-none focus:border-emerald-500"
                   >
                     <option value="Shirts">Shirts</option>
                     <option value="T-Shirts">T-Shirts</option>
@@ -666,11 +666,11 @@ export const DailyProfitView: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="font-semibold text-gray-700 dark:text-cream-muted block mb-1">Brand Line:</label>
+                  <label className="font-semibold text-gray-700 dark:text-[#9BA8AB] block mb-1">Brand Line:</label>
                   <select
                     value={newProdBrand}
                     onChange={(e) => setNewProdBrand(e.target.value)}
-                    className="w-full bg-gray-50 dark:bg-[#0E1015] border border-gray-200 dark:border-[#2C3240] rounded-xl px-2 py-2 text-gray-900 dark:text-cream outline-none focus:border-gold"
+                    className="w-full bg-gray-50 dark:bg-[#182B3A] border border-gray-300 dark:border-[#253745] rounded-xl px-2 py-2 text-[#06141B] dark:text-[#CCD0CF] outline-none focus:border-emerald-500"
                   >
                     <option value="MOCCA Signature">MOCCA Signature</option>
                     <option value="MOCCA Denim Co.">MOCCA Denim Co.</option>
@@ -689,52 +689,52 @@ export const DailyProfitView: React.FC = () => {
                     min="1"
                     value={newProdCost}
                     onChange={(e) => setNewProdCost(e.target.value)}
-                    className="w-full bg-gray-50 dark:bg-[#0E1015] border border-gray-200 dark:border-[#2C3240] rounded-xl px-3 py-2 text-gray-900 dark:text-cream outline-none focus:border-gold"
+                    className="w-full bg-gray-50 dark:bg-[#182B3A] border border-gray-300 dark:border-[#253745] rounded-xl px-3 py-2 text-[#06141B] dark:text-[#CCD0CF] outline-none focus:border-emerald-500"
                   />
                 </div>
 
                 <div>
-                  <label className="font-semibold text-emerald-500 block mb-1">Retail Selling Price (₹):</label>
+                  <label className="font-semibold text-emerald-600 dark:text-emerald-400 block mb-1">Retail Selling Price (₹):</label>
                   <input
                     type="number"
                     required
                     min="1"
                     value={newProdSell}
                     onChange={(e) => setNewProdSell(e.target.value)}
-                    className="w-full bg-gray-50 dark:bg-[#0E1015] border border-gray-200 dark:border-[#2C3240] rounded-xl px-3 py-2 text-gray-900 dark:text-cream font-bold outline-none focus:border-gold"
+                    className="w-full bg-gray-50 dark:bg-[#182B3A] border border-gray-300 dark:border-[#253745] rounded-xl px-3 py-2 text-[#06141B] dark:text-[#CCD0CF] font-bold outline-none focus:border-emerald-500"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-3 gap-2">
                 <div>
-                  <label className="font-semibold text-gray-700 dark:text-cream-muted block mb-1">Size:</label>
+                  <label className="font-semibold text-gray-700 dark:text-[#9BA8AB] block mb-1">Size:</label>
                   <input
                     type="text"
                     value={newProdSize}
                     onChange={(e) => setNewProdSize(e.target.value)}
-                    className="w-full bg-gray-50 dark:bg-[#0E1015] border border-gray-200 dark:border-[#2C3240] rounded-xl px-2 py-2 text-gray-900 dark:text-cream outline-none focus:border-gold"
+                    className="w-full bg-gray-50 dark:bg-[#182B3A] border border-gray-300 dark:border-[#253745] rounded-xl px-2 py-2 text-[#06141B] dark:text-[#CCD0CF] outline-none focus:border-emerald-500"
                   />
                 </div>
 
                 <div>
-                  <label className="font-semibold text-gray-700 dark:text-cream-muted block mb-1">Color:</label>
+                  <label className="font-semibold text-gray-700 dark:text-[#9BA8AB] block mb-1">Color:</label>
                   <input
                     type="text"
                     value={newProdColor}
                     onChange={(e) => setNewProdColor(e.target.value)}
-                    className="w-full bg-gray-50 dark:bg-[#0E1015] border border-gray-200 dark:border-[#2C3240] rounded-xl px-2 py-2 text-gray-900 dark:text-cream outline-none focus:border-gold"
+                    className="w-full bg-gray-50 dark:bg-[#182B3A] border border-gray-300 dark:border-[#253745] rounded-xl px-2 py-2 text-[#06141B] dark:text-[#CCD0CF] outline-none focus:border-emerald-500"
                   />
                 </div>
 
                 <div>
-                  <label className="font-semibold text-gray-700 dark:text-cream-muted block mb-1">Initial Stock:</label>
+                  <label className="font-semibold text-gray-700 dark:text-[#9BA8AB] block mb-1">Initial Stock:</label>
                   <input
                     type="number"
                     min="0"
                     value={newProdStock}
                     onChange={(e) => setNewProdStock(e.target.value)}
-                    className="w-full bg-gray-50 dark:bg-[#0E1015] border border-gray-200 dark:border-[#2C3240] rounded-xl px-2 py-2 text-gray-900 dark:text-cream outline-none focus:border-gold"
+                    className="w-full bg-gray-50 dark:bg-[#182B3A] border border-gray-300 dark:border-[#253745] rounded-xl px-2 py-2 text-[#06141B] dark:text-[#CCD0CF] outline-none focus:border-emerald-500"
                   />
                 </div>
               </div>
@@ -744,13 +744,13 @@ export const DailyProfitView: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsAddProductOpen(false)}
-                className="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-[#1E222D] text-gray-700 dark:text-cream-muted text-xs font-semibold"
+                className="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-[#182B3A] dark:hover:bg-[#253745] text-gray-700 dark:text-[#CCD0CF] text-xs font-semibold transition-colors"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-5 py-2 rounded-xl bg-gradient-to-r from-gold to-gold-600 text-mocca-950 font-bold text-xs shadow-gold-glow"
+                className="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-emerald-500/20 shadow-md transition-all active:scale-95"
               >
                 Save Product
               </button>

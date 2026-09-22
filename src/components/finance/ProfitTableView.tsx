@@ -202,23 +202,23 @@ export const ProfitTableView: React.FC = () => {
   };
 
   return (
-    <div className="p-4 lg:p-8 space-y-6 max-w-[1600px] mx-auto pb-24">
+    <div className="p-4 lg:p-8 space-y-6 max-w-[1600px] mx-auto pb-24 text-[#06141B] dark:text-[#CCD0CF]">
       {/* Page Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-mocca-900/90 p-5 rounded-2xl border border-mocca-750">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white dark:bg-[#11212D] p-5 rounded-2xl border border-gray-300 dark:border-[#253745] shadow-sm">
         <div className="flex items-center gap-3.5">
-          <div className="w-12 h-12 rounded-xl bg-gold/15 border border-gold/40 flex items-center justify-center text-gold shadow-gold-glow">
+          <div className="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/40 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
             <TrendingUp size={24} />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-xl font-bold text-cream font-serif">
+              <h2 className="text-xl font-bold text-[#06141B] dark:text-[#CCD0CF] font-serif">
                 Itemized Profit & Loss Ledger
               </h2>
-              <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-gold/20 text-gold border border-gold/40">
+              <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/40">
                 Formula: Profit = Revenue - COGS
               </span>
             </div>
-            <p className="text-xs text-cream-muted">
+            <p className="text-xs text-gray-500 dark:text-[#9BA8AB]">
               Live profit margins computed from real wholesale purchase prices ({periodLabel})
             </p>
           </div>
@@ -228,75 +228,75 @@ export const ProfitTableView: React.FC = () => {
         <div className="flex items-center gap-2.5">
           <button
             onClick={handleExportCSV}
-            className="px-3.5 py-2 rounded-xl bg-mocca-850 hover:bg-mocca-800 text-cream text-xs font-semibold border border-mocca-700 flex items-center gap-2 transition-colors"
+            className="px-3.5 py-2 rounded-xl bg-gray-100 dark:bg-[#182B3A] hover:bg-gray-200 dark:hover:bg-[#253745] text-[#06141B] dark:text-[#CCD0CF] text-xs font-semibold border border-gray-300 dark:border-[#253745] flex items-center gap-2 transition-colors"
           >
-            <Download size={14} className="text-gold" /> Export to CSV
+            <Download size={14} className="text-emerald-500" /> Export to CSV
           </button>
         </div>
       </div>
 
       {/* KPI Financial Summary Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
-        <div className="bg-mocca-900 p-4 rounded-xl border border-mocca-750 space-y-1">
-          <span className="text-[11px] font-semibold text-mocca-400 uppercase tracking-wider">
+        <div className="bg-white dark:bg-[#11212D] p-4 rounded-xl border border-gray-300 dark:border-[#253745] space-y-1 shadow-sm">
+          <span className="text-[11px] font-semibold text-gray-500 dark:text-[#9BA8AB] uppercase tracking-wider">
             Total Revenue
           </span>
-          <p className="text-2xl font-bold text-cream">{formatCurrency(totals.totalRevenue)}</p>
-          <span className="text-[10px] text-cream-muted">{filteredSales.length} Invoices</span>
+          <p className="text-2xl font-bold text-[#06141B] dark:text-[#CCD0CF]">{formatCurrency(totals.totalRevenue)}</p>
+          <span className="text-[10px] text-gray-500 dark:text-[#9BA8AB]">{filteredSales.length} Invoices</span>
         </div>
 
-        <div className="bg-mocca-900 p-4 rounded-xl border border-mocca-750 space-y-1">
-          <span className="text-[11px] font-semibold text-rose-400 uppercase tracking-wider">
+        <div className="bg-white dark:bg-[#11212D] p-4 rounded-xl border border-gray-300 dark:border-[#253745] space-y-1 shadow-sm">
+          <span className="text-[11px] font-semibold text-rose-500 dark:text-rose-400 uppercase tracking-wider">
             Cost of Goods (COGS)
           </span>
-          <p className="text-2xl font-bold text-rose-300">{formatCurrency(totals.totalCogs)}</p>
-          <span className="text-[10px] text-mocca-400">Wholesale cost of sold items</span>
+          <p className="text-2xl font-bold text-rose-600 dark:text-rose-300">{formatCurrency(totals.totalCogs)}</p>
+          <span className="text-[10px] text-gray-500 dark:text-[#9BA8AB]">Wholesale cost of sold items</span>
         </div>
 
-        <div className="bg-gradient-to-br from-mocca-900 to-mocca-850 p-4 rounded-xl border border-gold/40 space-y-1 shadow-gold-glow">
-          <span className="text-[11px] font-semibold text-gold uppercase tracking-wider">
+        <div className="bg-white dark:bg-[#11212D] p-4 rounded-xl border border-emerald-500/40 space-y-1 shadow-sm">
+          <span className="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
             Gross Profit
           </span>
-          <p className="text-2xl font-bold text-gold">{formatCurrency(totals.totalGrossProfit)}</p>
-          <span className="text-[10px] text-emerald-400 font-semibold">
+          <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">{formatCurrency(totals.totalGrossProfit)}</p>
+          <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">
             {totals.overallMargin.toFixed(1)}% Gross Margin
           </span>
         </div>
 
-        <div className="bg-mocca-900 p-4 rounded-xl border border-mocca-750 space-y-1">
-          <span className="text-[11px] font-semibold text-amber-400 uppercase tracking-wider">
+        <div className="bg-white dark:bg-[#11212D] p-4 rounded-xl border border-gray-300 dark:border-[#253745] space-y-1 shadow-sm">
+          <span className="text-[11px] font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider">
             Operating Expenses
           </span>
-          <p className="text-2xl font-bold text-amber-300">
+          <p className="text-2xl font-bold text-amber-600 dark:text-amber-300">
             {formatCurrency(totals.totalExpenseAmount)}
           </p>
-          <span className="text-[10px] text-mocca-400">Rent, Power, Salaries</span>
+          <span className="text-[10px] text-gray-500 dark:text-[#9BA8AB]">Rent, Power, Salaries</span>
         </div>
 
-        <div className="bg-mocca-900 p-4 rounded-xl border border-mocca-750 space-y-1">
-          <span className="text-[11px] font-semibold text-emerald-400 uppercase tracking-wider">
+        <div className="bg-white dark:bg-[#11212D] p-4 rounded-xl border border-gray-300 dark:border-[#253745] space-y-1 shadow-sm">
+          <span className="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
             Net Store Profit
           </span>
           <p
             className={`text-2xl font-bold ${
-              totals.totalNetProfit >= 0 ? 'text-emerald-400' : 'text-rose-400'
+              totals.totalNetProfit >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'
             }`}
           >
             {formatCurrency(totals.totalNetProfit)}
           </p>
-          <span className="text-[10px] text-cream-muted">Gross Profit − Operating Expenses</span>
+          <span className="text-[10px] text-gray-500 dark:text-[#9BA8AB]">Gross Profit − Operating Expenses</span>
         </div>
       </div>
 
       {/* Tabs Switcher & Search Bar */}
-      <div className="bg-mocca-900 p-3.5 rounded-2xl border border-mocca-750 flex flex-col md:flex-row md:items-center justify-between gap-3">
-        <div className="flex items-center gap-1.5 bg-mocca-950 p-1 rounded-xl border border-mocca-750 text-xs">
+      <div className="bg-white dark:bg-[#11212D] p-3.5 rounded-2xl border border-gray-300 dark:border-[#253745] flex flex-col md:flex-row md:items-center justify-between gap-3 shadow-sm">
+        <div className="flex items-center gap-1.5 bg-gray-100 dark:bg-[#06141B] p-1 rounded-xl border border-gray-200 dark:border-[#253745] text-xs">
           <button
             onClick={() => setProfitTab('invoices')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold transition-all ${
               profitTab === 'invoices'
-                ? 'bg-gold text-mocca-950 shadow-gold-glow'
-                : 'text-cream-muted hover:text-cream hover:bg-mocca-850'
+                ? 'bg-emerald-600 dark:bg-emerald-500 text-white shadow-md'
+                : 'text-gray-600 dark:text-[#9BA8AB] hover:text-[#06141B] dark:hover:text-[#CCD0CF] hover:bg-gray-200 dark:hover:bg-[#182B3A]'
             }`}
           >
             <Receipt size={14} />
@@ -307,8 +307,8 @@ export const ProfitTableView: React.FC = () => {
             onClick={() => setProfitTab('products')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold transition-all ${
               profitTab === 'products'
-                ? 'bg-gold text-mocca-950 shadow-gold-glow'
-                : 'text-cream-muted hover:text-cream hover:bg-mocca-850'
+                ? 'bg-emerald-600 dark:bg-emerald-500 text-white shadow-md'
+                : 'text-gray-600 dark:text-[#9BA8AB] hover:text-[#06141B] dark:hover:text-[#CCD0CF] hover:bg-gray-200 dark:hover:bg-[#182B3A]'
             }`}
           >
             <Boxes size={14} />
@@ -319,8 +319,8 @@ export const ProfitTableView: React.FC = () => {
             onClick={() => setProfitTab('expenses')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold transition-all ${
               profitTab === 'expenses'
-                ? 'bg-gold text-mocca-950 shadow-gold-glow'
-                : 'text-cream-muted hover:text-cream hover:bg-mocca-850'
+                ? 'bg-emerald-600 dark:bg-emerald-500 text-white shadow-md'
+                : 'text-gray-600 dark:text-[#9BA8AB] hover:text-[#06141B] dark:hover:text-[#CCD0CF] hover:bg-gray-200 dark:hover:bg-[#182B3A]'
             }`}
           >
             <Wallet size={14} />
@@ -329,14 +329,14 @@ export const ProfitTableView: React.FC = () => {
         </div>
 
         {/* Search */}
-        <div className="flex items-center gap-2 bg-mocca-850 px-3 py-1.5 rounded-xl border border-mocca-700 text-xs">
-          <Search size={14} className="text-gold" />
+        <div className="flex items-center gap-2 bg-gray-50 dark:bg-[#182B3A] px-3 py-1.5 rounded-xl border border-gray-300 dark:border-[#253745] text-xs">
+          <Search size={14} className="text-emerald-500" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Filter invoice #, customer name..."
-            className="bg-transparent text-cream placeholder:text-mocca-400 outline-none text-xs w-48"
+            className="bg-transparent text-gray-900 dark:text-[#CCD0CF] placeholder:text-gray-400 dark:placeholder:text-[#9BA8AB] outline-none text-xs w-48"
           />
         </div>
       </div>
@@ -345,11 +345,11 @@ export const ProfitTableView: React.FC = () => {
       {/* TAB 1: INVOICE-BY-INVOICE PROFIT TABLE WITH DELETE / VOID BILL            */}
       {/* ========================================================================= */}
       {profitTab === 'invoices' && (
-        <div className="bg-mocca-900 rounded-2xl border border-mocca-750 overflow-hidden shadow-lg">
+        <div className="bg-white dark:bg-[#11212D] rounded-2xl border border-gray-300 dark:border-[#253745] overflow-hidden shadow-md">
           <div className="overflow-x-auto">
             <table className="w-full text-xs text-left border-collapse">
               <thead>
-                <tr className="bg-mocca-950/80 border-b border-mocca-750 text-mocca-400">
+                <tr className="bg-gray-50 dark:bg-[#182B3A] border-b border-gray-200 dark:border-[#253745] text-gray-500 dark:text-[#9BA8AB]">
                   <th className="py-3.5 px-4 font-bold uppercase tracking-wider">Date & Time</th>
                   <th className="py-3.5 px-4 font-bold uppercase tracking-wider">Invoice #</th>
                   <th className="py-3.5 px-4 font-bold uppercase tracking-wider">Customer</th>
@@ -357,13 +357,13 @@ export const ProfitTableView: React.FC = () => {
                   <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-right">
                     Gross Revenue (₹)
                   </th>
-                  <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-right text-rose-400">
+                  <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-right text-rose-500 dark:text-rose-400">
                     Cost / COGS (₹)
                   </th>
-                  <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-right text-gold">
+                  <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-right text-emerald-600 dark:text-emerald-400">
                     Gross Profit (₹)
                   </th>
-                  <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-right text-emerald-400">
+                  <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-right text-emerald-600 dark:text-emerald-400">
                     Margin %
                   </th>
                   <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-center">
@@ -371,46 +371,46 @@ export const ProfitTableView: React.FC = () => {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-mocca-800/60">
+              <tbody className="divide-y divide-gray-200 dark:divide-[#253745]">
                 {filteredSales.map((sale) => {
                   const marginPct =
                     sale.grandTotal > 0 ? (sale.grossProfit / sale.grandTotal) * 100 : 0;
 
                   return (
-                    <tr key={sale.id} className="hover:bg-mocca-850/50 transition-colors group">
-                      <td className="py-3.5 px-4 font-medium text-cream-muted whitespace-nowrap">
+                    <tr key={sale.id} className="hover:bg-gray-50 dark:hover:bg-[#182B3A]/50 transition-colors group">
+                      <td className="py-3.5 px-4 font-medium text-gray-500 dark:text-[#9BA8AB] whitespace-nowrap">
                         {formatDateTime(sale.createdAt || sale.date)}
                       </td>
-                      <td className="py-3.5 px-4 font-mono font-bold text-gold">
+                      <td className="py-3.5 px-4 font-mono font-bold text-emerald-600 dark:text-emerald-400">
                         #{sale.invoiceNo}
                       </td>
                       <td className="py-3.5 px-4">
-                        <p className="font-semibold text-cream">{sale.customerName}</p>
+                        <p className="font-semibold text-[#06141B] dark:text-[#CCD0CF]">{sale.customerName}</p>
                         {sale.customerPhone && (
-                          <p className="text-[10px] text-mocca-400">{sale.customerPhone}</p>
+                          <p className="text-[10px] text-gray-500 dark:text-[#9BA8AB]">{sale.customerPhone}</p>
                         )}
                       </td>
                       <td className="py-3.5 px-4">
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-mocca-800 text-cream border border-mocca-700">
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gray-100 dark:bg-[#182B3A] text-[#06141B] dark:text-[#CCD0CF] border border-gray-200 dark:border-[#253745]">
                           {sale.paymentMethod}
                         </span>
                       </td>
-                      <td className="py-3.5 px-4 text-right font-bold text-cream">
+                      <td className="py-3.5 px-4 text-right font-bold text-[#06141B] dark:text-[#CCD0CF]">
                         {formatCurrency(sale.grandTotal)}
                       </td>
-                      <td className="py-3.5 px-4 text-right font-bold text-rose-400">
+                      <td className="py-3.5 px-4 text-right font-bold text-rose-600 dark:text-rose-400">
                         {formatCurrency(sale.totalCostOfGoods)}
                       </td>
-                      <td className="py-3.5 px-4 text-right font-bold text-gold">
+                      <td className="py-3.5 px-4 text-right font-bold text-emerald-600 dark:text-emerald-400">
                         +{formatCurrency(sale.grossProfit)}
                       </td>
-                      <td className="py-3.5 px-4 text-right font-bold text-emerald-400">
+                      <td className="py-3.5 px-4 text-right font-bold text-emerald-600 dark:text-emerald-400">
                         {marginPct.toFixed(1)}%
                       </td>
                       <td className="py-3.5 px-4 text-center">
                         <button
                           onClick={() => setDeletingSale(sale)}
-                          className="p-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 hover:text-rose-300 border border-rose-500/30 transition-colors"
+                          className="p-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 hover:text-rose-400 border border-rose-500/30 transition-colors"
                           title="Void / Delete Bill (Restores Stock)"
                         >
                           <Trash2 size={15} />
@@ -422,7 +422,7 @@ export const ProfitTableView: React.FC = () => {
 
                 {filteredSales.length === 0 && (
                   <tr>
-                    <td colSpan={9} className="py-8 text-center text-mocca-400 text-xs">
+                    <td colSpan={9} className="py-8 text-center text-gray-500 dark:text-[#9BA8AB] text-xs">
                       No invoices found for the selected period "{periodLabel}".
                     </td>
                   </tr>
@@ -437,26 +437,26 @@ export const ProfitTableView: React.FC = () => {
       {/* TAB 2: PRODUCT-WISE PROFITABILITY TABLE                                   */}
       {/* ========================================================================= */}
       {profitTab === 'products' && (
-        <div className="bg-mocca-900 rounded-2xl border border-mocca-750 overflow-hidden shadow-lg">
+        <div className="bg-white dark:bg-[#11212D] rounded-2xl border border-gray-300 dark:border-[#253745] overflow-hidden shadow-md">
           <div className="overflow-x-auto">
             <table className="w-full text-xs text-left border-collapse">
               <thead>
-                <tr className="bg-mocca-950/80 border-b border-mocca-750 text-mocca-400">
+                <tr className="bg-gray-50 dark:bg-[#182B3A] border-b border-gray-200 dark:border-[#253745] text-gray-500 dark:text-[#9BA8AB]">
                   <th className="py-3.5 px-4 font-bold uppercase tracking-wider">Product</th>
                   <th className="py-3.5 px-4 font-bold uppercase tracking-wider">Brand</th>
                   <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-center">
                     Units Sold
                   </th>
-                  <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-right text-rose-400">
+                  <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-right text-rose-500 dark:text-rose-400">
                     Total Wholesale Cost (₹)
                   </th>
-                  <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-right text-cream">
+                  <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-right text-[#06141B] dark:text-[#CCD0CF]">
                     Total Revenue (₹)
                   </th>
-                  <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-right text-gold">
+                  <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-right text-emerald-600 dark:text-emerald-400">
                     Gross Profit (₹)
                   </th>
-                  <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-right text-emerald-400">
+                  <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-right text-emerald-600 dark:text-emerald-400">
                     Profit Margin %
                   </th>
                   <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-center">
@@ -464,37 +464,37 @@ export const ProfitTableView: React.FC = () => {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-mocca-800/60">
+              <tbody className="divide-y divide-gray-200 dark:divide-[#253745]">
                 {productProfitData.map((prod) => (
-                  <tr key={prod.productId} className="hover:bg-mocca-850/50 transition-colors">
-                    <td className="py-3.5 px-4 font-bold text-cream">{prod.name}</td>
-                    <td className="py-3.5 px-4 text-cream-muted">{prod.brand}</td>
-                    <td className="py-3.5 px-4 text-center font-bold text-cream">
+                  <tr key={prod.productId} className="hover:bg-gray-50 dark:hover:bg-[#182B3A]/50 transition-colors">
+                    <td className="py-3.5 px-4 font-bold text-[#06141B] dark:text-[#CCD0CF]">{prod.name}</td>
+                    <td className="py-3.5 px-4 text-gray-500 dark:text-[#9BA8AB]">{prod.brand}</td>
+                    <td className="py-3.5 px-4 text-center font-bold text-[#06141B] dark:text-[#CCD0CF]">
                       {prod.unitsSold} Pcs
                     </td>
-                    <td className="py-3.5 px-4 text-right font-bold text-rose-400">
+                    <td className="py-3.5 px-4 text-right font-bold text-rose-500 dark:text-rose-400">
                       {formatCurrency(prod.totalCost)}
                     </td>
-                    <td className="py-3.5 px-4 text-right font-bold text-cream">
+                    <td className="py-3.5 px-4 text-right font-bold text-[#06141B] dark:text-[#CCD0CF]">
                       {formatCurrency(prod.totalRevenue)}
                     </td>
-                    <td className="py-3.5 px-4 text-right font-bold text-gold">
+                    <td className="py-3.5 px-4 text-right font-bold text-emerald-600 dark:text-emerald-400">
                       +{formatCurrency(prod.grossProfit)}
                     </td>
-                    <td className="py-3.5 px-4 text-right font-bold text-emerald-400">
+                    <td className="py-3.5 px-4 text-right font-bold text-emerald-600 dark:text-emerald-400">
                       {prod.marginPct.toFixed(1)}%
                     </td>
                     <td className="py-3.5 px-4 text-center">
                       {prod.marginPct >= 50 ? (
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/40">
                           ★ High Margin
                         </span>
                       ) : prod.marginPct >= 30 ? (
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gold/20 text-gold border border-gold/40">
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-600 dark:text-blue-400 border border-blue-500/40">
                           Normal Margin
                         </span>
                       ) : (
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40">
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/40">
                           Low Margin
                         </span>
                       )}
@@ -504,7 +504,7 @@ export const ProfitTableView: React.FC = () => {
 
                 {productProfitData.length === 0 && (
                   <tr>
-                    <td colSpan={8} className="py-8 text-center text-mocca-400 text-xs">
+                    <td colSpan={8} className="py-8 text-center text-gray-500 dark:text-[#9BA8AB] text-xs">
                       No product sales recorded in the selected period.
                     </td>
                   </tr>
@@ -519,16 +519,16 @@ export const ProfitTableView: React.FC = () => {
       {/* TAB 3: OPERATING EXPENSES WITH DELETE OPTION                              */}
       {/* ========================================================================= */}
       {profitTab === 'expenses' && (
-        <div className="bg-mocca-900 rounded-2xl border border-mocca-750 overflow-hidden shadow-lg">
+        <div className="bg-white dark:bg-[#11212D] rounded-2xl border border-gray-300 dark:border-[#253745] overflow-hidden shadow-md">
           <div className="overflow-x-auto">
             <table className="w-full text-xs text-left border-collapse">
               <thead>
-                <tr className="bg-mocca-950/80 border-b border-mocca-750 text-mocca-400">
+                <tr className="bg-gray-50 dark:bg-[#182B3A] border-b border-gray-200 dark:border-[#253745] text-gray-500 dark:text-[#9BA8AB]">
                   <th className="py-3.5 px-4 font-bold uppercase tracking-wider">Date</th>
                   <th className="py-3.5 px-4 font-bold uppercase tracking-wider">Title / Purpose</th>
                   <th className="py-3.5 px-4 font-bold uppercase tracking-wider">Category</th>
                   <th className="py-3.5 px-4 font-bold uppercase tracking-wider">Payment Mode</th>
-                  <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-right text-rose-400">
+                  <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-right text-rose-500 dark:text-rose-400">
                     Amount (₹)
                   </th>
                   <th className="py-3.5 px-4 font-bold uppercase tracking-wider text-center">
@@ -536,31 +536,31 @@ export const ProfitTableView: React.FC = () => {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-mocca-800/60">
+              <tbody className="divide-y divide-gray-200 dark:divide-[#253745]">
                 {expenses.map((exp) => (
-                  <tr key={exp.id} className="hover:bg-mocca-850/50 transition-colors">
-                    <td className="py-3.5 px-4 text-cream-muted whitespace-nowrap">
+                  <tr key={exp.id} className="hover:bg-gray-50 dark:hover:bg-[#182B3A]/50 transition-colors">
+                    <td className="py-3.5 px-4 text-gray-500 dark:text-[#9BA8AB] whitespace-nowrap">
                       {formatDate(exp.date)}
                     </td>
                     <td className="py-3.5 px-4">
-                      <p className="font-bold text-cream">{exp.title}</p>
+                      <p className="font-bold text-[#06141B] dark:text-[#CCD0CF]">{exp.title}</p>
                       {exp.description && (
-                        <p className="text-[10px] text-mocca-400">{exp.description}</p>
+                        <p className="text-[10px] text-gray-500 dark:text-[#9BA8AB]">{exp.description}</p>
                       )}
                     </td>
                     <td className="py-3.5 px-4">
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-mocca-800 text-gold border border-mocca-700">
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gray-100 dark:bg-[#182B3A] text-emerald-600 dark:text-emerald-400 border border-gray-200 dark:border-[#253745]">
                         {exp.category}
                       </span>
                     </td>
-                    <td className="py-3.5 px-4 text-cream-muted">{exp.paymentMethod}</td>
-                    <td className="py-3.5 px-4 text-right font-bold text-rose-400">
+                    <td className="py-3.5 px-4 text-gray-500 dark:text-[#9BA8AB]">{exp.paymentMethod}</td>
+                    <td className="py-3.5 px-4 text-right font-bold text-rose-500 dark:text-rose-400">
                       -{formatCurrency(exp.amount)}
                     </td>
                     <td className="py-3.5 px-4 text-center">
                       <button
                         onClick={() => setDeletingExpense(exp)}
-                        className="p-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 hover:text-rose-300 border border-rose-500/30 transition-colors"
+                        className="p-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 hover:text-rose-400 border border-rose-500/30 transition-colors"
                         title="Delete Expense Record"
                       >
                         <Trash2 size={15} />

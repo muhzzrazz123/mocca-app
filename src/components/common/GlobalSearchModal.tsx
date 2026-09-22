@@ -96,29 +96,29 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 px-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-150">
-      <div className="w-full max-w-2xl bg-white dark:bg-[#0E1015] border border-gray-200 dark:border-[#2A2F3D] rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[80vh] transition-colors">
+      <div className="w-full max-w-2xl bg-white dark:bg-[#11212D] border border-gray-300 dark:border-[#253745] rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[80vh] transition-colors">
         {/* Search Input Bar */}
-        <div className="p-4 border-b border-gray-200 dark:border-[#1E222D] flex items-center gap-3 bg-gray-50/50 dark:bg-[#0E1015]/60">
-          <Search size={20} className="text-gold shrink-0" />
+        <div className="p-4 border-b border-gray-200 dark:border-[#253745] flex items-center gap-3 bg-gray-50/50 dark:bg-[#11212D]/90">
+          <Search size={20} className="text-emerald-500 shrink-0" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search apparel, SKUs, invoices, customers, suppliers..."
             autoFocus
-            className="flex-1 bg-transparent text-gray-900 dark:text-cream placeholder-gray-400 dark:placeholder-cream-muted/50 text-sm outline-none font-medium"
+            className="flex-1 bg-transparent text-gray-900 dark:text-[#CCD0CF] placeholder-gray-400 dark:placeholder-[#9BA8AB] text-sm outline-none font-medium"
           />
           {query && (
             <button
               onClick={() => setQuery('')}
-              className="text-gray-400 hover:text-gray-600 dark:hover:text-cream text-xs px-2 py-0.5 rounded bg-gray-100 dark:bg-[#161922]"
+              className="text-gray-400 hover:text-gray-600 dark:hover:text-[#CCD0CF] text-xs px-2 py-0.5 rounded bg-gray-100 dark:bg-[#253745]"
             >
               Clear
             </button>
           )}
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-cream hover:bg-gray-100 dark:hover:bg-[#161922]"
+            className="p-1 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-[#CCD0CF] hover:bg-gray-100 dark:hover:bg-[#253745]"
           >
             <X size={18} />
           </button>
@@ -127,20 +127,20 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
         {/* Results List */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {!query.trim() ? (
-            <div className="text-center py-8 text-gray-400 dark:text-cream-muted text-xs">
-              <p className="font-semibold text-gray-900 dark:text-cream mb-1">Quick Store Search</p>
+            <div className="text-center py-8 text-gray-400 dark:text-[#9BA8AB] text-xs">
+              <p className="font-semibold text-gray-900 dark:text-[#CCD0CF] mb-1">Quick Store Search</p>
               <p>Type an item name, SKU, barcode, customer phone, or bill number.</p>
               <div className="flex justify-center gap-2 mt-4 text-[11px]">
-                <span className="px-2 py-1 rounded bg-gray-100 dark:bg-[#161922] border border-gray-200 dark:border-[#222736] text-gold font-medium">
+                <span className="px-2 py-1 rounded bg-gray-100 dark:bg-[#253745] border border-gray-200 dark:border-[#4A5C6A] text-emerald-600 dark:text-emerald-400 font-medium">
                   "Oxford"
                 </span>
-                <span className="px-2 py-1 rounded bg-gray-100 dark:bg-[#161922] border border-gray-200 dark:border-[#222736] text-gold font-medium">
+                <span className="px-2 py-1 rounded bg-gray-100 dark:bg-[#253745] border border-gray-200 dark:border-[#4A5C6A] text-emerald-600 dark:text-emerald-400 font-medium">
                   "Cargo"
                 </span>
-                <span className="px-2 py-1 rounded bg-gray-100 dark:bg-[#161922] border border-gray-200 dark:border-[#222736] text-gold font-medium">
+                <span className="px-2 py-1 rounded bg-gray-100 dark:bg-[#253745] border border-gray-200 dark:border-[#4A5C6A] text-emerald-600 dark:text-emerald-400 font-medium">
                   "98410"
                 </span>
-                <span className="px-2 py-1 rounded bg-gray-100 dark:bg-[#161922] border border-gray-200 dark:border-[#222736] text-gold font-medium">
+                <span className="px-2 py-1 rounded bg-gray-100 dark:bg-[#253745] border border-gray-200 dark:border-[#4A5C6A] text-emerald-600 dark:text-emerald-400 font-medium">
                   "MOC-2026"
                 </span>
               </div>
@@ -150,7 +150,7 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
               {/* Products Results */}
               {products.length > 0 && (
                 <div className="space-y-1.5">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-gold flex items-center gap-1.5">
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-500 flex items-center gap-1.5">
                     <Shirt size={13} /> Products & Catalog ({products.length})
                   </div>
                   {products.map((p) => (
@@ -160,17 +160,17 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
                         onNavigate('daily-profit');
                         onClose();
                       }}
-                      className="p-2.5 rounded-xl bg-gray-50 dark:bg-[#161922] hover:bg-gold/10 border border-gray-200 dark:border-[#1E222D] flex items-center justify-between cursor-pointer group transition-colors"
+                      className="p-2.5 rounded-xl bg-gray-50 dark:bg-[#182B3A] hover:bg-emerald-50 dark:hover:bg-emerald-500/10 border border-gray-200 dark:border-[#253745] hover:border-emerald-500/50 flex items-center justify-between cursor-pointer group transition-colors"
                     >
                       <div>
-                        <p className="text-xs font-semibold text-gray-900 dark:text-cream group-hover:text-gold">
+                        <p className="text-xs font-semibold text-gray-900 dark:text-[#CCD0CF] group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
                           {p.name}
                         </p>
-                        <p className="text-[11px] text-gray-500 dark:text-cream-muted">
+                        <p className="text-[11px] text-gray-500 dark:text-[#9BA8AB]">
                           {p.brand} • SKU: {p.sku} • {p.categoryName}
                         </p>
                       </div>
-                      <ArrowRight size={14} className="text-gray-400 group-hover:text-gold" />
+                      <ArrowRight size={14} className="text-gray-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400" />
                     </div>
                   ))}
                 </div>
@@ -189,18 +189,18 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
                         onNavigate('daily-profit');
                         onClose();
                       }}
-                      className="p-2.5 rounded-xl bg-gray-50 dark:bg-[#161922] hover:bg-emerald-500/10 border border-gray-200 dark:border-[#1E222D] flex items-center justify-between cursor-pointer group transition-colors"
+                      className="p-2.5 rounded-xl bg-gray-50 dark:bg-[#182B3A] hover:bg-emerald-500/10 border border-gray-200 dark:border-[#253745] hover:border-emerald-500/50 flex items-center justify-between cursor-pointer group transition-colors"
                     >
                       <div>
-                        <p className="text-xs font-semibold text-gray-900 dark:text-cream">
+                        <p className="text-xs font-semibold text-gray-900 dark:text-[#CCD0CF]">
                           Bill #{s.invoiceNo} • {s.customerName}
                         </p>
-                        <p className="text-[11px] text-gray-500 dark:text-cream-muted">
+                        <p className="text-[11px] text-gray-500 dark:text-[#9BA8AB]">
                           {s.date} • {s.paymentMethod}
                         </p>
                       </div>
                       <div className="text-right">
-                        <span className="text-xs font-bold text-gold">
+                        <span className="text-xs font-bold text-emerald-500">
                           {formatCurrency(s.grandTotal)}
                         </span>
                       </div>
@@ -222,15 +222,15 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
                         onNavigate('billing');
                         onClose();
                       }}
-                      className="p-2.5 rounded-xl bg-gray-50 dark:bg-[#161922] hover:bg-blue-500/10 border border-gray-200 dark:border-[#1E222D] flex items-center justify-between cursor-pointer group transition-colors"
+                      className="p-2.5 rounded-xl bg-gray-50 dark:bg-[#182B3A] hover:bg-blue-500/10 border border-gray-200 dark:border-[#253745] hover:border-emerald-500/50 flex items-center justify-between cursor-pointer group transition-colors"
                     >
                       <div>
-                        <p className="text-xs font-semibold text-gray-900 dark:text-cream">{c.name}</p>
-                        <p className="text-[11px] text-gray-500 dark:text-cream-muted">
+                        <p className="text-xs font-semibold text-gray-900 dark:text-[#CCD0CF] group-hover:text-emerald-400">{c.name}</p>
+                        <p className="text-[11px] text-gray-500 dark:text-[#9BA8AB]">
                           {c.phone} • Spent: {formatCurrency(c.totalSpent)}
                         </p>
                       </div>
-                      <ArrowRight size={14} className="text-gray-400 group-hover:text-gold" />
+                      <ArrowRight size={14} className="text-gray-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400" />
                     </div>
                   ))}
                 </div>
@@ -249,13 +249,13 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
                         onNavigate('accounts');
                         onClose();
                       }}
-                      className="p-2.5 rounded-xl bg-gray-50 dark:bg-[#161922] hover:bg-purple-500/10 border border-gray-200 dark:border-[#1E222D] flex items-center justify-between cursor-pointer group transition-colors"
+                      className="p-2.5 rounded-xl bg-gray-50 dark:bg-[#182B3A] hover:bg-purple-500/10 border border-gray-200 dark:border-[#253745] hover:border-emerald-500/50 flex items-center justify-between cursor-pointer group transition-colors"
                     >
                       <div>
-                        <p className="text-xs font-semibold text-gray-900 dark:text-cream">{s.name}</p>
-                        <p className="text-[11px] text-gray-500 dark:text-cream-muted">{s.phone} • {s.contactPerson}</p>
+                        <p className="text-xs font-semibold text-gray-900 dark:text-[#CCD0CF] group-hover:text-emerald-400">{s.name}</p>
+                        <p className="text-[11px] text-gray-500 dark:text-[#9BA8AB]">{s.phone} • {s.contactPerson}</p>
                       </div>
-                      <ArrowRight size={14} className="text-gray-400 group-hover:text-gold" />
+                      <ArrowRight size={14} className="text-gray-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400" />
                     </div>
                   ))}
                 </div>
@@ -274,13 +274,13 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
                         onNavigate('staff');
                         onClose();
                       }}
-                      className="p-2.5 rounded-xl bg-gray-50 dark:bg-[#161922] hover:bg-amber-500/10 border border-gray-200 dark:border-[#1E222D] flex items-center justify-between cursor-pointer group transition-colors"
+                      className="p-2.5 rounded-xl bg-gray-50 dark:bg-[#182B3A] hover:bg-amber-500/10 border border-gray-200 dark:border-[#253745] hover:border-emerald-500/50 flex items-center justify-between cursor-pointer group transition-colors"
                     >
                       <div>
-                        <p className="text-xs font-semibold text-gray-900 dark:text-cream">{st.name}</p>
-                        <p className="text-[11px] text-gray-500 dark:text-cream-muted">{st.position} • {st.phone}</p>
+                        <p className="text-xs font-semibold text-gray-900 dark:text-[#CCD0CF] group-hover:text-emerald-400">{st.name}</p>
+                        <p className="text-[11px] text-gray-500 dark:text-[#9BA8AB]">{st.position} • {st.phone}</p>
                       </div>
-                      <ArrowRight size={14} className="text-gray-400 group-hover:text-gold" />
+                      <ArrowRight size={14} className="text-gray-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400" />
                     </div>
                   ))}
                 </div>
@@ -291,7 +291,7 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
                 customers.length === 0 &&
                 suppliers.length === 0 &&
                 staff.length === 0 && (
-                  <p className="text-center py-6 text-xs text-gray-400 dark:text-cream-muted">
+                  <p className="text-center py-6 text-xs text-gray-400 dark:text-[#9BA8AB]">
                     No matching records found for "{query}"
                   </p>
                 )}
@@ -300,9 +300,9 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="p-3 border-t border-gray-200 dark:border-[#1E222D] bg-gray-50/50 dark:bg-[#0E1015]/60 flex items-center justify-between text-[11px] text-gray-500 dark:text-cream-muted">
+        <div className="p-3 border-t border-gray-200 dark:border-[#253745] bg-gray-50/50 dark:bg-[#11212D]/90 flex items-center justify-between text-[11px] text-gray-500 dark:text-[#9BA8AB]">
           <span>Navigate to modules directly</span>
-          <kbd className="bg-gray-100 dark:bg-[#161922] px-2 py-0.5 rounded border border-gray-200 dark:border-[#222736] text-[10px] font-mono">
+          <kbd className="bg-gray-100 dark:bg-[#253745] px-2 py-0.5 rounded border border-gray-200 dark:border-[#4A5C6A] text-[10px] font-mono text-gray-700 dark:text-[#CCD0CF]">
             ESC to close
           </kbd>
         </div>

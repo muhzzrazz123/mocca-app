@@ -28,7 +28,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
   ];
 
   return (
-    <nav className="lg:hidden fixed bottom-0 inset-x-0 h-16 bg-white/95 dark:bg-[#0E1015]/95 backdrop-blur border-t border-gray-200 dark:border-[#1E222D] flex items-center justify-around px-2 z-40 select-none shadow-lg transition-colors">
+    <nav className="lg:hidden fixed bottom-0 inset-x-0 h-16 bg-white/95 dark:bg-[#11212D]/95 backdrop-blur border-t border-[#9BA8AB]/40 dark:border-[#253745] flex items-center justify-around px-2 z-40 select-none shadow-lg transition-colors">
       {mainTabs.map((tab) => {
         const Icon = tab.icon;
         const isActive = activeTab === tab.key;
@@ -38,11 +38,11 @@ export const MobileNav: React.FC<MobileNavProps> = ({
             onClick={() => onSelectTab(tab.key)}
             className={`flex flex-col items-center justify-center gap-1 w-16 py-1 transition-colors ${
               isActive
-                ? 'text-gold font-bold'
-                : 'text-gray-500 dark:text-cream-muted hover:text-gray-900 dark:hover:text-cream'
+                ? 'text-emerald-600 dark:text-emerald-400 font-bold'
+                : 'text-[#4A5C6A] dark:text-[#9BA8AB] hover:text-emerald-600 dark:hover:text-emerald-400'
             }`}
           >
-            <Icon size={20} className={isActive ? 'text-gold stroke-[2.5]' : 'stroke-[1.75]'} />
+            <Icon size={20} className={isActive ? 'text-emerald-600 dark:text-emerald-400 stroke-[2.5]' : 'stroke-[1.75]'} />
             <span className="text-[10px] tracking-tight">{tab.label}</span>
           </button>
         );

@@ -151,29 +151,29 @@ export const AccountsView: React.FC = () => {
   return (
     <div className="p-4 lg:p-8 space-y-6 max-w-[1600px] mx-auto pb-24">
       {/* Page Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white dark:bg-[#12141A] p-5 rounded-2xl border border-gray-200 dark:border-[#222630] shadow-sm transition-colors">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white dark:bg-[#11212D] p-5 rounded-2xl border border-gray-300 dark:border-[#253745] shadow-sm transition-colors">
         <div className="flex items-center gap-3.5">
-          <div className="w-12 h-12 rounded-2xl bg-gold/15 border border-gold/40 flex items-center justify-center text-gold shadow-gold-glow">
+          <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shadow-sm">
             <Wallet size={24} />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-gray-900 dark:text-cream font-serif">
+            <h2 className="text-xl font-bold text-[#06141B] dark:text-[#CCD0CF] font-serif">
               Store Accounts & Financial Book
             </h2>
-            <p className="text-xs text-gray-500 dark:text-cream-muted">
+            <p className="text-xs text-[#4A5C6A] dark:text-[#9BA8AB]">
               Daily cash drawer reconciliation, operating shop expenses, and recurring bills & rent
             </p>
           </div>
         </div>
 
         {/* Sub-tabs */}
-        <div className="flex items-center gap-1.5 bg-gray-100 dark:bg-[#0E1015] p-1 rounded-xl border border-gray-200 dark:border-[#222630] text-xs">
+        <div className="flex items-center gap-1.5 bg-gray-100 dark:bg-[#182B3A] p-1 rounded-xl border border-gray-200 dark:border-[#253745] text-xs">
           <button
             onClick={() => setActiveTab('cashbook')}
             className={`flex items-center gap-1.5 px-3 py-2 rounded-lg font-bold transition-all ${
               activeTab === 'cashbook'
-                ? 'bg-gold text-mocca-950 shadow-gold-glow'
-                : 'text-gray-600 dark:text-cream-muted hover:text-gray-900 dark:hover:text-cream hover:bg-gray-200 dark:hover:bg-[#1A1D26]'
+                ? 'bg-emerald-600 text-white shadow-emerald-500/20 shadow-sm'
+                : 'text-[#4A5C6A] dark:text-[#CCD0CF] hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-gray-200 dark:hover:bg-[#253745]'
             }`}
           >
             <DollarSign size={14} />
@@ -184,8 +184,8 @@ export const AccountsView: React.FC = () => {
             onClick={() => setActiveTab('expenses')}
             className={`flex items-center gap-1.5 px-3 py-2 rounded-lg font-bold transition-all ${
               activeTab === 'expenses'
-                ? 'bg-gold text-mocca-950 shadow-gold-glow'
-                : 'text-gray-600 dark:text-cream-muted hover:text-gray-900 dark:hover:text-cream hover:bg-gray-200 dark:hover:bg-[#1A1D26]'
+                ? 'bg-emerald-600 text-white shadow-emerald-500/20 shadow-sm'
+                : 'text-[#4A5C6A] dark:text-[#CCD0CF] hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-gray-200 dark:hover:bg-[#253745]'
             }`}
           >
             <Wallet size={14} />
@@ -196,8 +196,8 @@ export const AccountsView: React.FC = () => {
             onClick={() => setActiveTab('bills')}
             className={`flex items-center gap-1.5 px-3 py-2 rounded-lg font-bold transition-all ${
               activeTab === 'bills'
-                ? 'bg-gold text-mocca-950 shadow-gold-glow'
-                : 'text-gray-600 dark:text-cream-muted hover:text-gray-900 dark:hover:text-cream hover:bg-gray-200 dark:hover:bg-[#1A1D26]'
+                ? 'bg-emerald-600 text-white shadow-emerald-500/20 shadow-sm'
+                : 'text-[#4A5C6A] dark:text-[#CCD0CF] hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-gray-200 dark:hover:bg-[#253745]'
             }`}
           >
             <CalendarClock size={14} />
@@ -213,57 +213,57 @@ export const AccountsView: React.FC = () => {
         <div className="space-y-6">
           {/* Summary Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="bg-white dark:bg-[#14161D] p-5 rounded-2xl border border-gray-200 dark:border-[#222630] shadow-sm space-y-2">
-              <span className="text-[11px] font-semibold text-gray-500 dark:text-mocca-400 uppercase tracking-wider block">
+            <div className="bg-white dark:bg-[#11212D] p-5 rounded-2xl border border-gray-300 dark:border-[#253745] shadow-sm space-y-2">
+              <span className="text-[11px] font-semibold text-[#4A5C6A] dark:text-[#9BA8AB] uppercase tracking-wider block">
                 Morning Opening Float
               </span>
               <input
                 type="number"
                 value={openingCash}
                 onChange={(e) => setOpeningCash(Number(e.target.value) || 0)}
-                className="text-2xl font-bold text-gray-900 dark:text-cream bg-transparent border-b border-gray-300 dark:border-[#2C3240] outline-none w-32 focus:border-gold"
+                className="text-2xl font-bold text-[#06141B] dark:text-[#CCD0CF] bg-transparent border-b border-gray-300 dark:border-[#253745] outline-none w-32 focus:border-emerald-500"
               />
-              <span className="text-[10px] text-gray-400 dark:text-mocca-400 block">Cash in register at 10 AM</span>
+              <span className="text-[10px] text-[#4A5C6A] dark:text-[#9BA8AB] block">Cash in register at 10 AM</span>
             </div>
 
-            <div className="bg-white dark:bg-[#14161D] p-5 rounded-2xl border border-gray-200 dark:border-[#222630] shadow-sm space-y-2">
+            <div className="bg-white dark:bg-[#11212D] p-5 rounded-2xl border border-gray-300 dark:border-[#253745] shadow-sm space-y-2">
               <span className="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider block">
                 + Today's Cash Sales
               </span>
               <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
                 +{formatCurrency(cashSalesToday)}
               </p>
-              <span className="text-[10px] text-gray-400 dark:text-mocca-400 block">From retail cash bills</span>
+              <span className="text-[10px] text-[#4A5C6A] dark:text-[#9BA8AB] block">From retail cash bills</span>
             </div>
 
-            <div className="bg-white dark:bg-[#14161D] p-5 rounded-2xl border border-gray-200 dark:border-[#222630] shadow-sm space-y-2">
+            <div className="bg-white dark:bg-[#11212D] p-5 rounded-2xl border border-gray-300 dark:border-[#253745] shadow-sm space-y-2">
               <span className="text-[11px] font-semibold text-rose-500 dark:text-rose-400 uppercase tracking-wider block">
                 − Cash Paid Expenses
               </span>
               <p className="text-2xl font-bold text-rose-500 dark:text-rose-400">
                 -{formatCurrency(cashExpensesToday)}
               </p>
-              <span className="text-[10px] text-gray-400 dark:text-mocca-400 block">Tea, packaging, courier</span>
+              <span className="text-[10px] text-[#4A5C6A] dark:text-[#9BA8AB] block">Tea, packaging, courier</span>
             </div>
 
-            <div className="bg-gradient-to-br from-gold/15 via-white dark:via-[#14161D] to-gold/5 dark:to-[#1A1D26] p-5 rounded-2xl border border-gold/40 shadow-gold-glow space-y-2">
-              <span className="text-[11px] font-bold text-gold uppercase tracking-wider block">
+            <div className="bg-gradient-to-br from-emerald-500/10 via-white dark:via-[#11212D] to-emerald-500/5 dark:to-[#182B3A] p-5 rounded-2xl border border-emerald-500/30 shadow-emerald-500/10 shadow-sm space-y-2">
+              <span className="text-[11px] font-bold text-emerald-800 dark:text-emerald-300 uppercase tracking-wider block">
                 Expected In Drawer
               </span>
-              <p className="text-2xl font-bold text-gold">{formatCurrency(expectedCashInDrawer)}</p>
-              <span className="text-[10px] text-gray-600 dark:text-cream-muted block font-medium">Opening + Sales − Expenses</span>
+              <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">{formatCurrency(expectedCashInDrawer)}</p>
+              <span className="text-[10px] text-[#4A5C6A] dark:text-[#9BA8AB] block font-medium">Opening + Sales − Expenses</span>
             </div>
           </div>
 
           {/* Physical Cash Counted at Closing */}
-          <div className="bg-white dark:bg-[#14161D] p-6 rounded-2xl border border-gray-200 dark:border-[#222630] shadow-sm space-y-4">
-            <h3 className="text-sm font-bold text-gray-900 dark:text-cream uppercase tracking-wider">
+          <div className="bg-white dark:bg-[#11212D] p-6 rounded-2xl border border-gray-300 dark:border-[#253745] shadow-sm space-y-4">
+            <h3 className="text-sm font-bold text-[#06141B] dark:text-[#CCD0CF] uppercase tracking-wider">
               Night Closing Cash Reconciliation
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
               <div>
-                <label className="text-xs font-semibold text-gray-700 dark:text-cream-muted block mb-1.5">
+                <label className="text-xs font-semibold text-gray-700 dark:text-[#9BA8AB] block mb-1.5">
                   Actual Physical Cash Counted (₹):
                 </label>
                 <input
@@ -271,7 +271,7 @@ export const AccountsView: React.FC = () => {
                   placeholder="e.g. 14500"
                   value={countedCash || ''}
                   onChange={(e) => setCountedCash(Number(e.target.value) || 0)}
-                  className="w-full bg-gray-50 dark:bg-[#0E1015] border border-gray-200 dark:border-[#2C3240] rounded-xl px-4 py-3 text-lg font-bold text-gray-900 dark:text-cream outline-none focus:border-gold"
+                  className="w-full bg-gray-50 dark:bg-[#182B3A] border border-gray-300 dark:border-[#253745] rounded-xl px-4 py-3 text-lg font-bold text-[#06141B] dark:text-[#CCD0CF] outline-none focus:border-emerald-500"
                 />
               </div>
 
@@ -302,9 +302,9 @@ export const AccountsView: React.FC = () => {
             </div>
 
             {/* Non-Cash Revenue Today */}
-            <div className="pt-4 border-t border-gray-100 dark:border-[#1E222D] flex items-center gap-6 text-xs text-gray-500 dark:text-cream-muted">
+            <div className="pt-4 border-t border-gray-200 dark:border-[#253745] flex items-center gap-6 text-xs text-[#4A5C6A] dark:text-[#9BA8AB]">
               <div>
-                UPI Received Today: <strong className="text-gold font-bold">{formatCurrency(upiSalesToday)}</strong>
+                UPI Received Today: <strong className="text-emerald-700 dark:text-emerald-400 font-bold">{formatCurrency(upiSalesToday)}</strong>
               </div>
               <div>
                 Card Payments: <strong className="text-blue-500 font-bold">{formatCurrency(cardSalesToday)}</strong>
@@ -320,22 +320,22 @@ export const AccountsView: React.FC = () => {
       {activeTab === 'expenses' && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-bold text-gray-900 dark:text-cream uppercase tracking-wider">
+            <h3 className="text-sm font-bold text-[#06141B] dark:text-[#CCD0CF] uppercase tracking-wider">
               Operating Shop Expenses ({expenses.length})
             </h3>
             <button
               onClick={() => setIsAddExpenseOpen(true)}
-              className="px-3.5 py-2 rounded-xl bg-gold hover:bg-gold-light text-mocca-950 text-xs font-bold shadow-gold-glow flex items-center gap-1.5 transition-all"
+              className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-emerald-500/20 shadow-md flex items-center gap-1.5 transition-all active:scale-95"
             >
               <Plus size={15} /> + Add Expense
             </button>
           </div>
 
-          <div className="bg-white dark:bg-[#14161D] rounded-2xl border border-gray-200 dark:border-[#222630] overflow-hidden shadow-sm">
+          <div className="bg-white dark:bg-[#11212D] rounded-2xl border border-gray-300 dark:border-[#253745] overflow-hidden shadow-sm">
             <div className="overflow-x-auto">
               <table className="w-full text-xs text-left border-collapse">
                 <thead>
-                  <tr className="bg-gray-50 dark:bg-[#0E1015]/80 border-b border-gray-200 dark:border-[#1E222D] text-gray-500 dark:text-mocca-400">
+                  <tr className="bg-gray-50 dark:bg-[#182B3A]/80 border-b border-gray-200 dark:border-[#253745] text-[#4A5C6A] dark:text-[#9BA8AB]">
                     <th className="py-3 px-4 font-bold">Date</th>
                     <th className="py-3 px-4 font-bold">Expense Title / Vendor</th>
                     <th className="py-3 px-4 font-bold">Category</th>
@@ -344,22 +344,22 @@ export const AccountsView: React.FC = () => {
                     <th className="py-3 px-4 font-bold text-center">Action (Delete)</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100 dark:divide-[#1E222D]">
+                <tbody className="divide-y divide-gray-100 dark:divide-[#253745]">
                   {expenses.map((exp) => (
-                    <tr key={exp.id} className="hover:bg-gray-50 dark:hover:bg-[#1A1D26]/50 transition-colors">
-                      <td className="py-3.5 px-4 text-gray-600 dark:text-cream-muted whitespace-nowrap">
+                    <tr key={exp.id} className="hover:bg-emerald-50/40 dark:hover:bg-[#182B3A]/60 transition-colors">
+                      <td className="py-3.5 px-4 text-[#4A5C6A] dark:text-[#9BA8AB] whitespace-nowrap">
                         {formatDate(exp.date)}
                       </td>
                       <td className="py-3.5 px-4">
-                        <p className="font-bold text-gray-900 dark:text-cream">{exp.title}</p>
-                        {exp.description && <p className="text-[10px] text-gray-400">{exp.description}</p>}
+                        <p className="font-bold text-[#06141B] dark:text-[#CCD0CF]">{exp.title}</p>
+                        {exp.description && <p className="text-[10px] text-[#4A5C6A] dark:text-[#9BA8AB]">{exp.description}</p>}
                       </td>
                       <td className="py-3.5 px-4">
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gray-100 dark:bg-[#1A1D26] text-gold border border-gray-200 dark:border-[#2C3240]">
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30">
                           {exp.category}
                         </span>
                       </td>
-                      <td className="py-3.5 px-4 text-gray-700 dark:text-cream-muted">{exp.paymentMethod}</td>
+                      <td className="py-3.5 px-4 text-gray-700 dark:text-[#CCD0CF]">{exp.paymentMethod}</td>
                       <td className="py-3.5 px-4 text-right font-bold text-rose-500">
                         -{formatCurrency(exp.amount)}
                       </td>
@@ -387,22 +387,22 @@ export const AccountsView: React.FC = () => {
       {activeTab === 'bills' && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-bold text-gray-900 dark:text-cream uppercase tracking-wider">
+            <h3 className="text-sm font-bold text-[#06141B] dark:text-[#CCD0CF] uppercase tracking-wider">
               Shop Bills, Showroom Rent & Utilities ({bills.length})
             </h3>
             <button
               onClick={() => setIsAddBillOpen(true)}
-              className="px-3.5 py-2 rounded-xl bg-gold hover:bg-gold-light text-mocca-950 text-xs font-bold shadow-gold-glow flex items-center gap-1.5 transition-all"
+              className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-emerald-500/20 shadow-md flex items-center gap-1.5 transition-all active:scale-95"
             >
               <Plus size={15} /> + Add Bill / Rent
             </button>
           </div>
 
-          <div className="bg-white dark:bg-[#14161D] rounded-2xl border border-gray-200 dark:border-[#222630] overflow-hidden shadow-sm">
+          <div className="bg-white dark:bg-[#11212D] rounded-2xl border border-gray-300 dark:border-[#253745] overflow-hidden shadow-sm">
             <div className="overflow-x-auto">
               <table className="w-full text-xs text-left border-collapse">
                 <thead>
-                  <tr className="bg-gray-50 dark:bg-[#0E1015]/80 border-b border-gray-200 dark:border-[#1E222D] text-gray-500 dark:text-mocca-400">
+                  <tr className="bg-gray-50 dark:bg-[#182B3A]/80 border-b border-gray-200 dark:border-[#253745] text-[#4A5C6A] dark:text-[#9BA8AB]">
                     <th className="py-3 px-4 font-bold">Bill Title / Purpose</th>
                     <th className="py-3 px-4 font-bold">Category</th>
                     <th className="py-3 px-4 font-bold">Due Date</th>
@@ -411,13 +411,13 @@ export const AccountsView: React.FC = () => {
                     <th className="py-3 px-4 font-bold text-center">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100 dark:divide-[#1E222D]">
+                <tbody className="divide-y divide-gray-100 dark:divide-[#253745]">
                   {bills.map((bill) => (
-                    <tr key={bill.id} className="hover:bg-gray-50 dark:hover:bg-[#1A1D26]/50 transition-colors">
-                      <td className="py-3.5 px-4 font-bold text-gray-900 dark:text-cream">{bill.title}</td>
-                      <td className="py-3.5 px-4 text-gray-500 dark:text-cream-muted">{bill.category}</td>
-                      <td className="py-3.5 px-4 font-mono text-gray-600 dark:text-cream-muted">{formatDate(bill.dueDate)}</td>
-                      <td className="py-3.5 px-4 text-right font-bold text-gray-900 dark:text-cream">
+                    <tr key={bill.id} className="hover:bg-emerald-50/40 dark:hover:bg-[#182B3A]/60 transition-colors">
+                      <td className="py-3.5 px-4 font-bold text-[#06141B] dark:text-[#CCD0CF]">{bill.title}</td>
+                      <td className="py-3.5 px-4 text-[#4A5C6A] dark:text-[#9BA8AB]">{bill.category}</td>
+                      <td className="py-3.5 px-4 font-mono text-[#4A5C6A] dark:text-[#9BA8AB]">{formatDate(bill.dueDate)}</td>
+                      <td className="py-3.5 px-4 text-right font-bold text-[#06141B] dark:text-[#CCD0CF]">
                         {formatCurrency(bill.amount)}
                       </td>
                       <td className="py-3.5 px-4 text-center">
@@ -490,14 +490,14 @@ export const AccountsView: React.FC = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
           <form
             onSubmit={handleSaveExpense}
-            className="w-full max-w-md bg-white dark:bg-[#14161D] border border-gray-200 dark:border-gold/40 rounded-2xl p-6 shadow-luxury space-y-4"
+            className="w-full max-w-md bg-white dark:bg-[#11212D] border border-gray-300 dark:border-[#253745] rounded-2xl p-6 shadow-2xl space-y-4"
           >
-            <div className="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-[#222630]">
-              <h3 className="text-base font-bold text-gray-900 dark:text-cream font-serif">Record Operating Expense</h3>
+            <div className="flex items-center justify-between pb-3 border-b border-gray-200 dark:border-[#253745]">
+              <h3 className="text-base font-bold text-[#06141B] dark:text-[#CCD0CF] font-serif">Record Operating Expense</h3>
               <button
                 type="button"
                 onClick={() => setIsAddExpenseOpen(false)}
-                className="text-gray-400 hover:text-gray-900 dark:hover:text-cream"
+                className="text-gray-400 hover:text-gray-900 dark:hover:text-[#CCD0CF]"
               >
                 <X size={18} />
               </button>
@@ -505,20 +505,20 @@ export const AccountsView: React.FC = () => {
 
             <div className="space-y-3 text-xs">
               <div>
-                <label className="font-semibold text-gray-700 dark:text-cream-muted block mb-1">Expense Title:</label>
+                <label className="font-semibold text-gray-700 dark:text-[#9BA8AB] block mb-1">Expense Title:</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g. Evening staff tea & snacks"
                   value={expTitle}
                   onChange={(e) => setExpTitle(e.target.value)}
-                  className="w-full bg-gray-50 dark:bg-[#0E1015] border border-gray-200 dark:border-[#2C3240] rounded-xl px-3 py-2 text-gray-900 dark:text-cream outline-none focus:border-gold"
+                  className="w-full bg-gray-50 dark:bg-[#182B3A] border border-gray-300 dark:border-[#253745] rounded-xl px-3 py-2 text-[#06141B] dark:text-[#CCD0CF] outline-none focus:border-emerald-500"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="font-semibold text-gray-700 dark:text-cream-muted block mb-1">Amount (₹):</label>
+                  <label className="font-semibold text-gray-700 dark:text-[#9BA8AB] block mb-1">Amount (₹):</label>
                   <input
                     type="number"
                     required
@@ -526,16 +526,16 @@ export const AccountsView: React.FC = () => {
                     placeholder="e.g. 150"
                     value={expAmount}
                     onChange={(e) => setExpAmount(e.target.value)}
-                    className="w-full bg-gray-50 dark:bg-[#0E1015] border border-gray-200 dark:border-[#2C3240] rounded-xl px-3 py-2 text-gray-900 dark:text-cream font-bold outline-none focus:border-gold"
+                    className="w-full bg-gray-50 dark:bg-[#182B3A] border border-gray-300 dark:border-[#253745] rounded-xl px-3 py-2 text-[#06141B] dark:text-[#CCD0CF] font-bold outline-none focus:border-emerald-500"
                   />
                 </div>
 
                 <div>
-                  <label className="font-semibold text-gray-700 dark:text-cream-muted block mb-1">Category:</label>
+                  <label className="font-semibold text-gray-700 dark:text-[#9BA8AB] block mb-1">Category:</label>
                   <select
                     value={expCategory}
                     onChange={(e) => setExpCategory(e.target.value as ExpenseCategory)}
-                    className="w-full bg-gray-50 dark:bg-[#0E1015] border border-gray-200 dark:border-[#2C3240] rounded-xl px-2 py-2 text-gray-900 dark:text-cream outline-none focus:border-gold"
+                    className="w-full bg-gray-50 dark:bg-[#182B3A] border border-gray-300 dark:border-[#253745] rounded-xl px-2 py-2 text-[#06141B] dark:text-[#CCD0CF] outline-none focus:border-emerald-500"
                   >
                     <option value="Refreshments">Refreshments & Tea</option>
                     <option value="Packaging">Packaging Bags</option>
@@ -551,11 +551,11 @@ export const AccountsView: React.FC = () => {
               </div>
 
               <div>
-                <label className="font-semibold text-gray-700 dark:text-cream-muted block mb-1">Payment Method:</label>
+                <label className="font-semibold text-gray-700 dark:text-[#9BA8AB] block mb-1">Payment Method:</label>
                 <select
                   value={expMethod}
                   onChange={(e) => setExpMethod(e.target.value as PaymentMethod)}
-                  className="w-full bg-gray-50 dark:bg-[#0E1015] border border-gray-200 dark:border-[#2C3240] rounded-xl px-3 py-2 text-gray-900 dark:text-cream outline-none focus:border-gold"
+                  className="w-full bg-gray-50 dark:bg-[#182B3A] border border-gray-300 dark:border-[#253745] rounded-xl px-3 py-2 text-[#06141B] dark:text-[#CCD0CF] outline-none focus:border-emerald-500"
                 >
                   <option value="Cash">Cash Drawer</option>
                   <option value="UPI">UPI / GPay</option>
@@ -569,13 +569,13 @@ export const AccountsView: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsAddExpenseOpen(false)}
-                className="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-[#1E222D] text-gray-700 dark:text-cream-muted text-xs font-semibold"
+                className="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-[#182B3A] dark:hover:bg-[#253745] text-gray-700 dark:text-[#CCD0CF] text-xs font-semibold transition-colors"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-5 py-2 rounded-xl bg-gradient-to-r from-gold to-gold-600 text-mocca-950 font-bold text-xs shadow-gold-glow"
+                className="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-emerald-500/20 shadow-md transition-all active:scale-95"
               >
                 Save Expense
               </button>
@@ -589,14 +589,14 @@ export const AccountsView: React.FC = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
           <form
             onSubmit={handleSaveBill}
-            className="w-full max-w-md bg-white dark:bg-[#14161D] border border-gray-200 dark:border-gold/40 rounded-2xl p-6 shadow-luxury space-y-4"
+            className="w-full max-w-md bg-white dark:bg-[#11212D] border border-gray-300 dark:border-[#253745] rounded-2xl p-6 shadow-2xl space-y-4"
           >
-            <div className="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-[#222630]">
-              <h3 className="text-base font-bold text-gray-900 dark:text-cream font-serif">Add Upcoming Bill / Rent</h3>
+            <div className="flex items-center justify-between pb-3 border-b border-gray-200 dark:border-[#253745]">
+              <h3 className="text-base font-bold text-[#06141B] dark:text-[#CCD0CF] font-serif">Add Upcoming Bill / Rent</h3>
               <button
                 type="button"
                 onClick={() => setIsAddBillOpen(false)}
-                className="text-gray-400 hover:text-gray-900 dark:hover:text-cream"
+                className="text-gray-400 hover:text-gray-900 dark:hover:text-[#CCD0CF]"
               >
                 <X size={18} />
               </button>
@@ -604,20 +604,20 @@ export const AccountsView: React.FC = () => {
 
             <div className="space-y-3 text-xs">
               <div>
-                <label className="font-semibold text-gray-700 dark:text-cream-muted block mb-1">Bill Title:</label>
+                <label className="font-semibold text-gray-700 dark:text-[#9BA8AB] block mb-1">Bill Title:</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g. Main Showroom Rent (October)"
                   value={billTitle}
                   onChange={(e) => setBillTitle(e.target.value)}
-                  className="w-full bg-gray-50 dark:bg-[#0E1015] border border-gray-200 dark:border-[#2C3240] rounded-xl px-3 py-2 text-gray-900 dark:text-cream outline-none focus:border-gold"
+                  className="w-full bg-gray-50 dark:bg-[#182B3A] border border-gray-300 dark:border-[#253745] rounded-xl px-3 py-2 text-[#06141B] dark:text-[#CCD0CF] outline-none focus:border-emerald-500"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="font-semibold text-gray-700 dark:text-cream-muted block mb-1">Amount (₹):</label>
+                  <label className="font-semibold text-gray-700 dark:text-[#9BA8AB] block mb-1">Amount (₹):</label>
                   <input
                     type="number"
                     required
@@ -625,28 +625,28 @@ export const AccountsView: React.FC = () => {
                     placeholder="45000"
                     value={billAmount}
                     onChange={(e) => setBillAmount(e.target.value)}
-                    className="w-full bg-gray-50 dark:bg-[#0E1015] border border-gray-200 dark:border-[#2C3240] rounded-xl px-3 py-2 text-gray-900 dark:text-cream font-bold outline-none focus:border-gold"
+                    className="w-full bg-gray-50 dark:bg-[#182B3A] border border-gray-300 dark:border-[#253745] rounded-xl px-3 py-2 text-[#06141B] dark:text-[#CCD0CF] font-bold outline-none focus:border-emerald-500"
                   />
                 </div>
 
                 <div>
-                  <label className="font-semibold text-gray-700 dark:text-cream-muted block mb-1">Due Date:</label>
+                  <label className="font-semibold text-gray-700 dark:text-[#9BA8AB] block mb-1">Due Date:</label>
                   <input
                     type="date"
                     required
                     value={billDueDate}
                     onChange={(e) => setBillDueDate(e.target.value)}
-                    className="w-full bg-gray-50 dark:bg-[#0E1015] border border-gray-200 dark:border-[#2C3240] rounded-xl px-2 py-2 text-gray-900 dark:text-cream outline-none focus:border-gold"
+                    className="w-full bg-gray-50 dark:bg-[#182B3A] border border-gray-300 dark:border-[#253745] rounded-xl px-2 py-2 text-[#06141B] dark:text-[#CCD0CF] outline-none focus:border-emerald-500"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="font-semibold text-gray-700 dark:text-cream-muted block mb-1">Category:</label>
+                <label className="font-semibold text-gray-700 dark:text-[#9BA8AB] block mb-1">Category:</label>
                 <select
                   value={billCategory}
                   onChange={(e) => setBillCategory(e.target.value as ExpenseCategory)}
-                  className="w-full bg-gray-50 dark:bg-[#0E1015] border border-gray-200 dark:border-[#2C3240] rounded-xl px-3 py-2 text-gray-900 dark:text-cream outline-none focus:border-gold"
+                  className="w-full bg-gray-50 dark:bg-[#182B3A] border border-gray-300 dark:border-[#253745] rounded-xl px-3 py-2 text-[#06141B] dark:text-[#CCD0CF] outline-none focus:border-emerald-500"
                 >
                   <option value="Shop Rent">Shop Rent</option>
                   <option value="Room Rent">Room Rent</option>
@@ -662,13 +662,13 @@ export const AccountsView: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsAddBillOpen(false)}
-                className="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-[#1E222D] text-gray-700 dark:text-cream-muted text-xs font-semibold"
+                className="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-[#182B3A] dark:hover:bg-[#253745] text-gray-700 dark:text-[#CCD0CF] text-xs font-semibold transition-colors"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-5 py-2 rounded-xl bg-gradient-to-r from-gold to-gold-600 text-mocca-950 font-bold text-xs shadow-gold-glow"
+                className="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-emerald-500/20 shadow-md transition-all active:scale-95"
               >
                 Save Bill
               </button>

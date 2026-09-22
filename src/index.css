@@ -5,6 +5,12 @@
 @layer base {
   :root {
     color-scheme: light;
+    --palette-obsidian: #06141B;
+    --palette-navy: #11212D;
+    --palette-steel: #253745;
+    --palette-slate: #4A5C6A;
+    --palette-mist: #9BA8AB;
+    --palette-platinum: #CCD0CF;
   }
   
   html.dark {
@@ -12,19 +18,25 @@
   }
 
   body {
-    background-color: #ECEEF2; /* Luxury Slate-Grey Background */
-    color: #000000; /* Crisp Black Letters */
+    background-color: #CCD0CF; /* Exact Palette #CCD0CF Light Platinum Grey Canvas */
+    color: #06141B; /* Exact Palette #06141B Deep Obsidian Black Letters */
     overflow-x: hidden;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 
   html.dark body {
-    background-color: #0A0B0E;
-    color: #F3F4F6;
+    background-color: #06141B; /* Exact Palette #06141B Deep Obsidian Canvas */
+    color: #CCD0CF; /* Exact Palette #CCD0CF Light Platinum Grey Letters */
+  }
+
+  /* Mouse Selection Green Accent */
+  ::selection {
+    background-color: #10B981 !important;
+    color: #FFFFFF !important;
   }
 }
 
-/* Custom Luxury Scrollbars */
+/* Custom Luxury Scrollbars - Green on Mouse Hover */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -35,18 +47,18 @@
 }
 
 html.dark ::-webkit-scrollbar-thumb {
-  background: #252A36;
+  background: #253745;
   border-radius: 4px;
 }
 
 html.light ::-webkit-scrollbar-thumb,
 body ::-webkit-scrollbar-thumb {
-  background: #C5CBD5;
+  background: #9BA8AB;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #D4AF37;
+  background: #10B981 !important; /* Green on mouse hover */
 }
 
 /* Print Styles for Receipts and Invoices */

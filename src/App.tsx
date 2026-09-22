@@ -35,25 +35,25 @@ export const App: React.FC = () => {
 
   if (isInitializing) {
     return (
-      <div className="min-h-screen bg-[#ECEEF2] flex flex-col items-center justify-center p-6 text-center select-none text-black">
+      <div className="min-h-screen bg-[#CCD0CF] flex flex-col items-center justify-center p-6 text-center select-none text-[#06141B]">
         <div className="relative mb-6">
-          <div className="absolute inset-0 bg-gold/20 rounded-full blur-2xl animate-pulse" />
+          <div className="absolute inset-0 bg-emerald-500/20 rounded-full blur-2xl animate-pulse" />
           <img
             src="/mocca-logo.png"
             alt="MOCCA Official Logo"
-            className="w-24 h-24 rounded-full object-cover relative z-10 shadow-gold-glow ring-2 ring-gold/60 animate-pulse"
+            className="w-24 h-24 rounded-full object-cover relative z-10 shadow-lg ring-2 ring-emerald-500/60 animate-pulse"
           />
         </div>
 
-        <h1 className="text-2xl lg:text-3xl font-extrabold text-black font-serif tracking-wider mb-1">
+        <h1 className="text-2xl lg:text-3xl font-extrabold text-[#06141B] font-serif tracking-wider mb-1">
           MOCCA
         </h1>
-        <p className="text-xs uppercase tracking-[0.25em] text-gray-700 font-bold mb-6">
+        <p className="text-xs uppercase tracking-[0.25em] text-[#4A5C6A] font-bold mb-6">
           Gents & Boys Collections
         </p>
 
-        <div className="flex items-center gap-2 text-xs text-gray-800 font-medium">
-          <div className="w-4 h-4 border-2 border-gold border-t-transparent rounded-full animate-spin" />
+        <div className="flex items-center gap-2 text-xs text-[#253745] font-medium">
+          <div className="w-4 h-4 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin" />
           <span>Synchronizing Retail Store Engine...</span>
         </div>
       </div>

@@ -8,34 +8,49 @@ export default {
   theme: {
     extend: {
       colors: {
+        // User's Exact Custom Luxury Palette from Image
+        palette: {
+          1: '#06141B', // Deep Obsidian / Midnight Black
+          2: '#11212D', // Dark Slate Navy / Charcoal Steel
+          3: '#253745', // Deep Steel Slate Blue
+          4: '#4A5C6A', // Medium Slate Grey
+          5: '#9BA8AB', // Soft Silver Mist Grey
+          6: '#CCD0CF', // Light Platinum Grey
+          obsidian: '#06141B',
+          navy: '#11212D',
+          steel: '#253745',
+          slate: '#4A5C6A',
+          mist: '#9BA8AB',
+          platinum: '#CCD0CF',
+        },
         appGrey: {
-          bg: '#E5E7EB',      // Main Slate-Grey Canvas Background
-          card: '#FFFFFF',    // Crisp White Card Surface
-          subtle: '#F3F4F6',  // Soft Grey Sections & Inputs
-          border: '#D1D5DB',  // Medium Grey Border Dividers
-          darkBg: '#0A0B0E',  // Dark Canvas
-          darkCard: '#12141A',// Dark Card
+          bg: '#CCD0CF',      // Exact #CCD0CF Canvas Background
+          card: '#FFFFFF',    // Crisp Card Surface
+          subtle: '#E8ECEB',  // Soft Grey Sections & Inputs
+          border: '#9BA8AB',  // Exact #9BA8AB Border Dividers
+          darkBg: '#06141B',  // Exact #06141B Dark Canvas
+          darkCard: '#11212D',// Exact #11212D Dark Card
         },
         appBlack: {
-          DEFAULT: '#000000', // Pure 100% Black Letters
-          primary: '#111827', // Deep Charcoal Black
-          secondary: '#374151', // Dark Graphite for Subtitles/Labels
-          muted: '#4B5563',    // Muted Dark Slate
+          DEFAULT: '#06141B', // Exact #06141B Pure Obsidian Black Letters
+          primary: '#06141B', // Deepest Text
+          secondary: '#253745', // Deep Steel Text
+          muted: '#4A5C6A',    // Medium Slate Text
         },
         mocca: {
-          950: '#07080A',
-          900: '#0D0E12',
-          850: '#13151B',
-          800: '#181B22',
-          750: '#1F232D',
-          700: '#282D3A',
-          600: '#3B4356',
-          500: '#525C73',
-          400: '#7E8A9E',
-          300: '#AAB4C4',
-          200: '#D2D7E0',
-          100: '#EAECEF',
-          50: '#F7F8F9',
+          950: '#06141B',
+          900: '#11212D',
+          850: '#182B3A',
+          800: '#253745',
+          750: '#34495A',
+          700: '#4A5C6A',
+          600: '#657887',
+          500: '#8094A3',
+          400: '#9BA8AB',
+          300: '#B5C0C2',
+          200: '#CCD0CF',
+          100: '#E2E6E5',
+          50: '#F0F3F2',
         },
         gold: {
           DEFAULT: '#D4AF37',
@@ -51,9 +66,9 @@ export default {
           900: '#3D300E',
         },
         cream: {
-          DEFAULT: '#F9F8F5',
-          muted: '#EFECE6',
-          dark: '#D8D4CA',
+          DEFAULT: '#CCD0CF',
+          muted: '#9BA8AB',
+          dark: '#4A5C6A',
         },
       },
       fontFamily: {
@@ -62,7 +77,7 @@ export default {
       },
       boxShadow: {
         'gold-glow': '0 0 25px -5px rgba(212, 175, 55, 0.25)',
-        'luxury': '0 10px 30px -10px rgba(0, 0, 0, 0.5)',
+        'luxury': '0 10px 30px -10px rgba(6, 20, 27, 0.5)',
       },
     },
   },

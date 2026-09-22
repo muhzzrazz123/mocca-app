@@ -72,10 +72,10 @@ export const AlertsSection: React.FC<AlertsSectionProps> = ({ alerts, onNavigate
         };
       default:
         return {
-          bg: 'bg-white dark:bg-mocca-900/80 hover:bg-gray-50 dark:hover:bg-mocca-850',
-          border: 'border-gray-300 dark:border-mocca-750',
-          iconBg: 'bg-gold/20 text-black dark:text-gold',
-          badge: 'bg-gold/20 text-black dark:text-gold border-gold/40',
+          bg: 'bg-white dark:bg-[#11212D] hover:bg-gray-50 dark:hover:bg-[#182B3A]',
+          border: 'border-gray-300 dark:border-[#253745]',
+          iconBg: 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-400',
+          badge: 'bg-emerald-500/15 text-emerald-900 dark:text-emerald-300 border-emerald-500/30',
         };
     }
   };
@@ -123,7 +123,7 @@ export const AlertsSection: React.FC<AlertsSectionProps> = ({ alerts, onNavigate
               </div>
 
               <button
-                className="shrink-0 p-1.5 rounded-lg bg-gray-100 dark:bg-mocca-800 text-black dark:text-gold group-hover:bg-gold group-hover:text-mocca-950 transition-colors border border-gray-300 dark:border-transparent"
+                className="shrink-0 p-1.5 rounded-lg bg-gray-100 dark:bg-[#182B3A] text-black dark:text-[#CCD0CF] group-hover:bg-emerald-500 group-hover:text-white transition-colors border border-gray-300 dark:border-[#253745]"
                 title={alert.actionLabel}
               >
                 <ChevronRight size={16} className="stroke-[2.5]" />

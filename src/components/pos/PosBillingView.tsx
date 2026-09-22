@@ -313,29 +313,29 @@ export const PosBillingView: React.FC = () => {
   return (
     <div className="p-4 lg:p-6 space-y-6 max-w-[1700px] mx-auto pb-24 lg:pb-12 text-gray-900 dark:text-cream">
       {/* View Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-gray-200 dark:border-[#1E222D]">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-[#9BA8AB]/40 dark:border-[#253745]">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-2xl bg-gold/15 border border-gold/30 flex items-center justify-center text-gold shadow-sm">
+          <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shadow-sm">
             <Receipt size={24} />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-xl font-bold font-serif tracking-tight text-gray-900 dark:text-cream">
+              <h1 className="text-xl font-bold font-serif tracking-tight text-[#06141B] dark:text-[#CCD0CF]">
                 Retail Billing & POS Counter
               </h1>
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-gold/15 text-gold border border-gold/30">
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30">
                 Live Register
               </span>
             </div>
-            <p className="text-xs text-gray-500 dark:text-cream-muted mt-0.5">
-              High-speed billing counter for MOCCA Gents & Boys Collections • Cashier: <span className="font-semibold text-gold">{cashierName}</span>
+            <p className="text-xs text-[#4A5C6A] dark:text-[#9BA8AB] mt-0.5">
+              High-speed billing counter for MOCCA Gents & Boys Collections • Cashier: <span className="font-semibold text-emerald-700 dark:text-emerald-400">{cashierName}</span>
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-3">
           <div className="text-right hidden sm:block">
-            <p className="text-[11px] uppercase tracking-wider text-gray-400 dark:text-cream-muted font-medium">Register Status</p>
+            <p className="text-[11px] uppercase tracking-wider text-[#4A5C6A] dark:text-[#9BA8AB] font-medium">Register Status</p>
             <p className="text-xs font-bold text-emerald-500 flex items-center gap-1.5 justify-end">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               Online & Ready
@@ -357,7 +357,7 @@ export const PosBillingView: React.FC = () => {
         {/* LEFT COLUMN: Catalog & Products (7 Cols) */}
         <div className="lg:col-span-7 space-y-4">
           {/* Search & Category Filter Bar */}
-          <div className="bg-white dark:bg-[#0E1015] border border-gray-200 dark:border-[#1E222D] rounded-2xl p-4 shadow-sm space-y-3">
+          <div className="bg-white dark:bg-[#11212D] border border-gray-300 dark:border-[#253745] rounded-2xl p-4 shadow-sm space-y-3">
             <div className="relative">
               <Search
                 size={18}
@@ -368,7 +368,7 @@ export const PosBillingView: React.FC = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Scan barcode, enter SKU or search apparel name..."
-                className="w-full pl-10 pr-4 py-2.5 text-sm bg-gray-50 dark:bg-[#161922] border border-gray-200 dark:border-[#222736] rounded-xl text-gray-900 dark:text-cream placeholder-gray-400 dark:placeholder-cream-muted/50 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors"
+                className="w-full pl-10 pr-4 py-2.5 text-sm bg-gray-50 dark:bg-[#182B3A] border border-gray-200 dark:border-[#253745] rounded-xl text-gray-900 dark:text-cream placeholder-gray-400 dark:placeholder-cream-muted/50 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
               />
               {searchQuery && (
                 <button
@@ -386,8 +386,8 @@ export const PosBillingView: React.FC = () => {
                 onClick={() => setSelectedCategory('All')}
                 className={`px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 transition-colors ${
                   selectedCategory === 'All'
-                    ? 'bg-gold text-mocca-950 shadow-sm'
-                    : 'bg-gray-100 dark:bg-[#161922] text-gray-600 dark:text-cream-muted hover:text-gray-900 dark:hover:text-cream border border-gray-200 dark:border-[#222736]'
+                    ? 'bg-emerald-600 text-white shadow-sm'
+                    : 'bg-gray-100 dark:bg-[#182B3A] text-gray-600 dark:text-[#CCD0CF] hover:text-emerald-700 dark:hover:text-emerald-400 border border-gray-200 dark:border-[#253745]'
                 }`}
               >
                 All Apparel ({products.length})
@@ -400,8 +400,8 @@ export const PosBillingView: React.FC = () => {
                     onClick={() => setSelectedCategory(cat.name)}
                     className={`px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 transition-colors ${
                       selectedCategory === cat.name
-                        ? 'bg-gold text-mocca-950 shadow-sm'
-                        : 'bg-gray-100 dark:bg-[#161922] text-gray-600 dark:text-cream-muted hover:text-gray-900 dark:hover:text-cream border border-gray-200 dark:border-[#222736]'
+                        ? 'bg-emerald-600 text-white shadow-sm'
+                        : 'bg-gray-100 dark:bg-[#182B3A] text-gray-600 dark:text-[#CCD0CF] hover:text-emerald-700 dark:hover:text-emerald-400 border border-gray-200 dark:border-[#253745]'
                     }`}
                   >
                     {cat.name} ({count})
@@ -427,12 +427,12 @@ export const PosBillingView: React.FC = () => {
                 <div
                   key={prod.id}
                   onClick={() => setSelectedProductForVariant(prod)}
-                  className="group bg-white dark:bg-[#0E1015] border border-gray-200 dark:border-[#1E222D] hover:border-gold/60 dark:hover:border-gold/60 rounded-2xl p-3.5 flex flex-col justify-between cursor-pointer transition-all duration-200 hover:shadow-lg relative select-none"
+                  className="group bg-white dark:bg-[#0E1015] border border-gray-300 dark:border-[#1E222D] hover:border-emerald-500 dark:hover:border-emerald-500 rounded-2xl p-3.5 flex flex-col justify-between cursor-pointer transition-all duration-200 hover:shadow-lg hover:shadow-emerald-500/10 relative select-none"
                 >
                   <div>
                     {/* Top Row: Brand & Stock Badge */}
                     <div className="flex items-center justify-between gap-1 mb-2">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-gold truncate">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 truncate">
                         {prod.brand}
                       </span>
                       <span
@@ -449,7 +449,7 @@ export const PosBillingView: React.FC = () => {
                     </div>
 
                     {/* Product Name */}
-                    <h3 className="font-semibold text-sm text-gray-900 dark:text-cream line-clamp-2 group-hover:text-gold transition-colors">
+                    <h3 className="font-semibold text-sm text-gray-900 dark:text-cream line-clamp-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                       {prod.name}
                     </h3>
                     <p className="text-[11px] text-gray-500 dark:text-cream-muted mt-0.5">
@@ -468,7 +468,7 @@ export const PosBillingView: React.FC = () => {
                       </p>
                     </div>
 
-                    <div className="w-8 h-8 rounded-xl bg-gold/10 group-hover:bg-gold text-gold group-hover:text-mocca-950 flex items-center justify-center transition-colors">
+                    <div className="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 group-hover:bg-emerald-500 text-emerald-600 group-hover:text-white flex items-center justify-center transition-colors">
                       <Plus size={16} />
                     </div>
                   </div>
@@ -488,16 +488,16 @@ export const PosBillingView: React.FC = () => {
 
         {/* RIGHT COLUMN: Cart, Customer & Checkout (5 Cols) */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="bg-white dark:bg-[#0E1015] border border-gray-200 dark:border-[#1E222D] rounded-2xl p-4 shadow-sm flex flex-col justify-between min-h-[640px]">
+          <div className="bg-white dark:bg-[#11212D] border border-gray-300 dark:border-[#253745] rounded-2xl p-4 shadow-sm flex flex-col justify-between min-h-[640px]">
             <div className="space-y-4">
               {/* Customer Info Box */}
-              <div className="bg-gray-50 dark:bg-[#161922] border border-gray-200 dark:border-[#1E222D] rounded-xl p-3 relative">
+              <div className="bg-gray-50 dark:bg-[#182B3A] border border-gray-200 dark:border-[#253745] rounded-xl p-3 relative">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-cream-muted flex items-center gap-1.5">
-                    <User size={14} className="text-gold" /> Customer Details
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#4A5C6A] dark:text-[#9BA8AB] flex items-center gap-1.5">
+                    <User size={14} className="text-emerald-600 dark:text-emerald-400" /> Customer Details
                   </span>
                   {selectedCustomerId && (
-                    <span className="text-[10px] font-bold text-gold bg-gold/15 px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-500/15 px-2 py-0.5 rounded-full">
                       Loyal Member
                     </span>
                   )}
@@ -513,7 +513,7 @@ export const PosBillingView: React.FC = () => {
                         setCustomerPhone(e.target.value);
                         setShowCustomerSuggestions(true);
                       }}
-                      className="w-full px-3 py-1.5 text-xs bg-white dark:bg-[#0E1015] border border-gray-200 dark:border-[#222736] rounded-lg text-gray-900 dark:text-cream placeholder-gray-400 dark:placeholder-cream-muted/50 focus:outline-none focus:border-gold"
+                      className="w-full px-3 py-1.5 text-xs bg-white dark:bg-[#11212D] border border-gray-300 dark:border-[#253745] rounded-lg text-gray-900 dark:text-cream placeholder-gray-400 dark:placeholder-cream-muted/50 focus:outline-none focus:border-emerald-500"
                     />
                   </div>
                   <div>
@@ -522,25 +522,25 @@ export const PosBillingView: React.FC = () => {
                       placeholder="Customer Name"
                       value={customerName}
                       onChange={(e) => setCustomerName(e.target.value)}
-                      className="w-full px-3 py-1.5 text-xs bg-white dark:bg-[#0E1015] border border-gray-200 dark:border-[#222736] rounded-lg text-gray-900 dark:text-cream placeholder-gray-400 dark:placeholder-cream-muted/50 focus:outline-none focus:border-gold"
+                      className="w-full px-3 py-1.5 text-xs bg-white dark:bg-[#11212D] border border-gray-300 dark:border-[#253745] rounded-lg text-gray-900 dark:text-cream placeholder-gray-400 dark:placeholder-cream-muted/50 focus:outline-none focus:border-emerald-500"
                     />
                   </div>
                 </div>
 
                 {/* Autocomplete Dropdown */}
                 {showCustomerSuggestions && filteredCustomerSuggestions.length > 0 && (
-                  <div className="absolute left-3 right-3 top-full mt-1 bg-white dark:bg-[#161922] border border-gray-200 dark:border-[#2A2F3D] rounded-xl shadow-xl z-30 overflow-hidden divide-y divide-gray-100 dark:divide-[#1E222D]">
+                  <div className="absolute left-3 right-3 top-full mt-1 bg-white dark:bg-[#182B3A] border border-gray-300 dark:border-[#253745] rounded-xl shadow-xl z-30 overflow-hidden divide-y divide-gray-100 dark:divide-[#253745]">
                     {filteredCustomerSuggestions.map((c) => (
                       <div
                         key={c.id}
                         onClick={() => handleSelectCustomer(c)}
-                        className="p-2.5 hover:bg-gold/10 cursor-pointer flex items-center justify-between text-xs transition-colors"
+                        className="p-2.5 hover:bg-emerald-50 dark:hover:bg-[#253745] cursor-pointer flex items-center justify-between text-xs transition-colors"
                       >
                         <div>
                           <p className="font-semibold text-gray-900 dark:text-cream">{c.name}</p>
                           <p className="text-[11px] text-gray-500 dark:text-cream-muted">{c.phone}</p>
                         </div>
-                        <span className="text-[10px] font-bold text-gold">Select</span>
+                        <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400">Select</span>
                       </div>
                     ))}
                   </div>
@@ -548,9 +548,9 @@ export const PosBillingView: React.FC = () => {
               </div>
 
               {/* Cart Items Header */}
-              <div className="flex items-center justify-between pb-2 border-b border-gray-100 dark:border-[#1E222D]">
+              <div className="flex items-center justify-between pb-2 border-b border-gray-200 dark:border-[#253745]">
                 <div className="flex items-center gap-2">
-                  <ShoppingCart size={16} className="text-gold" />
+                  <ShoppingCart size={16} className="text-emerald-600 dark:text-emerald-400" />
                   <span className="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-cream">
                     Current Bill Items ({cart.length})
                   </span>
@@ -586,7 +586,7 @@ export const PosBillingView: React.FC = () => {
                     <div className="flex items-center gap-1.5 shrink-0">
                       <button
                         onClick={() => handleUpdateQty(item.variantId, -1)}
-                        className="w-6 h-6 rounded-lg bg-white dark:bg-[#0E1015] border border-gray-200 dark:border-[#222736] hover:border-gold flex items-center justify-center text-gray-700 dark:text-cream transition-colors"
+                        className="w-6 h-6 rounded-lg bg-white dark:bg-[#0E1015] border border-gray-200 dark:border-[#222736] hover:border-emerald-500 hover:text-emerald-600 flex items-center justify-center text-gray-700 dark:text-cream transition-colors"
                       >
                         <Minus size={12} />
                       </button>
@@ -595,7 +595,7 @@ export const PosBillingView: React.FC = () => {
                       </span>
                       <button
                         onClick={() => handleUpdateQty(item.variantId, 1)}
-                        className="w-6 h-6 rounded-lg bg-white dark:bg-[#0E1015] border border-gray-200 dark:border-[#222736] hover:border-gold flex items-center justify-center text-gray-700 dark:text-cream transition-colors"
+                        className="w-6 h-6 rounded-lg bg-white dark:bg-[#0E1015] border border-gray-200 dark:border-[#222736] hover:border-emerald-500 hover:text-emerald-600 flex items-center justify-center text-gray-700 dark:text-cream transition-colors"
                       >
                         <Plus size={12} />
                       </button>
@@ -617,8 +617,8 @@ export const PosBillingView: React.FC = () => {
                 ))}
 
                 {cart.length === 0 && (
-                  <div className="py-8 text-center text-gray-400 dark:text-cream-muted border-2 border-dashed border-gray-200 dark:border-[#1E222D] rounded-xl">
-                    <ShoppingCart size={28} className="mx-auto mb-2 opacity-40 text-gold" />
+                  <div className="py-8 text-center text-gray-400 dark:text-[#9BA8AB] border-2 border-dashed border-gray-200 dark:border-[#253745] rounded-xl">
+                    <ShoppingCart size={28} className="mx-auto mb-2 opacity-40 text-emerald-600 dark:text-emerald-400" />
                     <p className="text-xs font-semibold">Bill is currently empty</p>
                     <p className="text-[11px] mt-0.5">Click any apparel item from the left catalog to start billing.</p>
                   </div>
@@ -627,7 +627,7 @@ export const PosBillingView: React.FC = () => {
             </div>
 
             {/* Bottom Checkout & Payment Section */}
-            <div className="space-y-3 pt-3 border-t border-gray-100 dark:border-[#1E222D]">
+            <div className="space-y-3 pt-3 border-t border-gray-200 dark:border-[#253745]">
               {/* Error Message Alert */}
               {errorMessage && (
                 <div className="p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-500 text-xs flex items-center gap-2">
@@ -638,16 +638,16 @@ export const PosBillingView: React.FC = () => {
 
               {/* Subtotal, Discount & Totals */}
               <div className="space-y-1.5 text-xs">
-                <div className="flex items-center justify-between text-gray-500 dark:text-cream-muted">
+                <div className="flex items-center justify-between text-gray-500 dark:text-[#9BA8AB]">
                   <span>Subtotal</span>
-                  <span className="font-medium text-gray-900 dark:text-cream">
+                  <span className="font-medium text-[#06141B] dark:text-[#CCD0CF]">
                     {formatCurrency(subtotal)}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between text-gray-500 dark:text-cream-muted">
+                <div className="flex items-center justify-between text-gray-500 dark:text-[#9BA8AB]">
                   <span className="flex items-center gap-1">
-                    <Tag size={12} className="text-gold" /> Discount (₹)
+                    <Tag size={12} className="text-emerald-600 dark:text-emerald-400" /> Discount (₹)
                   </span>
                   <input
                     type="number"
@@ -655,20 +655,20 @@ export const PosBillingView: React.FC = () => {
                     max={subtotal}
                     value={discountAmount}
                     onChange={(e) => setDiscountAmount(e.target.value)}
-                    className="w-24 text-right px-2 py-0.5 bg-gray-50 dark:bg-[#161922] border border-gray-200 dark:border-[#222736] rounded text-gray-900 dark:text-cream font-semibold focus:outline-none focus:border-gold"
+                    className="w-24 text-right px-2 py-0.5 bg-gray-50 dark:bg-[#182B3A] border border-gray-200 dark:border-[#253745] rounded text-[#06141B] dark:text-[#CCD0CF] font-semibold focus:outline-none focus:border-emerald-500"
                   />
                 </div>
 
-                <div className="pt-2 border-t border-gray-200 dark:border-[#1E222D] flex items-center justify-between">
+                <div className="pt-2 border-t border-gray-200 dark:border-[#253745] flex items-center justify-between">
                   <div>
-                    <span className="text-sm font-bold text-gray-900 dark:text-cream">
+                    <span className="text-sm font-bold text-[#06141B] dark:text-[#CCD0CF]">
                       Grand Total
                     </span>
-                    <p className="text-[10px] text-emerald-500 font-semibold">
+                    <p className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">
                       Gross Margin: {formatCurrency(estimatedProfit)} ({profitMarginPercent}%)
                     </p>
                   </div>
-                  <span className="text-xl font-bold font-serif text-gold">
+                  <span className="text-xl font-bold font-serif text-emerald-600 dark:text-emerald-400">
                     {formatCurrency(grandTotal)}
                   </span>
                 </div>
@@ -676,7 +676,7 @@ export const PosBillingView: React.FC = () => {
 
               {/* Payment Methods */}
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-500 dark:text-cream-muted mb-1.5">
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-500 dark:text-[#9BA8AB] mb-1.5">
                   Payment Method
                 </label>
                 <div className="grid grid-cols-4 gap-1.5">
@@ -686,8 +686,8 @@ export const PosBillingView: React.FC = () => {
                       onClick={() => setPaymentMethod(mode)}
                       className={`py-2 px-1 rounded-xl text-xs font-bold flex flex-col items-center gap-1 transition-colors ${
                         paymentMethod === mode
-                          ? 'bg-gold text-mocca-950 shadow-sm'
-                          : 'bg-gray-100 dark:bg-[#161922] text-gray-600 dark:text-cream-muted hover:text-gray-900 dark:hover:text-cream border border-gray-200 dark:border-[#222736]'
+                          ? 'bg-emerald-600 text-white shadow-sm'
+                          : 'bg-gray-100 dark:bg-[#182B3A] text-gray-600 dark:text-[#CCD0CF] hover:text-emerald-600 dark:hover:text-emerald-400 border border-gray-200 dark:border-[#253745]'
                       }`}
                     >
                       {mode === 'Cash' && <Banknote size={14} />}
@@ -702,9 +702,9 @@ export const PosBillingView: React.FC = () => {
 
               {/* If Cash: Tendered Amount & Change Calculator */}
               {paymentMethod === 'Cash' && grandTotal > 0 && (
-                <div className="p-2.5 rounded-xl bg-gray-50 dark:bg-[#161922] border border-gray-200 dark:border-[#1E222D] grid grid-cols-2 gap-2 text-xs">
+                <div className="p-2.5 rounded-xl bg-gray-50 dark:bg-[#182B3A] border border-gray-200 dark:border-[#253745] grid grid-cols-2 gap-2 text-xs">
                   <div>
-                    <label className="block text-[10px] uppercase text-gray-400 dark:text-cream-muted font-bold mb-1">
+                    <label className="block text-[10px] uppercase text-gray-400 dark:text-[#9BA8AB] font-bold mb-1">
                       Cash Tendered
                     </label>
                     <input
@@ -712,14 +712,14 @@ export const PosBillingView: React.FC = () => {
                       placeholder={grandTotal.toString()}
                       value={cashTendered}
                       onChange={(e) => setCashTendered(e.target.value)}
-                      className="w-full px-2.5 py-1.5 bg-white dark:bg-[#0E1015] border border-gray-200 dark:border-[#222736] rounded-lg text-gray-900 dark:text-cream font-bold focus:outline-none focus:border-gold"
+                      className="w-full px-2.5 py-1.5 bg-white dark:bg-[#11212D] border border-gray-200 dark:border-[#253745] rounded-lg text-gray-900 dark:text-cream font-bold focus:outline-none focus:border-emerald-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] uppercase text-gray-400 dark:text-cream-muted font-bold mb-1">
+                    <label className="block text-[10px] uppercase text-gray-400 dark:text-[#9BA8AB] font-bold mb-1">
                       Change to Return
                     </label>
-                    <div className="px-2.5 py-1.5 bg-white dark:bg-[#0E1015] border border-gray-200 dark:border-[#222736] rounded-lg font-bold text-emerald-500">
+                    <div className="px-2.5 py-1.5 bg-white dark:bg-[#11212D] border border-gray-200 dark:border-[#253745] rounded-lg font-bold text-emerald-500">
                       {formatCurrency(changeToReturn)}
                     </div>
                   </div>
@@ -730,7 +730,7 @@ export const PosBillingView: React.FC = () => {
               <button
                 disabled={cart.length === 0 || isProcessing}
                 onClick={handleCompleteSale}
-                className="w-full py-3 px-4 rounded-xl bg-gold hover:bg-gold-light text-mocca-950 font-bold text-sm flex items-center justify-center gap-2 shadow-gold-glow disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-emerald-500/20 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-[0.99]"
               >
                 {isProcessing ? (
                   <>
@@ -752,22 +752,22 @@ export const PosBillingView: React.FC = () => {
       {/* VARIANT PICKER MODAL (When clicking a product card) */}
       {selectedProductForVariant && (
         <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-[#0E1015] border border-gray-200 dark:border-[#2A2F3D] rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-5 animate-in fade-in zoom-in-95 duration-150">
+          <div className="bg-white dark:bg-[#11212D] border border-gray-300 dark:border-[#253745] rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-5 animate-in fade-in zoom-in-95 duration-150">
             <div className="flex items-start justify-between">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-gold">
+                <span className="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
                   {selectedProductForVariant.brand}
                 </span>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-cream font-serif">
+                <h3 className="text-lg font-bold text-[#06141B] dark:text-[#CCD0CF] font-serif">
                   {selectedProductForVariant.name}
                 </h3>
-                <p className="text-xs text-gray-500 dark:text-cream-muted mt-0.5">
+                <p className="text-xs text-[#4A5C6A] dark:text-[#9BA8AB] mt-0.5">
                   Select apparel size & color variant to add to bill
                 </p>
               </div>
               <button
                 onClick={() => setSelectedProductForVariant(null)}
-                className="p-1 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-cream transition-colors"
+                className="p-1 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-[#CCD0CF] transition-colors"
               >
                 <X size={18} />
               </button>
@@ -784,27 +784,27 @@ export const PosBillingView: React.FC = () => {
                     key={v.id}
                     className={`p-3 rounded-xl border flex items-center justify-between gap-3 text-xs transition-colors ${
                       isOutOfStock
-                        ? 'bg-gray-100 dark:bg-[#161922]/50 border-gray-200 dark:border-[#1E222D] opacity-60'
-                        : 'bg-gray-50 dark:bg-[#161922] border-gray-200 dark:border-[#1E222D] hover:border-gold/60'
+                        ? 'bg-gray-100 dark:bg-[#182B3A]/50 border-gray-200 dark:border-[#253745] opacity-60'
+                        : 'bg-gray-50 dark:bg-[#182B3A] border-gray-200 dark:border-[#253745] hover:border-emerald-500'
                     }`}
                   >
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="px-2 py-0.5 rounded-md bg-gold/15 text-gold border border-gold/30 font-bold">
+                        <span className="px-2 py-0.5 rounded-md bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30 font-bold">
                           Size: {v.size}
                         </span>
-                        <span className="font-semibold text-gray-800 dark:text-cream">
+                        <span className="font-semibold text-gray-800 dark:text-[#CCD0CF]">
                           {v.color}
                         </span>
                       </div>
-                      <p className="text-[11px] text-gray-500 dark:text-cream-muted mt-1">
+                      <p className="text-[11px] text-gray-500 dark:text-[#9BA8AB] mt-1">
                         SKU: {v.sku} • In Stock: <span className="font-bold">{v.currentStock}</span>
                       </p>
                     </div>
 
                     <div className="flex items-center gap-3">
                       <div className="text-right">
-                        <span className="font-bold text-sm text-gray-900 dark:text-cream">
+                        <span className="font-bold text-sm text-[#06141B] dark:text-[#CCD0CF]">
                           {formatCurrency(v.sellingPrice)}
                         </span>
                       </div>
@@ -814,8 +814,8 @@ export const PosBillingView: React.FC = () => {
                         onClick={() => handleAddToCart(selectedProductForVariant, v)}
                         className={`px-3 py-1.5 rounded-xl font-bold flex items-center gap-1.5 transition-colors ${
                           isOutOfStock
-                            ? 'bg-gray-200 dark:bg-[#222736] text-gray-400 cursor-not-allowed'
-                            : 'bg-gold hover:bg-gold-light text-mocca-950 shadow-sm'
+                            ? 'bg-gray-200 dark:bg-[#253745] text-gray-400 cursor-not-allowed'
+                            : 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-sm'
                         }`}
                       >
                         <Plus size={14} />
@@ -830,7 +830,7 @@ export const PosBillingView: React.FC = () => {
             <div className="pt-2 flex justify-end">
               <button
                 onClick={() => setSelectedProductForVariant(null)}
-                className="px-4 py-2 rounded-xl text-xs font-semibold bg-gray-100 dark:bg-[#161922] hover:bg-gray-200 dark:hover:bg-[#222736] text-gray-700 dark:text-cream transition-colors"
+                className="px-4 py-2 rounded-xl text-xs font-semibold bg-gray-100 dark:bg-[#182B3A] hover:bg-gray-200 dark:hover:bg-[#253745] text-gray-700 dark:text-[#CCD0CF] transition-colors"
               >
                 Close
               </button>
@@ -842,16 +842,16 @@ export const PosBillingView: React.FC = () => {
       {/* COMPLETED SALE / PRINT RECEIPT MODAL */}
       {completedSale && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-[#0E1015] border border-gray-200 dark:border-[#2A2F3D] rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-5 animate-in fade-in zoom-in-95 duration-200">
+          <div className="bg-white dark:bg-[#11212D] border border-gray-300 dark:border-[#253745] rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-5 animate-in fade-in zoom-in-95 duration-200">
             {/* Success Header */}
             <div className="text-center space-y-1">
               <div className="w-12 h-12 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto mb-2">
                 <CheckCircle2 size={26} />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 dark:text-cream font-serif">
+              <h3 className="text-lg font-bold text-[#06141B] dark:text-[#CCD0CF] font-serif">
                 Bill Generated Successfully
               </h3>
-              <p className="text-xs text-gray-500 dark:text-cream-muted">
+              <p className="text-xs text-[#4A5C6A] dark:text-[#9BA8AB]">
                 Invoice #{completedSale.invoiceNo} has been saved and stock updated.
               </p>
             </div>
@@ -859,30 +859,30 @@ export const PosBillingView: React.FC = () => {
             {/* Printable Receipt Preview Card */}
             <div
               id="printable-bill"
-              className="bg-gray-50 dark:bg-[#161922] border border-gray-200 dark:border-[#1E222D] rounded-xl p-4 text-xs space-y-3 font-mono print:text-black print:bg-white print:border-none"
+              className="bg-gray-50 dark:bg-[#182B3A] border border-gray-200 dark:border-[#253745] rounded-xl p-4 text-xs space-y-3 font-mono print:text-black print:bg-white print:border-none"
             >
               {/* Official Store Brand */}
-              <div className="text-center pb-2 border-b border-dashed border-gray-300 dark:border-[#2A2F3D]">
+              <div className="text-center pb-2 border-b border-dashed border-gray-300 dark:border-[#253745]">
                 <img
                   src="/mocca-logo.png"
                   alt="MOCCA"
-                  className="w-12 h-12 rounded-full mx-auto mb-1 ring-1 ring-gold/40 object-cover"
+                  className="w-12 h-12 rounded-full mx-auto mb-1 ring-1 ring-emerald-500/40 object-cover"
                 />
-                <h4 className="font-bold text-sm tracking-wider font-serif text-gray-900 dark:text-cream">
+                <h4 className="font-bold text-sm tracking-wider font-serif text-[#06141B] dark:text-[#CCD0CF]">
                   MOCCA
                 </h4>
-                <p className="text-[10px] uppercase tracking-widest text-gray-500 dark:text-cream-muted">
+                <p className="text-[10px] uppercase tracking-widest text-gray-500 dark:text-[#9BA8AB]">
                   Gents & Boys Collections
                 </p>
-                <p className="text-[10px] text-gray-500 dark:text-cream-muted mt-0.5">
+                <p className="text-[10px] text-gray-500 dark:text-[#9BA8AB] mt-0.5">
                   Luxury Menswear & Casual Wear
                 </p>
               </div>
 
               {/* Bill Metadata */}
-              <div className="flex justify-between text-[11px] text-gray-600 dark:text-cream-muted pb-2 border-b border-dashed border-gray-300 dark:border-[#2A2F3D]">
+              <div className="flex justify-between text-[11px] text-[#4A5C6A] dark:text-[#9BA8AB] pb-2 border-b border-dashed border-gray-300 dark:border-[#253745]">
                 <div>
-                  <p>Inv: <span className="font-bold text-gray-900 dark:text-cream">{completedSale.invoiceNo}</span></p>
+                  <p>Inv: <span className="font-bold text-[#06141B] dark:text-[#CCD0CF]">{completedSale.invoiceNo}</span></p>
                   <p>Customer: {completedSale.customerName}</p>
                 </div>
                 <div className="text-right">
@@ -904,8 +904,8 @@ export const PosBillingView: React.FC = () => {
               </div>
 
               {/* Totals Breakdown */}
-              <div className="pt-2 border-t border-dashed border-gray-300 dark:border-[#2A2F3D] space-y-1 text-[11px]">
-                <div className="flex justify-between text-gray-500 dark:text-cream-muted">
+              <div className="pt-2 border-t border-dashed border-gray-300 dark:border-[#253745] space-y-1 text-[11px]">
+                <div className="flex justify-between text-gray-500 dark:text-[#9BA8AB]">
                   <span>Subtotal</span>
                   <span>{formatCurrency(completedSale.subtotal)}</span>
                 </div>
@@ -915,18 +915,18 @@ export const PosBillingView: React.FC = () => {
                     <span>-{formatCurrency(completedSale.discountTotal)}</span>
                   </div>
                 )}
-                <div className="flex justify-between font-bold text-sm text-gray-900 dark:text-cream pt-1 border-t border-gray-200 dark:border-[#2A2F3D]">
+                <div className="flex justify-between font-bold text-sm text-[#06141B] dark:text-[#CCD0CF] pt-1 border-t border-gray-200 dark:border-[#253745]">
                   <span>Net Amount</span>
-                  <span className="text-gold">{formatCurrency(completedSale.grandTotal)}</span>
+                  <span className="text-emerald-600 dark:text-emerald-400">{formatCurrency(completedSale.grandTotal)}</span>
                 </div>
-                <div className="flex justify-between text-gray-500 dark:text-cream-muted text-[10px] pt-1">
+                <div className="flex justify-between text-gray-500 dark:text-[#9BA8AB] text-[10px] pt-1">
                   <span>Payment Mode: {completedSale.paymentMethod}</span>
                   <span>Status: Paid</span>
                 </div>
               </div>
 
               {/* Footer Notice */}
-              <div className="text-center pt-2 border-t border-dashed border-gray-300 dark:border-[#2A2F3D] text-[9px] text-gray-500 dark:text-cream-muted">
+              <div className="text-center pt-2 border-t border-dashed border-gray-300 dark:border-[#253745] text-[9px] text-gray-500 dark:text-[#9BA8AB]">
                 <p>Thank you for shopping at MOCCA!</p>
                 <p>Goods once sold can be exchanged within 7 days with bill.</p>
               </div>
@@ -936,13 +936,13 @@ export const PosBillingView: React.FC = () => {
             <div className="grid grid-cols-2 gap-3 pt-2">
               <button
                 onClick={handlePrint}
-                className="py-2.5 px-4 rounded-xl font-bold text-xs bg-gray-100 hover:bg-gray-200 dark:bg-[#161922] dark:hover:bg-[#222736] text-gray-800 dark:text-cream border border-gray-200 dark:border-[#2A2F3D] flex items-center justify-center gap-1.5 transition-colors"
+                className="py-2.5 px-4 rounded-xl font-bold text-xs bg-gray-100 hover:bg-gray-200 dark:bg-[#182B3A] dark:hover:bg-[#253745] text-gray-800 dark:text-[#CCD0CF] border border-gray-300 dark:border-[#253745] flex items-center justify-center gap-1.5 transition-colors"
               >
                 <Printer size={15} /> Print Receipt
               </button>
               <button
                 onClick={() => setCompletedSale(null)}
-                className="py-2.5 px-4 rounded-xl font-bold text-xs bg-gold hover:bg-gold-light text-mocca-950 flex items-center justify-center gap-1.5 shadow-gold-glow transition-all"
+                className="py-2.5 px-4 rounded-xl font-bold text-xs bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center gap-1.5 shadow-emerald-500/20 shadow-md transition-all active:scale-95"
               >
                 <span>New Bill</span>
                 <ArrowRight size={15} />
