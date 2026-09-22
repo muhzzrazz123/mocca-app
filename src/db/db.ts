@@ -375,6 +375,101 @@ export class MoccaDatabase extends Dexie {
       timestamp: new Date().toISOString(),
     });
   }
+
+  // Execute Salary Payment with auto invoice number and cascade to Expenses
+  async executeSalaryPayment(
+    recordData: Omit<SalaryRecord, 'id'>,
+    user: string
+  ): Promise<{ id: number; invoiceNo: string }> {
+    return await this.transaction('rw', [this.salaryRecords, this.expenses, this.auditLogs], async () => {
+      // 1. Generate Invoice No if not present
+      let invoiceNo = recordData.invoiceNo;
+      if (!invoiceNo) {
+        const monthClean = recordData.month.replace('-', '');
+        const count = await this.salaryRecords.count();
+        invoiceNo = `SAL-${monthClean}-${String(count + 1).padStart(3, '0')}`;
+      }
+
+      const fullRecord: Omit<SalaryRecord, 'id'> = {
+        ...recordData,
+        invoiceNo,
+        status: 'Paid',
+        paidBy: user || 'Mashboob (Store Owner)',
+        createdAt: recordData.createdAt || new Date().toISOString(),
+      };
+
+      // Check if existing record exists for this staff and month
+      const existing = await this.salaryRecords
+        .where({ staffId: recordData.staffId, month: recordData.month })
+        .first();
+
+      let recordId: number;
+      if (existing && existing.id) {
+        await this.salaryRecords.update(existing.id, fullRecord);
+        recordId = existing.id;
+      } else {
+        recordId = (await this.salaryRecords.add(fullRecord as SalaryRecord)) as number;
+      }
+
+      // 2. Cascade: Add or update corresponding Expense
+      const expenseTitle = `Staff Salary: ${recordData.staffName} (${recordData.month})`;
+      const existingExpense = await this.expenses.where('title').equals(expenseTitle).first();
+
+      const expenseData = {
+        title: expenseTitle,
+        category: 'Staff Salary' as const,
+        amount: recordData.finalSalary,
+        date: recordData.paymentDate || new Date().toISOString().split('T')[0],
+        paymentMethod: (recordData.paymentMethod as any) || 'Bank Transfer',
+        description: `Invoice: ${invoiceNo} | Basic: ₹${recordData.basicSalary}, Absent/Leave Cut: -₹${recordData.attendanceCutAmount}, Net Paid: ₹${recordData.finalSalary}${recordData.transactionRef ? ` | Ref: ${recordData.transactionRef}` : ''}`,
+        createdAt: new Date().toISOString(),
+      };
+
+      if (existingExpense && existingExpense.id) {
+        await this.expenses.update(existingExpense.id, expenseData);
+      } else {
+        await this.expenses.add(expenseData);
+      }
+
+      // 3. Log Audit
+      await this.auditLogs.add({
+        action: 'SALARY_PAID',
+        category: 'STAFF',
+        details: `Disbursed salary ₹${recordData.finalSalary} to ${recordData.staffName} (${invoiceNo}) for ${recordData.month} via ${recordData.paymentMethod || 'Bank Transfer'}.`,
+        user,
+        timestamp: new Date().toISOString(),
+      });
+
+      return { id: recordId, invoiceNo };
+    });
+  }
+
+  // Delete / Void Salary Payment and reverse Expense
+  async deleteSalaryPaymentTransaction(recordId: number, user: string): Promise<void> {
+    return await this.transaction('rw', [this.salaryRecords, this.expenses, this.auditLogs], async () => {
+      const record = await this.salaryRecords.get(recordId);
+      if (!record) return;
+
+      // Delete salary record
+      await this.salaryRecords.delete(recordId);
+
+      // Revert/delete corresponding Expense
+      const expenseTitle = `Staff Salary: ${record.staffName} (${record.month})`;
+      const expense = await this.expenses.where('title').equals(expenseTitle).first();
+      if (expense && expense.id) {
+        await this.expenses.delete(expense.id);
+      }
+
+      // Log Audit
+      await this.auditLogs.add({
+        action: 'SALARY_PAYMENT_VOIDED',
+        category: 'STAFF',
+        details: `Salary payment invoice ${record.invoiceNo || `#${recordId}`} for ${record.staffName} (₹${record.finalSalary}) voided and removed from expenses.`,
+        user,
+        timestamp: new Date().toISOString(),
+      });
+    });
+  }
 }
 
 export const db = new MoccaDatabase();

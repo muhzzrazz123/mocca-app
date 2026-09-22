@@ -10,8 +10,8 @@ import {
   Lock,
   Sun,
   Moon,
+  ArrowLeftRight,
 } from 'lucide-react';
-import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
 import { useSecurity } from '../../context/SecurityContext';
 
@@ -33,15 +33,20 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onSelectTab,
 }) => {
   const { theme, toggleTheme } = useTheme();
-  const { lock } = useSecurity();
+  const { lock, userMode, activeStaffName } = useSecurity();
 
-  const navItems = [
+  // If in staff mode, ONLY show Billing! All other elements are completely hidden.
+  const allNavItems = [
     { key: 'dashboard' as NavItemKey, label: 'Dashboard', icon: LayoutDashboard },
     { key: 'billing' as NavItemKey, label: 'Billing (POS)', icon: ReceiptText, badge: 'Counter' },
     { key: 'daily-profit' as NavItemKey, label: 'Daily Profit', icon: TrendingUp, subtitle: 'Sales & Products' },
     { key: 'accounts' as NavItemKey, label: 'Accounts', icon: Wallet, subtitle: 'Cash, Expenses & Rent' },
     { key: 'staff' as NavItemKey, label: 'Staff & Salary', icon: UserCheck, subtitle: 'Attendance & Payroll' },
   ];
+
+  const navItems = userMode === 'staff'
+    ? allNavItems.filter((i) => i.key === 'billing')
+    : allNavItems;
 
   return (
     <aside className="hidden lg:flex flex-col w-72 bg-white dark:bg-[#11212D] border-r border-gray-300 dark:border-[#253745] select-none shrink-0 h-screen sticky top-0 transition-colors duration-200">
@@ -61,7 +66,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               MOCCA
             </span>
             <span className="text-[10px] font-bold text-[#4A5C6A] dark:text-[#9BA8AB] uppercase tracking-widest truncate">
-              Gents & Boys
+              {userMode === 'staff' ? 'Counter Billing' : 'Gents & Boys'}
             </span>
           </div>
         </div>
@@ -76,10 +81,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </button>
       </div>
 
-      {/* Navigation List - 5 Streamlined Core Elements with Black Letters */}
+      {/* Navigation List - Only Billing for Staff; All 5 for Owner */}
       <nav className="flex-1 overflow-y-auto px-3.5 py-6 space-y-2">
         <div className="px-3 pb-2 text-[10px] font-extrabold uppercase tracking-wider text-[#4A5C6A] dark:text-[#9BA8AB]">
-          Main Navigation
+          {userMode === 'staff' ? 'Counter POS Register' : 'Main Navigation'}
         </div>
         {navItems.map((item) => {
           const Icon = item.icon;
@@ -127,32 +132,71 @@ export const Sidebar: React.FC<SidebarProps> = ({
         })}
       </nav>
 
-      {/* Owner Security & Lock Card */}
-      <div className="p-3.5 border-t border-gray-300 dark:border-[#253745] bg-gray-50/80 dark:bg-[#06141B]/60">
-        <div className="bg-white dark:bg-[#11212D] p-3 rounded-2xl border border-gray-300 dark:border-[#253745] flex items-center justify-between gap-3 shadow-sm">
-          <div className="flex items-center gap-2.5 min-w-0">
-            <div className="w-8 h-8 rounded-xl bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center text-emerald-700 dark:text-emerald-400 font-bold text-xs shrink-0">
-              <ShieldCheck size={16} />
-            </div>
-            <div className="min-w-0">
-              <p className="text-xs font-bold text-[#06141B] dark:text-[#CCD0CF] truncate leading-tight">
-                Mashboob
-              </p>
-              <span className="inline-block text-[10px] font-bold text-[#4A5C6A] dark:text-emerald-400 uppercase tracking-wider">
-                Store Owner
-              </span>
-            </div>
-          </div>
+      {/* Security & Lock Card */}
+      <div className="p-3.5 border-t border-gray-300 dark:border-[#253745] bg-gray-50/80 dark:bg-[#06141B]/60 space-y-2">
+        {userMode === 'staff' ? (
+          /* Staff Mode Card */
+          <div className="bg-white dark:bg-[#11212D] p-3 rounded-2xl border border-gray-300 dark:border-[#253745] space-y-2.5 shadow-sm">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2 min-w-0">
+                <div className="w-8 h-8 rounded-xl bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center text-emerald-700 dark:text-emerald-400 font-bold text-xs shrink-0">
+                  <UserCheck size={16} />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-xs font-bold text-[#06141B] dark:text-[#CCD0CF] truncate leading-tight">
+                    {activeStaffName}
+                  </p>
+                  <span className="inline-block text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
+                    Counter Staff
+                  </span>
+                </div>
+              </div>
 
-          {/* Instant App Lock Button */}
-          <button
-            onClick={lock}
-            className="p-2 rounded-xl bg-gray-100 hover:bg-rose-50 dark:bg-[#182B3A] dark:hover:bg-rose-500/20 text-[#06141B] hover:text-rose-600 dark:text-[#9BA8AB] dark:hover:text-rose-400 border border-gray-300 dark:border-[#253745] transition-colors"
-            title="Lock Register / Screen"
-          >
-            <Lock size={15} />
-          </button>
-        </div>
+              {/* Lock Button */}
+              <button
+                onClick={() => lock('staff')}
+                className="p-2 rounded-xl bg-gray-100 hover:bg-rose-50 dark:bg-[#182B3A] dark:hover:bg-rose-500/20 text-[#06141B] hover:text-rose-600 dark:text-[#9BA8AB] dark:hover:text-rose-400 border border-gray-300 dark:border-[#253745] transition-colors"
+                title="Lock Counter (Staff PIN)"
+              >
+                <Lock size={15} />
+              </button>
+            </div>
+
+            {/* Switch to Owner Login */}
+            <button
+              onClick={() => lock('owner')}
+              className="w-full flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-xl bg-gray-100 dark:bg-[#182B3A] hover:bg-gray-200 dark:hover:bg-[#253745] text-[11px] font-semibold text-[#4A5C6A] dark:text-[#9BA8AB] hover:text-[#06141B] dark:hover:text-[#CCD0CF] transition-colors"
+            >
+              <ArrowLeftRight size={13} />
+              <span>Switch to Owner Access</span>
+            </button>
+          </div>
+        ) : (
+          /* Owner Mode Card */
+          <div className="bg-white dark:bg-[#11212D] p-3 rounded-2xl border border-gray-300 dark:border-[#253745] flex items-center justify-between gap-3 shadow-sm">
+            <div className="flex items-center gap-2.5 min-w-0">
+              <div className="w-8 h-8 rounded-xl bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center text-emerald-700 dark:text-emerald-400 font-bold text-xs shrink-0">
+                <ShieldCheck size={16} />
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs font-bold text-[#06141B] dark:text-[#CCD0CF] truncate leading-tight">
+                  Mashboob
+                </p>
+                <span className="inline-block text-[10px] font-bold text-[#4A5C6A] dark:text-emerald-400 uppercase tracking-wider">
+                  Store Owner
+                </span>
+              </div>
+            </div>
+
+            <button
+              onClick={() => lock('owner')}
+              className="p-2 rounded-xl bg-gray-100 hover:bg-rose-50 dark:bg-[#182B3A] dark:hover:bg-rose-500/20 text-[#06141B] hover:text-rose-600 dark:text-[#9BA8AB] dark:hover:text-rose-400 border border-gray-300 dark:border-[#253745] transition-colors"
+              title="Lock Counter (Owner PIN Protected)"
+            >
+              <Lock size={15} />
+            </button>
+          </div>
+        )}
       </div>
     </aside>
   );

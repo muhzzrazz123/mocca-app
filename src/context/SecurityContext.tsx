@@ -1,17 +1,30 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
+export type UserAccessMode = 'owner' | 'staff';
+
 interface SecurityContextType {
   isLocked: boolean;
-  unlock: (enteredPin: string) => boolean;
-  lock: () => void;
+  userMode: UserAccessMode;
+  activeStaffName: string;
+  targetLockScreen: UserAccessMode;
+  setTargetLockScreen: (screen: UserAccessMode) => void;
   ownerPin: string;
+  staffPin: string;
+  unlockOwner: (enteredPin: string) => boolean;
+  unlockStaff: (enteredPin: string, staffName?: string) => boolean;
+  unlock: (enteredPin: string) => boolean;
+  lock: (targetScreen?: UserAccessMode) => void;
   updatePin: (currentPin: string, newPin: string) => boolean;
+  updateStaffPin: (newPin: string) => boolean;
 }
 
 const SecurityContext = createContext<SecurityContextType | undefined>(undefined);
 
 const OWNER_PIN_STORAGE_KEY = 'mocca_owner_pin';
+const STAFF_PIN_STORAGE_KEY = 'mocca_staff_pin';
 const LOCK_STATE_STORAGE_KEY = 'mocca_app_locked';
+const USER_MODE_STORAGE_KEY = 'mocca_user_mode';
+const ACTIVE_STAFF_STORAGE_KEY = 'mocca_active_staff_name';
 
 export const SecurityProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [ownerPin, setOwnerPin] = useState<string>(() => {
@@ -23,14 +36,36 @@ export const SecurityProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return stored;
   });
 
+  const [staffPin, setStaffPin] = useState<string>(() => {
+    const stored = localStorage.getItem(STAFF_PIN_STORAGE_KEY);
+    if (!stored) {
+      localStorage.setItem(STAFF_PIN_STORAGE_KEY, '0000');
+      return '0000';
+    }
+    return stored;
+  });
+
+  const [userMode, setUserMode] = useState<UserAccessMode>(() => {
+    const stored = sessionStorage.getItem(USER_MODE_STORAGE_KEY);
+    return (stored === 'staff' ? 'staff' : 'owner') as UserAccessMode;
+  });
+
+  const [activeStaffName, setActiveStaffName] = useState<string>(() => {
+    return sessionStorage.getItem(ACTIVE_STAFF_STORAGE_KEY) || 'Karthik S (Cashier)';
+  });
+
+  const [targetLockScreen, setTargetLockScreen] = useState<UserAccessMode>('owner');
+
   const [isLocked, setIsLocked] = useState<boolean>(() => {
     // Lock on initial load for security
     const stored = sessionStorage.getItem(LOCK_STATE_STORAGE_KEY);
     return stored === null ? true : stored === 'true';
   });
 
-  const unlock = (enteredPin: string): boolean => {
+  const unlockOwner = (enteredPin: string): boolean => {
     if (enteredPin === ownerPin) {
+      setUserMode('owner');
+      sessionStorage.setItem(USER_MODE_STORAGE_KEY, 'owner');
       setIsLocked(false);
       sessionStorage.setItem(LOCK_STATE_STORAGE_KEY, 'false');
       return true;
@@ -38,9 +73,39 @@ export const SecurityProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return false;
   };
 
-  const lock = () => {
+  const unlockStaff = (enteredPin: string, staffName?: string): boolean => {
+    if (enteredPin === staffPin) {
+      setUserMode('staff');
+      sessionStorage.setItem(USER_MODE_STORAGE_KEY, 'staff');
+      if (staffName) {
+        setActiveStaffName(staffName);
+        sessionStorage.setItem(ACTIVE_STAFF_STORAGE_KEY, staffName);
+      }
+      setIsLocked(false);
+      sessionStorage.setItem(LOCK_STATE_STORAGE_KEY, 'false');
+      return true;
+    }
+    return false;
+  };
+
+  const unlock = (enteredPin: string): boolean => {
+    if (enteredPin === ownerPin) {
+      return unlockOwner(enteredPin);
+    }
+    if (enteredPin === staffPin) {
+      return unlockStaff(enteredPin);
+    }
+    return false;
+  };
+
+  const lock = (targetScreen?: UserAccessMode) => {
     setIsLocked(true);
     sessionStorage.setItem(LOCK_STATE_STORAGE_KEY, 'true');
+    if (targetScreen) {
+      setTargetLockScreen(targetScreen);
+    } else {
+      setTargetLockScreen(userMode);
+    }
   };
 
   const updatePin = (currentPin: string, newPin: string): boolean => {
@@ -52,8 +117,33 @@ export const SecurityProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return false;
   };
 
+  const updateStaffPin = (newPin: string): boolean => {
+    if (newPin.length >= 4) {
+      setStaffPin(newPin);
+      localStorage.setItem(STAFF_PIN_STORAGE_KEY, newPin);
+      return true;
+    }
+    return false;
+  };
+
   return (
-    <SecurityContext.Provider value={{ isLocked, unlock, lock, ownerPin, updatePin }}>
+    <SecurityContext.Provider
+      value={{
+        isLocked,
+        userMode,
+        activeStaffName,
+        targetLockScreen,
+        setTargetLockScreen,
+        ownerPin,
+        staffPin,
+        unlockOwner,
+        unlockStaff,
+        unlock,
+        lock,
+        updatePin,
+        updateStaffPin,
+      }}
+    >
       {children}
     </SecurityContext.Provider>
   );

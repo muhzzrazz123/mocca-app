@@ -44,6 +44,7 @@ export type SalaryStatus = 'Pending' | 'Partially Paid' | 'Paid';
 
 export interface SalaryRecord {
   id?: number;
+  invoiceNo?: string; // e.g. SAL-202609-001
   staffId: number;
   staffName: string;
   month: string; // YYYY-MM
@@ -64,6 +65,8 @@ export interface SalaryRecord {
   paidAmount: number;
   paymentDate?: string;
   paymentMethod?: string;
+  transactionRef?: string;
+  paidBy?: string;
   notes?: string;
   createdAt: string;
 }
