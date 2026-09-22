@@ -358,6 +358,23 @@ export class MoccaDatabase extends Dexie {
       timestamp: new Date().toISOString(),
     });
   }
+
+  // Delete Product and variants with Audit Log
+  async deleteProductTransaction(productId: number, user: string): Promise<void> {
+    const product = await this.products.get(productId);
+    if (!product) return;
+
+    await this.products.delete(productId);
+    await this.productVariants.where('productId').equals(productId).delete();
+
+    await this.auditLogs.add({
+      action: 'PRODUCT_DELETED',
+      category: 'INVENTORY',
+      details: `Product "${product.name}" (${product.brand}) and its variants deleted from catalog.`,
+      user,
+      timestamp: new Date().toISOString(),
+    });
+  }
 }
 
 export const db = new MoccaDatabase();

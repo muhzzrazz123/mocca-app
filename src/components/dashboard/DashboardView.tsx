@@ -234,7 +234,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
         category: 'STOCK',
         title: `${outOfStockVariants.length} Variant(s) Out of Stock`,
         description: `Items like ${outOfStockVariants[0].sku} have hit 0 stock. Restock needed immediately.`,
-        actionTab: 'inventory',
+        actionTab: 'daily-profit',
         actionLabel: 'View Inventory',
       });
     }
@@ -250,7 +250,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
         category: 'STOCK',
         title: `${lowStockVariants.length} Products Low in Stock`,
         description: `Size ${lowStockVariants[0].size} (${lowStockVariants[0].color}) has only ${lowStockVariants[0].currentStock} left.`,
-        actionTab: 'inventory',
+        actionTab: 'daily-profit',
         actionLabel: 'Restock',
       });
     }
@@ -266,7 +266,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
         category: 'BILL',
         title: `${overdueBills.length} Bill(s) Overdue`,
         description: `${overdueBills[0].title} (₹${formatNumber(overdueBills[0].amount)}) requires urgent payment.`,
-        actionTab: 'bills',
+        actionTab: 'accounts',
         actionLabel: 'Pay Bills',
       });
     }
@@ -285,7 +285,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
         category: 'BILL',
         title: `${upcomingRent.title} Due Soon`,
         description: `Due on ${upcomingRent.dueDate} (₹${formatNumber(upcomingRent.amount)}).`,
-        actionTab: 'bills',
+        actionTab: 'accounts',
         actionLabel: 'View Rent',
       });
     }
@@ -436,10 +436,10 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
         <div className="flex items-center gap-2.5 text-xs">
           {canViewFinancials && (
             <button
-              onClick={() => onNavigate('finance')}
+              onClick={() => onNavigate('daily-profit')}
               className="px-3.5 py-1.5 rounded-xl bg-gold/15 hover:bg-gold/25 text-gold border border-gold/40 text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm"
             >
-              <TrendingUp size={14} /> View Profit Table
+              <TrendingUp size={14} /> View Profit & Sales
             </button>
           )}
           <span className="text-mocca-400 hidden sm:inline">Total Catalog Stock:</span>

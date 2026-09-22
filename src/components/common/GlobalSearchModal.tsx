@@ -27,7 +27,6 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
-        // Toggle
       }
       if (e.key === 'Escape' && isOpen) {
         onClose();
@@ -52,11 +51,20 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
     // Query DB
     Promise.all([
       db.products
-        .filter((p) => p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q) || p.barcode.includes(q))
+        .filter(
+          (p) =>
+            p.name.toLowerCase().includes(q) ||
+            p.sku.toLowerCase().includes(q) ||
+            p.barcode.includes(q)
+        )
         .limit(5)
         .toArray(),
       db.sales
-        .filter((s) => s.invoiceNo.toLowerCase().includes(q) || s.customerName.toLowerCase().includes(q))
+        .filter(
+          (s) =>
+            s.invoiceNo.toLowerCase().includes(q) ||
+            s.customerName.toLowerCase().includes(q)
+        )
         .limit(5)
         .toArray(),
       db.customers
@@ -68,7 +76,11 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
         .limit(5)
         .toArray(),
       db.staff
-        .filter((st) => st.name.toLowerCase().includes(q) || st.position.toLowerCase().includes(q))
+        .filter(
+          (st) =>
+            st.name.toLowerCase().includes(q) ||
+            st.position.toLowerCase().includes(q)
+        )
         .limit(5)
         .toArray(),
     ]).then(([prods, sls, custs, supps, stfs]) => {
@@ -83,30 +95,30 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 px-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
-      <div className="w-full max-w-2xl bg-mocca-900 border border-gold/40 rounded-2xl shadow-luxury overflow-hidden flex flex-col max-h-[80vh]">
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 px-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-150">
+      <div className="w-full max-w-2xl bg-white dark:bg-[#0E1015] border border-gray-200 dark:border-[#2A2F3D] rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[80vh] transition-colors">
         {/* Search Input Bar */}
-        <div className="p-4 border-b border-mocca-750 flex items-center gap-3 bg-mocca-950/60">
+        <div className="p-4 border-b border-gray-200 dark:border-[#1E222D] flex items-center gap-3 bg-gray-50/50 dark:bg-[#0E1015]/60">
           <Search size={20} className="text-gold shrink-0" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search products, SKUs, invoices, customers, suppliers..."
+            placeholder="Search apparel, SKUs, invoices, customers, suppliers..."
             autoFocus
-            className="flex-1 bg-transparent text-cream placeholder:text-mocca-400 text-sm outline-none font-medium"
+            className="flex-1 bg-transparent text-gray-900 dark:text-cream placeholder-gray-400 dark:placeholder-cream-muted/50 text-sm outline-none font-medium"
           />
           {query && (
             <button
               onClick={() => setQuery('')}
-              className="text-mocca-400 hover:text-cream text-xs px-1.5 py-0.5 rounded bg-mocca-800"
+              className="text-gray-400 hover:text-gray-600 dark:hover:text-cream text-xs px-2 py-0.5 rounded bg-gray-100 dark:bg-[#161922]"
             >
               Clear
             </button>
           )}
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-mocca-400 hover:text-cream hover:bg-mocca-800"
+            className="p-1 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-cream hover:bg-gray-100 dark:hover:bg-[#161922]"
           >
             <X size={18} />
           </button>
@@ -115,21 +127,21 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
         {/* Results List */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {!query.trim() ? (
-            <div className="text-center py-8 text-mocca-400 text-xs">
-              <p className="font-semibold text-cream mb-1">Quick Store Search</p>
+            <div className="text-center py-8 text-gray-400 dark:text-cream-muted text-xs">
+              <p className="font-semibold text-gray-900 dark:text-cream mb-1">Quick Store Search</p>
               <p>Type an item name, SKU, barcode, customer phone, or bill number.</p>
               <div className="flex justify-center gap-2 mt-4 text-[11px]">
-                <span className="px-2 py-1 rounded bg-mocca-850 border border-mocca-750 text-gold">
+                <span className="px-2 py-1 rounded bg-gray-100 dark:bg-[#161922] border border-gray-200 dark:border-[#222736] text-gold font-medium">
                   "Oxford"
                 </span>
-                <span className="px-2 py-1 rounded bg-mocca-850 border border-mocca-750 text-gold">
+                <span className="px-2 py-1 rounded bg-gray-100 dark:bg-[#161922] border border-gray-200 dark:border-[#222736] text-gold font-medium">
                   "Cargo"
                 </span>
-                <span className="px-2 py-1 rounded bg-mocca-850 border border-mocca-750 text-gold">
+                <span className="px-2 py-1 rounded bg-gray-100 dark:bg-[#161922] border border-gray-200 dark:border-[#222736] text-gold font-medium">
                   "98410"
                 </span>
-                <span className="px-2 py-1 rounded bg-mocca-850 border border-mocca-750 text-gold">
-                  "MOC-2609"
+                <span className="px-2 py-1 rounded bg-gray-100 dark:bg-[#161922] border border-gray-200 dark:border-[#222736] text-gold font-medium">
+                  "MOC-2026"
                 </span>
               </div>
             </div>
@@ -139,26 +151,26 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
               {products.length > 0 && (
                 <div className="space-y-1.5">
                   <div className="text-[10px] font-bold uppercase tracking-wider text-gold flex items-center gap-1.5">
-                    <Shirt size={13} /> Products ({products.length})
+                    <Shirt size={13} /> Products & Catalog ({products.length})
                   </div>
                   {products.map((p) => (
                     <div
                       key={p.id}
                       onClick={() => {
-                        onNavigate('products');
+                        onNavigate('daily-profit');
                         onClose();
                       }}
-                      className="p-2.5 rounded-xl bg-mocca-850/80 hover:bg-mocca-800 border border-mocca-750/80 flex items-center justify-between cursor-pointer group"
+                      className="p-2.5 rounded-xl bg-gray-50 dark:bg-[#161922] hover:bg-gold/10 border border-gray-200 dark:border-[#1E222D] flex items-center justify-between cursor-pointer group transition-colors"
                     >
                       <div>
-                        <p className="text-xs font-semibold text-cream group-hover:text-gold">
+                        <p className="text-xs font-semibold text-gray-900 dark:text-cream group-hover:text-gold">
                           {p.name}
                         </p>
-                        <p className="text-[11px] text-mocca-400">
+                        <p className="text-[11px] text-gray-500 dark:text-cream-muted">
                           {p.brand} • SKU: {p.sku} • {p.categoryName}
                         </p>
                       </div>
-                      <ArrowRight size={14} className="text-mocca-400 group-hover:text-gold" />
+                      <ArrowRight size={14} className="text-gray-400 group-hover:text-gold" />
                     </div>
                   ))}
                 </div>
@@ -167,23 +179,23 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
               {/* Invoices Results */}
               {sales.length > 0 && (
                 <div className="space-y-1.5">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-500 flex items-center gap-1.5">
                     <Receipt size={13} /> Invoices & Bills ({sales.length})
                   </div>
                   {sales.map((s) => (
                     <div
                       key={s.id}
                       onClick={() => {
-                        onNavigate('pos');
+                        onNavigate('daily-profit');
                         onClose();
                       }}
-                      className="p-2.5 rounded-xl bg-mocca-850/80 hover:bg-mocca-800 border border-mocca-750/80 flex items-center justify-between cursor-pointer group"
+                      className="p-2.5 rounded-xl bg-gray-50 dark:bg-[#161922] hover:bg-emerald-500/10 border border-gray-200 dark:border-[#1E222D] flex items-center justify-between cursor-pointer group transition-colors"
                     >
                       <div>
-                        <p className="text-xs font-semibold text-cream">
+                        <p className="text-xs font-semibold text-gray-900 dark:text-cream">
                           Bill #{s.invoiceNo} • {s.customerName}
                         </p>
-                        <p className="text-[11px] text-mocca-400">
+                        <p className="text-[11px] text-gray-500 dark:text-cream-muted">
                           {s.date} • {s.paymentMethod}
                         </p>
                       </div>
@@ -200,25 +212,25 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
               {/* Customers Results */}
               {customers.length > 0 && (
                 <div className="space-y-1.5">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-blue-400 flex items-center gap-1.5">
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-blue-500 flex items-center gap-1.5">
                     <Users size={13} /> Customers ({customers.length})
                   </div>
                   {customers.map((c) => (
                     <div
                       key={c.id}
                       onClick={() => {
-                        onNavigate('customers');
+                        onNavigate('billing');
                         onClose();
                       }}
-                      className="p-2.5 rounded-xl bg-mocca-850/80 hover:bg-mocca-800 border border-mocca-750/80 flex items-center justify-between cursor-pointer group"
+                      className="p-2.5 rounded-xl bg-gray-50 dark:bg-[#161922] hover:bg-blue-500/10 border border-gray-200 dark:border-[#1E222D] flex items-center justify-between cursor-pointer group transition-colors"
                     >
                       <div>
-                        <p className="text-xs font-semibold text-cream">{c.name}</p>
-                        <p className="text-[11px] text-mocca-400">
+                        <p className="text-xs font-semibold text-gray-900 dark:text-cream">{c.name}</p>
+                        <p className="text-[11px] text-gray-500 dark:text-cream-muted">
                           {c.phone} • Spent: {formatCurrency(c.totalSpent)}
                         </p>
                       </div>
-                      <ArrowRight size={14} className="text-mocca-400 group-hover:text-gold" />
+                      <ArrowRight size={14} className="text-gray-400 group-hover:text-gold" />
                     </div>
                   ))}
                 </div>
@@ -227,23 +239,23 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
               {/* Suppliers */}
               {suppliers.length > 0 && (
                 <div className="space-y-1.5">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-purple-400 flex items-center gap-1.5">
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-purple-500 flex items-center gap-1.5">
                     <Truck size={13} /> Suppliers ({suppliers.length})
                   </div>
                   {suppliers.map((s) => (
                     <div
                       key={s.id}
                       onClick={() => {
-                        onNavigate('suppliers');
+                        onNavigate('accounts');
                         onClose();
                       }}
-                      className="p-2.5 rounded-xl bg-mocca-850/80 hover:bg-mocca-800 border border-mocca-750/80 flex items-center justify-between cursor-pointer group"
+                      className="p-2.5 rounded-xl bg-gray-50 dark:bg-[#161922] hover:bg-purple-500/10 border border-gray-200 dark:border-[#1E222D] flex items-center justify-between cursor-pointer group transition-colors"
                     >
                       <div>
-                        <p className="text-xs font-semibold text-cream">{s.name}</p>
-                        <p className="text-[11px] text-mocca-400">{s.phone} • {s.contactPerson}</p>
+                        <p className="text-xs font-semibold text-gray-900 dark:text-cream">{s.name}</p>
+                        <p className="text-[11px] text-gray-500 dark:text-cream-muted">{s.phone} • {s.contactPerson}</p>
                       </div>
-                      <ArrowRight size={14} className="text-mocca-400 group-hover:text-gold" />
+                      <ArrowRight size={14} className="text-gray-400 group-hover:text-gold" />
                     </div>
                   ))}
                 </div>
@@ -252,7 +264,7 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
               {/* Staff */}
               {staff.length > 0 && (
                 <div className="space-y-1.5">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-amber-500 flex items-center gap-1.5">
                     <UserCheck size={13} /> Staff ({staff.length})
                   </div>
                   {staff.map((st) => (
@@ -262,13 +274,13 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
                         onNavigate('staff');
                         onClose();
                       }}
-                      className="p-2.5 rounded-xl bg-mocca-850/80 hover:bg-mocca-800 border border-mocca-750/80 flex items-center justify-between cursor-pointer group"
+                      className="p-2.5 rounded-xl bg-gray-50 dark:bg-[#161922] hover:bg-amber-500/10 border border-gray-200 dark:border-[#1E222D] flex items-center justify-between cursor-pointer group transition-colors"
                     >
                       <div>
-                        <p className="text-xs font-semibold text-cream">{st.name}</p>
-                        <p className="text-[11px] text-mocca-400">{st.position} • {st.phone}</p>
+                        <p className="text-xs font-semibold text-gray-900 dark:text-cream">{st.name}</p>
+                        <p className="text-[11px] text-gray-500 dark:text-cream-muted">{st.position} • {st.phone}</p>
                       </div>
-                      <ArrowRight size={14} className="text-mocca-400 group-hover:text-gold" />
+                      <ArrowRight size={14} className="text-gray-400 group-hover:text-gold" />
                     </div>
                   ))}
                 </div>
@@ -279,7 +291,7 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
                 customers.length === 0 &&
                 suppliers.length === 0 &&
                 staff.length === 0 && (
-                  <p className="text-center py-6 text-xs text-mocca-400">
+                  <p className="text-center py-6 text-xs text-gray-400 dark:text-cream-muted">
                     No matching records found for "{query}"
                   </p>
                 )}
@@ -288,9 +300,9 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="p-3 border-t border-mocca-750 bg-mocca-950/60 flex items-center justify-between text-[11px] text-mocca-400">
-          <span>Navigate with arrow keys or click</span>
-          <kbd className="bg-mocca-850 px-1.5 py-0.5 rounded border border-mocca-700 text-[10px]">
+        <div className="p-3 border-t border-gray-200 dark:border-[#1E222D] bg-gray-50/50 dark:bg-[#0E1015]/60 flex items-center justify-between text-[11px] text-gray-500 dark:text-cream-muted">
+          <span>Navigate to modules directly</span>
+          <kbd className="bg-gray-100 dark:bg-[#161922] px-2 py-0.5 rounded border border-gray-200 dark:border-[#222736] text-[10px] font-mono">
             ESC to close
           </kbd>
         </div>

@@ -1,9 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { seedDatabaseIfEmpty } from './db/seedData';
+import { ThemeProvider } from './context/ThemeContext';
+import { SecurityProvider, useSecurity } from './context/SecurityContext';
 import { AuthProvider } from './context/AuthContext';
 import { PeriodProvider } from './context/PeriodContext';
 import { MainLayout } from './components/layout/MainLayout';
-import { Sparkles } from 'lucide-react';
+import { LockScreen } from './components/security/LockScreen';
+
+const AuthenticatedApp: React.FC = () => {
+  const { isLocked } = useSecurity();
+
+  if (isLocked) {
+    return <LockScreen />;
+  }
+
+  return <MainLayout />;
+};
 
 export const App: React.FC = () => {
   const [isInitializing, setIsInitializing] = useState(true);
@@ -15,7 +27,7 @@ export const App: React.FC = () => {
       } catch (err) {
         console.error('Initialization error:', err);
       } finally {
-        setTimeout(() => setIsInitializing(false), 500); // Smooth subtle fade
+        setTimeout(() => setIsInitializing(false), 450); // Smooth subtle fade
       }
     }
     init();
@@ -23,7 +35,7 @@ export const App: React.FC = () => {
 
   if (isInitializing) {
     return (
-      <div className="min-h-screen bg-mocca-950 flex flex-col items-center justify-center p-6 text-center select-none">
+      <div className="min-h-screen bg-[#0E1015] flex flex-col items-center justify-center p-6 text-center select-none text-cream">
         <div className="relative mb-6">
           <div className="absolute inset-0 bg-gold/20 rounded-full blur-2xl animate-pulse" />
           <img
@@ -40,7 +52,7 @@ export const App: React.FC = () => {
           Gents & Boys Collections
         </p>
 
-        <div className="flex items-center gap-2 text-xs text-mocca-400 font-medium">
+        <div className="flex items-center gap-2 text-xs text-gray-400 font-medium">
           <div className="w-4 h-4 border-2 border-gold border-t-transparent rounded-full animate-spin" />
           <span>Synchronizing Retail Store Engine...</span>
         </div>
@@ -49,11 +61,15 @@ export const App: React.FC = () => {
   }
 
   return (
-    <AuthProvider>
-      <PeriodProvider>
-        <MainLayout />
-      </PeriodProvider>
-    </AuthProvider>
+    <ThemeProvider>
+      <SecurityProvider>
+        <AuthProvider>
+          <PeriodProvider>
+            <AuthenticatedApp />
+          </PeriodProvider>
+        </AuthProvider>
+      </SecurityProvider>
+    </ThemeProvider>
   );
 };
 
