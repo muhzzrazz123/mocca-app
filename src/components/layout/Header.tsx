@@ -5,8 +5,6 @@ import {
   Calendar,
   Sparkles,
   ShoppingBag,
-  Bell,
-  Menu,
   Lock,
   Sun,
   Moon,
@@ -29,13 +27,10 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({
   activeTab,
   onSelectTab,
-  onOpenMobileMenu,
   onOpenSearch,
   onOpenDailyEntry,
-  alertsCount = 0,
 }) => {
   const { period, setPeriod } = usePeriod();
-  const { role } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const { lock } = useSecurity();
 
@@ -74,7 +69,7 @@ export const Header: React.FC<HeaderProps> = ({
   }).format(new Date());
 
   return (
-    <header className="h-16 lg:h-20 bg-white/90 dark:bg-[#0E1015]/90 backdrop-blur border-b border-gray-200 dark:border-[#1E222D] px-4 lg:px-8 flex items-center justify-between gap-4 sticky top-0 z-30 select-none transition-colors duration-200">
+    <header className="h-16 lg:h-20 bg-white/95 dark:bg-[#0E1015]/90 backdrop-blur border-b border-gray-300 dark:border-[#1E222D] px-4 lg:px-8 flex items-center justify-between gap-4 sticky top-0 z-30 select-none transition-colors duration-200">
       {/* Left: Brand / Title */}
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-2.5">
@@ -84,16 +79,16 @@ export const Header: React.FC<HeaderProps> = ({
             className="w-9 h-9 rounded-full object-cover lg:hidden ring-1 ring-gold/50"
           />
           <div>
-            <h1 className="text-base lg:text-xl font-bold text-gray-900 dark:text-cream tracking-tight flex items-center gap-2 font-serif">
+            <h1 className="text-base lg:text-xl font-black text-black dark:text-cream tracking-tight flex items-center gap-2 font-serif">
               <span>{getPageTitle()}</span>
               {activeTab === 'dashboard' && (
-                <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-semibold text-gold bg-gold/15 px-2 py-0.5 rounded-full border border-gold/30">
-                  <Sparkles size={12} /> Live Sync
+                <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-bold text-black bg-gold/25 px-2 py-0.5 rounded-full border border-gold/40">
+                  <Sparkles size={12} className="text-gold-700" /> Live Sync
                 </span>
               )}
             </h1>
-            <p className="text-[11px] text-gray-500 dark:text-mocca-400 font-medium hidden sm:block">
-              MOCCA Gents & Boys • {todayFormatted} • Owner: <strong>Mashboob</strong>
+            <p className="text-[11px] text-gray-700 dark:text-mocca-400 font-medium hidden sm:block">
+              MOCCA Gents & Boys • {todayFormatted} • Owner: <strong className="text-black dark:text-cream">Mashboob</strong>
             </p>
           </div>
         </div>
@@ -104,25 +99,25 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Quick Search */}
         <button
           onClick={onOpenSearch}
-          className="hidden md:flex items-center gap-2.5 bg-gray-100 hover:bg-gray-200 dark:bg-[#161820] dark:hover:bg-[#1E222D] text-gray-600 dark:text-cream-muted px-3.5 py-2 rounded-xl border border-gray-200 dark:border-[#222630] text-xs transition-colors"
+          className="hidden md:flex items-center gap-2.5 bg-gray-100 hover:bg-gray-200 dark:bg-[#161820] dark:hover:bg-[#1E222D] text-black dark:text-cream-muted px-3.5 py-2 rounded-xl border border-gray-300 dark:border-[#222630] text-xs font-semibold transition-colors"
         >
-          <Search size={15} className="text-gold" />
-          <span className="text-gray-400 dark:text-mocca-400">Search invoices, items, staff...</span>
-          <kbd className="hidden xl:inline-block bg-white dark:bg-[#0E1015] text-gray-500 dark:text-mocca-400 text-[10px] font-mono px-1.5 py-0.5 rounded border border-gray-200 dark:border-[#222630]">
+          <Search size={15} className="text-gold stroke-[2.5]" />
+          <span className="text-gray-600 dark:text-mocca-400">Search invoices, items, staff...</span>
+          <kbd className="hidden xl:inline-block bg-white dark:bg-[#0E1015] text-black dark:text-mocca-400 text-[10px] font-mono px-1.5 py-0.5 rounded border border-gray-300 dark:border-[#222630]">
             Ctrl+K
           </kbd>
         </button>
 
         {/* Period Filter Dropdown */}
-        <div className="flex items-center gap-1.5 bg-gray-100 dark:bg-[#161820] px-2.5 py-1.5 rounded-xl border border-gray-200 dark:border-[#222630] text-xs">
-          <Calendar size={14} className="text-gold shrink-0" />
+        <div className="flex items-center gap-1.5 bg-gray-100 dark:bg-[#161820] px-2.5 py-1.5 rounded-xl border border-gray-300 dark:border-[#222630] text-xs font-bold text-black">
+          <Calendar size={14} className="text-gold shrink-0 stroke-[2.5]" />
           <select
             value={period}
             onChange={(e) => setPeriod(e.target.value as PeriodFilter)}
-            className="bg-transparent text-gray-800 dark:text-cream font-medium outline-none cursor-pointer text-xs"
+            className="bg-transparent text-black dark:text-cream font-bold outline-none cursor-pointer text-xs"
           >
             {periodOptions.map((opt) => (
-              <option key={opt} value={opt} className="bg-white dark:bg-[#0E1015] text-gray-900 dark:text-cream">
+              <option key={opt} value={opt} className="bg-white dark:bg-[#0E1015] text-black dark:text-cream font-semibold">
                 {opt}
               </option>
             ))}
@@ -132,16 +127,16 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Theme Toggle (Light/Dark) */}
         <button
           onClick={toggleTheme}
-          className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-[#161820] dark:hover:bg-[#1E222D] text-gray-700 dark:text-cream-muted border border-gray-200 dark:border-[#222630] transition-colors"
+          className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-[#161820] dark:hover:bg-[#1E222D] text-black dark:text-cream-muted border border-gray-300 dark:border-[#222630] transition-colors"
           title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
         >
-          {theme === 'dark' ? <Sun size={17} className="text-amber-400" /> : <Moon size={17} className="text-gray-700" />}
+          {theme === 'dark' ? <Sun size={17} className="text-amber-400" /> : <Moon size={17} className="text-black" />}
         </button>
 
         {/* Lock Screen Button */}
         <button
           onClick={lock}
-          className="p-2 rounded-xl bg-gray-100 hover:bg-rose-50 dark:bg-[#161820] dark:hover:bg-rose-500/20 text-gray-600 hover:text-rose-600 dark:text-cream-muted dark:hover:text-rose-400 border border-gray-200 dark:border-[#222630] transition-colors"
+          className="p-2 rounded-xl bg-gray-100 hover:bg-rose-50 dark:bg-[#161820] dark:hover:bg-rose-500/20 text-black hover:text-rose-600 dark:text-cream-muted dark:hover:text-rose-400 border border-gray-300 dark:border-[#222630] transition-colors"
           title="Lock App (Owner PIN Protected)"
         >
           <Lock size={16} />
@@ -150,10 +145,10 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Quick Daily Entry Action Button */}
         <button
           onClick={onOpenDailyEntry}
-          className="flex items-center gap-1.5 bg-gray-100 hover:bg-gray-200 dark:bg-[#161820] dark:hover:bg-[#1E222D] text-gold-700 dark:text-gold font-bold px-3 py-2 rounded-xl text-xs border border-gold/40 hover:border-gold shadow-sm transition-all active:scale-95"
+          className="flex items-center gap-1.5 bg-gold/15 hover:bg-gold/25 dark:bg-[#161820] dark:hover:bg-[#1E222D] text-black dark:text-gold font-extrabold px-3 py-2 rounded-xl text-xs border border-gold/60 hover:border-gold shadow-sm transition-all active:scale-95"
           title="Add Daily Expense, Received Stock, Attendance, or Request"
         >
-          <PlusCircle size={15} />
+          <PlusCircle size={15} className="text-gold-700 stroke-[2.5]" />
           <span className="hidden md:inline">+ Daily Entry</span>
           <span className="md:hidden">Daily</span>
         </button>
@@ -161,9 +156,9 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Primary Action Button: New Bill / POS */}
         <button
           onClick={() => onSelectTab('billing')}
-          className="flex items-center gap-2 bg-gradient-to-r from-gold to-gold-600 hover:from-gold-light hover:to-gold text-mocca-950 font-bold px-3.5 lg:px-4 py-2 rounded-xl text-xs lg:text-sm shadow-gold-glow transition-all active:scale-95"
+          className="flex items-center gap-2 bg-gold hover:bg-gold-light text-mocca-950 font-black px-3.5 lg:px-4 py-2 rounded-xl text-xs lg:text-sm shadow-gold-glow transition-all active:scale-95"
         >
-          <ShoppingBag size={16} className="shrink-0" />
+          <ShoppingBag size={16} className="shrink-0 stroke-[2.5]" />
           <span className="hidden sm:inline">New Bill</span>
           <span className="sm:hidden">Bill</span>
         </button>

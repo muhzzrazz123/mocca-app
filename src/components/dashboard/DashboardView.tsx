@@ -418,16 +418,16 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
   return (
     <div className="p-4 lg:p-8 space-y-6 max-w-[1600px] mx-auto pb-24 lg:pb-12">
       {/* Period Header Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-mocca-900/60 p-4 lg:p-5 rounded-2xl border border-mocca-750/80 backdrop-blur">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white dark:bg-[#0E1015] p-4 lg:p-5 rounded-2xl border border-gray-300 dark:border-[#1E222D] shadow-sm">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gold/15 border border-gold/40 flex items-center justify-center text-gold">
-            <ShoppingBag size={20} />
+          <div className="w-10 h-10 rounded-xl bg-gold/20 border border-gold/40 flex items-center justify-center text-black">
+            <ShoppingBag size={20} className="stroke-[2.5]" />
           </div>
           <div>
-            <h2 className="text-lg font-bold text-cream font-serif">
+            <h2 className="text-lg font-black text-black dark:text-cream font-serif">
               Performance Snapshot: {periodLabel}
             </h2>
-            <p className="text-xs text-mocca-400">
+            <p className="text-xs text-gray-700 dark:text-mocca-400 font-medium">
               Showing consolidated live store transactions from {startDate} to {endDate}
             </p>
           </div>
@@ -437,13 +437,13 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
           {canViewFinancials && (
             <button
               onClick={() => onNavigate('daily-profit')}
-              className="px-3.5 py-1.5 rounded-xl bg-gold/15 hover:bg-gold/25 text-gold border border-gold/40 text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm"
+              className="px-3.5 py-1.5 rounded-xl bg-gold/20 hover:bg-gold/30 text-black dark:text-gold border border-gold/50 text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm"
             >
               <TrendingUp size={14} /> View Profit & Sales
             </button>
           )}
-          <span className="text-mocca-400 hidden sm:inline">Total Catalog Stock:</span>
-          <span className="font-bold text-cream bg-mocca-850 px-2.5 py-1 rounded-lg border border-mocca-700">
+          <span className="text-gray-700 dark:text-mocca-400 hidden sm:inline font-medium">Total Catalog Stock:</span>
+          <span className="font-black text-black dark:text-cream bg-gray-100 dark:bg-mocca-850 px-2.5 py-1 rounded-lg border border-gray-300 dark:border-mocca-700">
             {variants?.reduce((acc, v) => acc + (v.currentStock || 0), 0) || 0} Pieces
           </span>
         </div>

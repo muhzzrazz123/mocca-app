@@ -12,7 +12,6 @@ import {
   PieChart,
   Pie,
   Cell,
-  Legend,
 } from 'recharts';
 import { formatCurrency } from '../../utils/formatters';
 import { Trophy, TrendingUp, CreditCard, PieChart as PieIcon } from 'lucide-react';
@@ -59,14 +58,14 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
   topProducts,
   canViewProfit = true,
 }) => {
-  // Custom Dark Tooltip
+  // Custom Tooltip with crisp black text on white
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-mocca-900 border border-mocca-700 p-3 rounded-xl shadow-luxury text-xs space-y-1">
-          <p className="font-bold text-cream mb-1">{label}</p>
+        <div className="bg-white dark:bg-mocca-900 border border-gray-300 dark:border-mocca-700 p-3 rounded-xl shadow-lg text-xs space-y-1">
+          <p className="font-bold text-black dark:text-cream mb-1">{label}</p>
           {payload.map((item: any, idx: number) => (
-            <p key={idx} style={{ color: item.color }} className="font-medium">
+            <p key={idx} style={{ color: item.color }} className="font-bold">
               {item.name}: {formatCurrency(item.value)}
             </p>
           ))}
@@ -81,27 +80,27 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
       {/* Top Row: Sales & Profit Trend (Left) + Top Selling Products (Right) */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Sales & Profit Trend */}
-        <div className="lg:col-span-2 bg-mocca-900/90 border border-mocca-750/80 rounded-2xl p-5 space-y-4">
+        <div className="lg:col-span-2 bg-white dark:bg-[#12141A] border border-gray-300 dark:border-[#222736] rounded-2xl p-5 space-y-4 shadow-sm">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-lg bg-gold/10 text-gold border border-gold/20">
-                <TrendingUp size={18} />
+              <div className="p-2 rounded-lg bg-gold/20 text-black dark:text-gold border border-gold/40">
+                <TrendingUp size={18} className="stroke-[2.5]" />
               </div>
               <div>
-                <h3 className="text-sm font-bold text-cream uppercase tracking-wider">
+                <h3 className="text-sm font-black text-black dark:text-cream uppercase tracking-wider">
                   Sales & Profit Trajectory
                 </h3>
-                <p className="text-xs text-mocca-400">Revenue and gross margin timeline</p>
+                <p className="text-xs text-gray-700 dark:text-mocca-400 font-medium">Revenue and gross margin timeline</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 text-xs font-semibold">
-              <span className="flex items-center gap-1.5 text-gold">
+            <div className="flex items-center gap-4 text-xs font-bold">
+              <span className="flex items-center gap-1.5 text-black dark:text-gold">
                 <span className="w-2.5 h-2.5 rounded-full bg-gold inline-block" /> Sales
               </span>
               {canViewProfit && (
-                <span className="flex items-center gap-1.5 text-emerald-400">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block" /> Profit
+                <span className="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block" /> Profit
                 </span>
               )}
             </div>
@@ -120,7 +119,7 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
                     <stop offset="95%" stopColor="#34D399" stopOpacity={0.0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1E222D" vertical={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" vertical={false} />
                 <XAxis dataKey="date" stroke="#64748B" tick={{ fontSize: 11 }} tickLine={false} />
                 <YAxis
                   stroke="#64748B"
@@ -143,7 +142,7 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
                     type="monotone"
                     dataKey="profit"
                     name="Gross Profit"
-                    stroke="#34D399"
+                    stroke="#10B981"
                     strokeWidth={2}
                     fillOpacity={1}
                     fill="url(#profitGrad)"
@@ -155,48 +154,48 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
         </div>
 
         {/* Top Selling Products List */}
-        <div className="bg-mocca-900/90 border border-mocca-750/80 rounded-2xl p-5 space-y-3 flex flex-col justify-between">
+        <div className="bg-white dark:bg-[#12141A] border border-gray-300 dark:border-[#222736] rounded-2xl p-5 space-y-3 flex flex-col justify-between shadow-sm">
           <div>
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <div className="p-2 rounded-lg bg-gold/15 text-gold border border-gold/30">
-                  <Trophy size={18} />
+                <div className="p-2 rounded-lg bg-gold/20 text-black dark:text-gold border border-gold/40">
+                  <Trophy size={18} className="stroke-[2.5]" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-cream uppercase tracking-wider">
+                  <h3 className="text-sm font-black text-black dark:text-cream uppercase tracking-wider">
                     Top Sellers
                   </h3>
-                  <p className="text-xs text-mocca-400">By volume & revenue</p>
+                  <p className="text-xs text-gray-700 dark:text-mocca-400 font-medium">By volume & revenue</p>
                 </div>
               </div>
-              <span className="text-[10px] font-bold text-gold uppercase tracking-wider bg-gold/10 px-2 py-0.5 rounded border border-gold/20">
+              <span className="text-[10px] font-bold text-black dark:text-gold uppercase tracking-wider bg-gold/20 px-2 py-0.5 rounded border border-gold/40">
                 Live Data
               </span>
             </div>
 
-            <div className="divide-y divide-mocca-800/80">
+            <div className="divide-y divide-gray-200 dark:divide-mocca-800/80">
               {topProducts.slice(0, 4).map((p, index) => (
                 <div key={p.id || index} className="py-2.5 flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2.5 min-w-0">
-                    <span className="w-5 h-5 rounded-full bg-mocca-800 text-gold text-[10px] font-bold flex items-center justify-center border border-mocca-700 shrink-0">
+                    <span className="w-5 h-5 rounded-full bg-gray-100 dark:bg-mocca-800 text-black dark:text-gold text-[10px] font-bold flex items-center justify-center border border-gray-300 dark:border-mocca-700 shrink-0">
                       {index + 1}
                     </span>
                     <div className="min-w-0">
-                      <p className="text-xs font-semibold text-cream truncate">{p.name}</p>
-                      <p className="text-[11px] text-mocca-400 truncate">{p.category}</p>
+                      <p className="text-xs font-bold text-black dark:text-cream truncate">{p.name}</p>
+                      <p className="text-[11px] text-gray-600 dark:text-mocca-400 truncate font-medium">{p.category}</p>
                     </div>
                   </div>
                   <div className="text-right shrink-0">
-                    <p className="text-xs font-bold text-gold">{formatCurrency(p.revenue)}</p>
-                    <p className="text-[10px] text-cream-muted">{p.unitsSold} units sold</p>
+                    <p className="text-xs font-black text-black dark:text-gold">{formatCurrency(p.revenue)}</p>
+                    <p className="text-[10px] text-gray-700 dark:text-cream-muted font-semibold">{p.unitsSold} units sold</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="pt-2 text-center border-t border-mocca-800">
-            <span className="text-xs text-mocca-400">
+          <div className="pt-2 text-center border-t border-gray-200 dark:border-mocca-800">
+            <span className="text-xs text-gray-600 dark:text-mocca-400 font-medium">
               Rankings refresh automatically on every completed sale
             </span>
           </div>
@@ -206,17 +205,17 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
       {/* Bottom Row: Sales by Category (Bar) + Payment Methods (Donut) */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Sales by Category */}
-        <div className="lg:col-span-2 bg-mocca-900/90 border border-mocca-750/80 rounded-2xl p-5 space-y-4">
+        <div className="lg:col-span-2 bg-white dark:bg-[#12141A] border border-gray-300 dark:border-[#222736] rounded-2xl p-5 space-y-4 shadow-sm">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-lg bg-gold/10 text-gold border border-gold/20">
-                <PieIcon size={18} />
+              <div className="p-2 rounded-lg bg-gold/20 text-black dark:text-gold border border-gold/40">
+                <PieIcon size={18} className="stroke-[2.5]" />
               </div>
               <div>
-                <h3 className="text-sm font-bold text-cream uppercase tracking-wider">
+                <h3 className="text-sm font-black text-black dark:text-cream uppercase tracking-wider">
                   Category Revenue Performance
                 </h3>
-                <p className="text-xs text-mocca-400">Total sales volume per apparel collection</p>
+                <p className="text-xs text-gray-700 dark:text-mocca-400 font-medium">Total sales volume per apparel collection</p>
               </div>
             </div>
           </div>
@@ -224,7 +223,7 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={categoryData} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1E222D" vertical={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" vertical={false} />
                 <XAxis
                   dataKey="category"
                   stroke="#64748B"
@@ -251,16 +250,16 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
         </div>
 
         {/* Payment Method Distribution */}
-        <div className="bg-mocca-900/90 border border-mocca-750/80 rounded-2xl p-5 space-y-4 flex flex-col justify-between">
+        <div className="bg-white dark:bg-[#12141A] border border-gray-300 dark:border-[#222736] rounded-2xl p-5 space-y-4 flex flex-col justify-between shadow-sm">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-lg bg-gold/10 text-gold border border-gold/20">
-              <CreditCard size={18} />
+            <div className="p-2 rounded-lg bg-gold/20 text-black dark:text-gold border border-gold/40">
+              <CreditCard size={18} className="stroke-[2.5]" />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-cream uppercase tracking-wider">
+              <h3 className="text-sm font-black text-black dark:text-cream uppercase tracking-wider">
                 Payment Breakdown
               </h3>
-              <p className="text-xs text-mocca-400">Cash, UPI, Card & Store Credit</p>
+              <p className="text-xs text-gray-700 dark:text-mocca-400 font-medium">Cash, UPI, Card & Store Credit</p>
             </div>
           </div>
 
@@ -283,11 +282,12 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
                 <Tooltip
                   formatter={(val: number) => formatCurrency(val)}
                   contentStyle={{
-                    backgroundColor: '#0D0E12',
-                    borderColor: '#282D3A',
+                    backgroundColor: '#FFFFFF',
+                    borderColor: '#D1D5DB',
                     borderRadius: '0.75rem',
-                    color: '#F8F7F4',
+                    color: '#000000',
                     fontSize: '12px',
+                    fontWeight: 'bold',
                   }}
                 />
               </PieChart>
@@ -295,14 +295,14 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({
           </div>
 
           {/* Legend Table */}
-          <div className="grid grid-cols-2 gap-2 text-xs border-t border-mocca-800/80 pt-3">
+          <div className="grid grid-cols-2 gap-2 text-xs border-t border-gray-200 dark:border-mocca-800/80 pt-3">
             {paymentData.map((p) => (
-              <div key={p.name} className="flex items-center justify-between p-1.5 rounded bg-mocca-850">
-                <span className="flex items-center gap-1.5 text-cream-muted truncate">
-                  <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: p.color }} />
+              <div key={p.name} className="flex items-center justify-between p-2 rounded-lg bg-gray-100 dark:bg-mocca-850 border border-gray-200 dark:border-transparent">
+                <span className="flex items-center gap-1.5 text-gray-800 dark:text-cream-muted truncate font-semibold">
+                  <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: p.color }} />
                   {p.name}
                 </span>
-                <span className="font-bold text-cream">{formatCurrency(p.value)}</span>
+                <span className="font-extrabold text-black dark:text-cream">{formatCurrency(p.value)}</span>
               </div>
             ))}
           </div>

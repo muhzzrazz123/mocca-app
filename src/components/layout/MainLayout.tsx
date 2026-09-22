@@ -54,7 +54,7 @@ export const MainLayout: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-[#07080A] flex flex-col lg:flex-row text-gray-900 dark:text-cream selection:bg-gold selection:text-mocca-950 transition-colors">
+    <div className="min-h-screen bg-[#ECEEF2] dark:bg-[#07080A] flex flex-col lg:flex-row text-black dark:text-cream selection:bg-gold selection:text-mocca-950 transition-colors">
       {/* Desktop Luxury Sidebar */}
       <Sidebar
         activeTab={activeTab}
@@ -74,8 +74,8 @@ export const MainLayout: React.FC = () => {
           alertsCount={overdueCount}
         />
 
-        {/* View Content */}
-        <main className="flex-1 bg-gray-50 dark:bg-[#07080A] overflow-y-auto transition-colors">
+        {/* View Content with Grey Background */}
+        <main className="flex-1 bg-[#ECEEF2] dark:bg-[#07080A] overflow-y-auto transition-colors">
           {renderContent()}
         </main>
 

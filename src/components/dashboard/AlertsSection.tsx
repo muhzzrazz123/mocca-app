@@ -1,10 +1,8 @@
 import React from 'react';
 import {
   AlertTriangle,
-  XCircle,
   Clock,
   UserX,
-  Calendar,
   CreditCard,
   ChevronRight,
   Sparkles,
@@ -29,11 +27,11 @@ interface AlertsSectionProps {
 export const AlertsSection: React.FC<AlertsSectionProps> = ({ alerts, onNavigate }) => {
   if (!alerts || alerts.length === 0) {
     return (
-      <div className="bg-mocca-900/60 border border-mocca-800 rounded-2xl p-5 flex items-center gap-3 text-emerald-400">
-        <Sparkles size={20} className="shrink-0" />
+      <div className="bg-white dark:bg-[#12141A] border border-gray-300 dark:border-mocca-800 rounded-2xl p-5 flex items-center gap-3 text-emerald-800 dark:text-emerald-400 shadow-sm">
+        <Sparkles size={20} className="shrink-0 text-emerald-600" />
         <div>
-          <p className="text-sm font-semibold text-cream">All Systems Clear</p>
-          <p className="text-xs text-mocca-400">
+          <p className="text-sm font-bold text-black dark:text-cream">All Systems Clear</p>
+          <p className="text-xs text-gray-700 dark:text-mocca-400">
             No critical alerts, overdue bills, or stock issues requiring urgent attention.
           </p>
         </div>
@@ -60,24 +58,24 @@ export const AlertsSection: React.FC<AlertsSectionProps> = ({ alerts, onNavigate
     switch (type) {
       case 'danger':
         return {
-          border: 'border-rose-500/40 hover:border-rose-500/80',
-          bg: 'bg-rose-500/10',
-          iconBg: 'bg-rose-500/20 text-rose-400',
-          badge: 'bg-rose-500/20 text-rose-300 border-rose-500/40',
+          bg: 'bg-rose-50/90 dark:bg-rose-950/20 hover:bg-rose-100/80 dark:hover:bg-rose-950/30',
+          border: 'border-rose-300 dark:border-rose-800/40',
+          iconBg: 'bg-rose-500/15 text-rose-700 dark:text-rose-400',
+          badge: 'bg-rose-500/15 text-rose-800 dark:text-rose-400 border-rose-400/40',
         };
       case 'warning':
         return {
-          border: 'border-amber-500/40 hover:border-amber-500/80',
-          bg: 'bg-amber-500/10',
-          iconBg: 'bg-amber-500/20 text-amber-400',
-          badge: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
+          bg: 'bg-amber-50/90 dark:bg-amber-950/20 hover:bg-amber-100/80 dark:hover:bg-amber-950/30',
+          border: 'border-amber-300 dark:border-amber-800/40',
+          iconBg: 'bg-amber-500/15 text-amber-800 dark:text-amber-400',
+          badge: 'bg-amber-500/15 text-amber-900 dark:text-amber-400 border-amber-400/40',
         };
       default:
         return {
-          border: 'border-gold/30 hover:border-gold/60',
-          bg: 'bg-gold/5',
-          iconBg: 'bg-gold/15 text-gold',
-          badge: 'bg-gold/20 text-gold border-gold/40',
+          bg: 'bg-white dark:bg-mocca-900/80 hover:bg-gray-50 dark:hover:bg-mocca-850',
+          border: 'border-gray-300 dark:border-mocca-750',
+          iconBg: 'bg-gold/20 text-black dark:text-gold',
+          badge: 'bg-gold/20 text-black dark:text-gold border-gold/40',
         };
     }
   };
@@ -87,11 +85,11 @@ export const AlertsSection: React.FC<AlertsSectionProps> = ({ alerts, onNavigate
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span>
-          <h3 className="text-sm font-bold uppercase tracking-wider text-cream">
+          <h3 className="text-sm font-black uppercase tracking-wider text-black dark:text-cream">
             Action Required ({alerts.length})
           </h3>
         </div>
-        <span className="text-xs text-mocca-400">Real-time alerts</span>
+        <span className="text-xs text-gray-700 dark:text-mocca-400 font-semibold">Real-time alerts</span>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
@@ -103,11 +101,11 @@ export const AlertsSection: React.FC<AlertsSectionProps> = ({ alerts, onNavigate
             <div
               key={alert.id}
               onClick={() => onNavigate(alert.actionTab)}
-              className={`p-4 rounded-xl border transition-all cursor-pointer group flex items-start justify-between gap-3 ${colors.bg} ${colors.border}`}
+              className={`p-4 rounded-xl border transition-all cursor-pointer group flex items-start justify-between gap-3 shadow-sm ${colors.bg} ${colors.border}`}
             >
               <div className="flex items-start gap-3 min-w-0">
                 <div className={`p-2 rounded-lg shrink-0 ${colors.iconBg}`}>
-                  <Icon size={18} />
+                  <Icon size={18} className="stroke-[2.5]" />
                 </div>
                 <div className="min-w-0">
                   <div className="flex items-center gap-2 mb-0.5">
@@ -116,19 +114,19 @@ export const AlertsSection: React.FC<AlertsSectionProps> = ({ alerts, onNavigate
                     >
                       {alert.category}
                     </span>
-                    <h4 className="text-xs font-bold text-cream truncate">{alert.title}</h4>
+                    <h4 className="text-xs font-black text-black dark:text-cream truncate">{alert.title}</h4>
                   </div>
-                  <p className="text-xs text-cream-muted line-clamp-2 leading-relaxed">
+                  <p className="text-xs text-gray-700 dark:text-cream-muted line-clamp-2 leading-relaxed font-medium">
                     {alert.description}
                   </p>
                 </div>
               </div>
 
               <button
-                className="shrink-0 p-1.5 rounded-lg bg-mocca-800 text-gold group-hover:bg-gold group-hover:text-mocca-950 transition-colors"
+                className="shrink-0 p-1.5 rounded-lg bg-gray-100 dark:bg-mocca-800 text-black dark:text-gold group-hover:bg-gold group-hover:text-mocca-950 transition-colors border border-gray-300 dark:border-transparent"
                 title={alert.actionLabel}
               >
-                <ChevronRight size={16} />
+                <ChevronRight size={16} className="stroke-[2.5]" />
               </button>
             </div>
           );

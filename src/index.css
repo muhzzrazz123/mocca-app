@@ -12,8 +12,8 @@
   }
 
   body {
-    background-color: #F4F5F7;
-    color: #111827;
+    background-color: #ECEEF2; /* Luxury Slate-Grey Background */
+    color: #000000; /* Crisp Black Letters */
     overflow-x: hidden;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
@@ -39,8 +39,9 @@ html.dark ::-webkit-scrollbar-thumb {
   border-radius: 4px;
 }
 
-html.light ::-webkit-scrollbar-thumb {
-  background: #D1D5DB;
+html.light ::-webkit-scrollbar-thumb,
+body ::-webkit-scrollbar-thumb {
+  background: #C5CBD5;
   border-radius: 4px;
 }
 
